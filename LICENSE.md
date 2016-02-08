@@ -1,4 +1,4 @@
-### BSD LICENSE
+#### BSD 3-Clause LICENSE
 
 Copyright (c) 2016, Jon Harris, Shreya Patel, Zefanya Putri, Erin Jordan, Helen Lei
 
