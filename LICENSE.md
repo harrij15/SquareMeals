@@ -1,6 +1,7 @@
 ### BSD LICENSE
 
 Copyright (c) 2016, Jon Harris, Shreya Patel, Zefanya Putri, Erin Jordan, Helen Lei
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
