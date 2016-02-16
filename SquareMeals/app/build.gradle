@@ -4,7 +4,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
     defaultConfig {
-        applicationId "zejs.com.mycookbook"
+        applicationId "SquareMeals.com.squaremeals"
         minSdkVersion 23
         targetSdkVersion 23
         versionCode 1
@@ -17,6 +17,10 @@ android {
         }
     }
     productFlavors {
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/java/SquareMeals/com/squaremeals'
     }
 }
 
