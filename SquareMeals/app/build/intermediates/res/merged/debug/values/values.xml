@@ -218,6 +218,8 @@
     <!-- From: file:/C:/Users/harrij15/Documents/GitHub/SquareMeals/SquareMeals/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">SquareMeals</string>
+    <string name="auto_complete_view">Auto Complete</string>
+    <string name="completion_hint">Type recipes…</string>
     <string name="filter_button">CUSTOM FILTERS</string>
     <!-- From: file:/C:/Users/harrij15/Documents/GitHub/SquareMeals/SquareMeals/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>
