@@ -218,6 +218,8 @@
     <!-- From: file:/C:/Users/harrij15/Documents/GitHub/SquareMeals/SquareMeals/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">SquareMeals</string>
+    <string name="auto_complete_view">Auto Complete</string>
+    <string name="completion_hint">Type recipes…</string>
     <string name="filter_button">CUSTOM FILTERS</string>
     <!-- From: file:/C:/Users/harrij15/Documents/GitHub/SquareMeals/SquareMeals/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>
@@ -228,7 +230,7 @@
     <style name="Animation.AppCompat.DropDownUp" parent="Base.Animation.AppCompat.DropDownUp"/>
     <!-- From: file:/C:/Users/harrij15/Documents/GitHub/SquareMeals/SquareMeals/app/src/main/res/values/styles.xml -->
     <eat-comment/>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
