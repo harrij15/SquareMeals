@@ -38,7 +38,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="5dp"
         android:paddingTop="20dp"
-        android:layout_below="@+id/filter_button"
+        android:layout_below="@+id/sign_in_button"
         android:layout_alignParentStart="false"
         android:layout_centerInParent="true"/>
 

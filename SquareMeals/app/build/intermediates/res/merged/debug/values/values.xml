@@ -34,6 +34,7 @@
     <!-- From: file:/C:/Users/harrij15/Documents/GitHub/SquareMeals/SquareMeals/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorGreen">#18AC36</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <!-- From: file:/C:/Users/harrij15/Documents/GitHub/SquareMeals/SquareMeals/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
@@ -218,12 +219,27 @@
     <!-- From: file:/C:/Users/harrij15/Documents/GitHub/SquareMeals/SquareMeals/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">SquareMeals</string>
-    <string name="auto_complete_view">Auto Complete</string>
-    <string name="completion_hint">Type recipes…</string>
+    <string name="email">Email</string>
     <string name="filter_button">CUSTOM FILTERS</string>
+    <string name="login">Login</string>
+    <string name="logo">Logo</string>
+    <string name="main_layout">Main layout</string>
+    <string name="password_hint">Password</string>
+    <string name="popup_background">Popup Background</string>
+    <string name="retype">Retype Password</string>
+    <string name="sign_in_button">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="sign_up_layout">Sign Up Layout</string>
+    <string name="sign_up_layout2">Sign Up Layout</string>
     <!-- From: file:/C:/Users/harrij15/Documents/GitHub/SquareMeals/SquareMeals/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>
     <string name="status_bar_notification_info_overflow">999+</string>
+    <!-- From: file:/C:/Users/harrij15/Documents/GitHub/SquareMeals/SquareMeals/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="username_hint">Username</string>
+    <!-- From: file:/C:/Users/harrij15/Documents/GitHub/SquareMeals/SquareMeals/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
+    <eat-comment/>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
@@ -232,8 +248,8 @@
     <eat-comment/>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorGreen</item>
+        <item name="colorPrimaryDark">@color/colorGreen</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <!-- From: file:/C:/Users/harrij15/Documents/GitHub/SquareMeals/SquareMeals/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
