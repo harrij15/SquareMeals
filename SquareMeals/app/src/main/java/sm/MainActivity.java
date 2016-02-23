@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         testView.setBackgroundColor(0xffffffff);
         //testView.addTouchables(textFields);    *
 
-        Button signInButton = (Button) findViewById(R.id.sign_in_button);
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        Button logInButton = (Button) findViewById(R.id.sign_in_button);
+        logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -57,9 +57,42 @@ public class MainActivity extends AppCompatActivity {
                 //LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 //final View inflatedView = layoutInflater.inflate(R.layout.activity_main,null,false);
 
-                LinearLayout logInLayout = (LinearLayout)findViewById(R.id.login);
-                LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LinearLayout logInLayout = (LinearLayout) findViewById(R.id.login);
+                LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View layout = layoutInflater.inflate(R.layout.log_in, logInLayout);
+
+                Resources resources = getResources();
+                Bitmap bitmap = BitmapFactory.decodeResource(resources, R.drawable.white);
+                RoundedBitmapDrawable dr = RoundedBitmapDrawableFactory.create(resources, bitmap);
+                dr.setCornerRadius(Math.max(bitmap.getWidth(), bitmap.getWidth()) / 7.0f);
+
+
+                Display display = getWindowManager().getDefaultDisplay();
+                Point size = new Point();
+                display.getSize(size);
+
+                popupWindow = new PopupWindow(layout, size.x - 50, size.y - 500, true);
+                popupWindow.setFocusable(true);
+                popupWindow.setElevation(60);
+                popupWindow.setOutsideTouchable(true);
+                popupWindow.setBackgroundDrawable(dr);
+                popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+            }
+        });
+
+        Button signUpButton = (Button) findViewById(R.id.sign_up_button);
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                PopupWindow popupWindow;
+
+                //LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                //final View inflatedView = layoutInflater.inflate(R.layout.activity_main,null,false);
+
+                LinearLayout logInLayout = (LinearLayout)findViewById(R.id.sign_up);
+                LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View layout = layoutInflater.inflate(R.layout.sign_up, logInLayout);
 
                 Resources resources = getResources();
                 Bitmap bitmap = BitmapFactory.decodeResource(resources, R.drawable.white);

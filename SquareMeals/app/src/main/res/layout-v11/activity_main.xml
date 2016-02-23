@@ -19,18 +19,25 @@
 
     </SearchView>
 
-    <Button
+    <!--<Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/searchView"
         android:layout_alignParentStart="true"
         android:text="@string/filter_button"
-        android:id="@+id/filter_button" />
+        android:id="@+id/filter_button" />      -->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchView"
+        android:id="@+id/sign_up_button"
+        android:text="@string/sign_up_button"
+        />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/filter_button"
+        android:layout_below="@+id/sign_up_button"
         android:id="@+id/sign_in_button"
         android:text="@string/sign_in_button"
         />

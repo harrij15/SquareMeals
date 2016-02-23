@@ -219,13 +219,17 @@
     <!-- From: file:/C:/Users/harrij15/Documents/GitHub/SquareMeals/SquareMeals/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">SquareMeals</string>
+    <string name="email">Email</string>
     <string name="filter_button">CUSTOM FILTERS</string>
     <string name="login">Login</string>
     <string name="logo">Logo</string>
     <string name="main_layout">Main layout</string>
     <string name="password_hint">Password</string>
     <string name="popup_background">Popup Background</string>
-    <string name="sign_in_button">Sign Up or Login</string>
+    <string name="retype">Retype Password</string>
+    <string name="sign_in_button">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_button">Sign Up</string>
     <string name="sign_up_layout">Sign Up Layout</string>
     <string name="sign_up_layout2">Sign Up Layout</string>
     <!-- From: file:/C:/Users/harrij15/Documents/GitHub/SquareMeals/SquareMeals/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->

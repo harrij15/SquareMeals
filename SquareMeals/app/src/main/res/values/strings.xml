@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">SquareMeals</string>
     <string name="filter_button">CUSTOM FILTERS</string>
-    <string name="sign_in_button">Sign Up or Login</string>
+    <string name="sign_in_button">Login</string>
+    <string name="sign_up_button">Sign Up</string>
     <string name="main_layout">Main layout</string>
     <string name="sign_up_layout">Sign Up Layout</string>
     <string name="sign_up_layout2">Sign Up Layout</string>
@@ -10,4 +11,7 @@
     <string name="popup_background">Popup Background</string>
     <string name="logo">Logo</string>
     <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="retype">Retype Password</string>
 </resources>
