@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">SquareMeals</string>
     <string name="filter_button">CUSTOM FILTERS</string>
+    <string name="sign_in_button">Sign Up or Login</string>
+    <string name="main_layout">Main layout</string>
+    <string name="sign_up_layout">Sign Up Layout</string>
+    <string name="sign_up_layout2">Sign Up Layout</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="popup_background">Popup Background</string>
+    <string name="logo">Logo</string>
+    <string name="login">Login</string>
 </resources>
