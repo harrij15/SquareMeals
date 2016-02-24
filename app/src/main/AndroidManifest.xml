@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+
         <activity android:name="sm.MainActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
@@ -16,6 +17,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".HomepageActivity"
+            android:label="Hello User!"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package sm;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -77,6 +78,20 @@ public class MainActivity extends AppCompatActivity {
                 popupWindow.setOutsideTouchable(true);
                 popupWindow.setBackgroundDrawable(dr);
                 popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+
+                /**
+                 *  When user presses the log-in button in the pop-up window,
+                 *  go to the Homepage
+                 *  */
+                Button logIn = (Button)layout.findViewById(R.id.button);
+                logIn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(MainActivity.this, HomepageActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
             }
         });
 
@@ -112,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
             }
         });
+
 
         /*gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
