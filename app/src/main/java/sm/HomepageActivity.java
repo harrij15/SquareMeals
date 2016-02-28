@@ -37,10 +37,13 @@ public class HomepageActivity extends AppCompatActivity {
          * Creates a dropdown menu in the homepage
          */
         Spinner dropdown = (Spinner) findViewById(R.id.spinner);
-        String[] dropdown_list = new String[]{"Hello User!","Cookbook","Preferences","Settings"};
+        String[] dropdown_list = new String[]{"Hello User! Top picks for you:","Cookbook","Preferences","Settings"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, dropdown_list);
         dropdown.setAdapter(adapter);
 
+        /**
+         * Creates a grid view of recipe recommendations
+         */
         GridView gridView = (GridView) findViewById(R.id.gridView2);
         gridView.setAdapter(new HomepageButtonAdapter(this));
     }

@@ -15,7 +15,7 @@ public class HomepageButtonAdapter extends BaseAdapter {
     private Context context;
 
     static String[] recipes = {"RECIPE 1", "RECIPE 2", "RECIPE 3",
-            "RECIPE 4"};
+            "RECIPE 4", "RECIPE 5", "RECIPE 6"};
 
     // Gets the context so it can be used later
     public HomepageButtonAdapter(Context newContext) { context = newContext; }
@@ -40,8 +40,8 @@ public class HomepageButtonAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             button = new Button(context);
-            button.setLayoutParams(new GridView.LayoutParams(400,400));
-            button.setPadding(2, 2, 2, 2);
+            button.setLayoutParams(new GridView.LayoutParams(420,420));
+            button.setPadding(3, 3, 3, 3);
         } else {
             button = (Button) convertView;
         }
@@ -55,8 +55,9 @@ public class HomepageButtonAdapter extends BaseAdapter {
 
     // references to our images
     private Integer[] pictures = {
-            R.drawable.vegan2, R.drawable.religion2,
-            R.drawable.diabetes4, R.drawable.peanuts2
+            R.drawable.vegan2, R.drawable.soy,
+            R.drawable.gluten, R.drawable.peanuts2,
+            R.drawable.gluten2, R.drawable.eggs2
     };
 
 
