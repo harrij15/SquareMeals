@@ -13,5 +13,7 @@
     <string name="login">Login</string>
     <string name="sign_up">Sign Up</string>
     <string name="email">Email</string>
-    <string name="retype">Retype Password</string>
+    <string name="retype">Confirm Password</string>
+    <string name="name">Name</string>
+    <string name="name_subtext">Other users will only be able to see your username.</string>
 </resources>
