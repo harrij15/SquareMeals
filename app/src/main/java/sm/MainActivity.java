@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
                 /**
                  *  When user presses the log-in button in the pop-up window,
-                 *  go to the Homepage
+                 *  go to the Homepage -- by Zefanya Putri
                  *  */
                 Button logIn = (Button)layout.findViewById(R.id.button);
                 logIn.setOnClickListener(new View.OnClickListener() {
