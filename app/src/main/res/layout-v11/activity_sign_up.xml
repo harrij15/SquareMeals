@@ -12,6 +12,10 @@
        It contains an ImageView for the app's logo, and multiple text fields for user input.
     -->
 
+    <!--
+         Logo
+    -->
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,6 +31,10 @@
 
         android:layout_marginTop="38dp" />
 
+    <!--
+        Name
+   -->
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,6 +44,10 @@
         android:hint="@string/name"
         android:layout_above="@+id/textView"
         android:layout_alignStart="@+id/textView" />
+
+    <!--
+        Name subtext
+   -->
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,6 +63,10 @@
         android:layout_above="@+id/user_name"
         />
 
+    <!--
+        Username
+   -->
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,6 +77,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_above="@+id/email"
         android:layout_alignStart="@+id/email" />
+
+    <!--
+        Email
+   -->
 
     <EditText
         android:layout_width="wrap_content"
@@ -73,6 +93,10 @@
         android:layout_above="@+id/password"
         android:layout_alignStart="@+id/password" />
 
+    <!--
+        Password
+   -->
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,6 +107,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_above="@+id/retype"
         android:layout_alignStart="@+id/retype" />
+
+    <!--
+        Confirm password
+   -->
 
     <EditText
         android:layout_width="wrap_content"
@@ -96,6 +124,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="21dp" />
 
+    <!--
+        Signup button
+   -->
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,7 +138,8 @@
         android:enabled="true"
         android:layout_marginBottom="24dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="signUp"/>
 
 
 
