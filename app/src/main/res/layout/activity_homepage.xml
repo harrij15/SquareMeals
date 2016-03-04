@@ -8,76 +8,89 @@
     android:weightSum="1"
     android:background="@color/White">
 
-    <!-- Dropdown menu -->
-    <Spinner
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:spinnerMode="dropdown"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
+<!--    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
         android:background="@color/Grey"
-        android:contextClickable="true" />
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+        </android.support.v7.widget.Toolbar>-->
 
-    <GridView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numColumns="2"
-        android:verticalSpacing="5dp"
-        android:horizontalSpacing="10dp"
-        android:paddingTop="10dp"
-        android:paddingLeft="25dp"
-        android:id="@+id/gridView2"
-        android:layout_below="@+id/spinner"
-        android:layout_centerHorizontal="true" />
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        ></include>
 
-    <RelativeLayout
+    <TabHost
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+        android:id="@+id/tabHost"
+        android:layout_below="@+id/tool_bar"
+        android:layout_alignParentStart="true">
 
-        <SearchView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/HomepageSearchView"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:background="@color/colorGreen" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            android:width="111dp"
-            android:id="@+id/homepageButton1"
-            android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@+id/HomepageSearchView"
-            android:background="@color/Orange" />
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/Orange"
+                android:elevation="5dp"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            android:width="111dp"
-            android:id="@+id/homepageButton2"
-            android:layout_alignBottom="@+id/homepageButton1"
-            android:layout_toEndOf="@+id/homepageButton1"
-            android:background="@color/Orange2" />
+            </TabWidget>
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            android:width="112dp"
-            android:id="@+id/homepageButton3"
-            android:layout_alignBottom="@+id/homepageButton2"
-            android:layout_toEndOf="@+id/homepageButton2"
-            android:background="@color/Orange" />
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    </RelativeLayout>
+                <!-- TAB 1 lAYOUT -->
+                <LinearLayout
+                    android:id="@+id/tab1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <GridView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/homepage_tab1_gridView"
+                        android:layout_gravity="center_horizontal"
+                        android:numColumns="2"
+                        android:paddingTop="5dp"
+                        android:paddingLeft="10dp"
+                        android:verticalSpacing="5dp"
+                        android:horizontalSpacing="20dp"/>
+
+<!--                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="This is Tab 1" />-->
+
+                </LinearLayout>
+
+                <!-- TAB 2 LAYOUT -->
+                <LinearLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="This is Tab 2" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
 
 </RelativeLayout>
