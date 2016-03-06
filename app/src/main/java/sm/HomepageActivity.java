@@ -18,12 +18,15 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TabHost;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.ArrayList;
 
 /**
  * Created by putriz on 2/23/2016.
@@ -36,6 +39,7 @@ public class HomepageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
@@ -63,12 +67,25 @@ public class HomepageActivity extends AppCompatActivity {
             spec.setContent(R.id.tab2);
             spec.setIndicator("My Cookbook");
             host.addTab(spec);
-        // -----------------------------------------------------------------------------------------
 
         // Grid View that shows recipe recommendations in Tab 1
         GridView gridView = (GridView) findViewById(R.id.homepage_tab1_gridView);
         gridView.setAdapter(new HomepageButtonAdapter(this));
-    }
+
+        // List View that shows recipes saved in cookbook
+        ListView listView = (ListView) findViewById(R.id.cookbook_list);
+
+        String[] recipes = new String[] {"RECIPE 1", "RECIPE 2", "RECIPE 3"};
+        ArrayList<String> recipe_list = new ArrayList<String>();
+        for (int i = 0; i < recipes.length; ++i){
+            recipe_list.add(recipes[i]);
+        }
+        HomepageListArrayAdapter adapter = new HomepageListArrayAdapter(this, android.R.layout.simple_list_item_1, recipe_list);
+        listView.setAdapter(adapter);
+
+        // -----------------------------------------------------------------------------------------
+
+    } /* end of onCreate method */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -91,4 +108,5 @@ public class HomepageActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-}
+
+} /* end of HompageAcitivity class */
