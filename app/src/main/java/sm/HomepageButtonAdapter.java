@@ -40,7 +40,7 @@ public class HomepageButtonAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             button = new Button(context);
-            button.setLayoutParams(new GridView.LayoutParams(420,420));
+            button.setLayoutParams(new GridView.LayoutParams(500,500));
             button.setPadding(3, 3, 3, 3);
         } else {
             button = (Button) convertView;

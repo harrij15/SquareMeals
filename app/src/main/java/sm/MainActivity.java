@@ -28,9 +28,16 @@ public class MainActivity extends AppCompatActivity {
         EditText username = (EditText)findViewById(R.id.user_name);
         EditText password = (EditText)findViewById(R.id.password);
         TextView incorrect = (TextView)findViewById(R.id.incorrect);
+
         // Logs in user only if the username/password fields are filled
         if (username.getText().length() != 0 && password.getText().length() != 0) {    // If user/pass are both filled
+
             Intent homepageIntent = new Intent(this, HomepageActivity.class);
+
+            // This will save the username to be used in HomepageActivity
+            String name = username.getText().toString();
+            homepageIntent.putExtra("USERNAME",name);
+
             startActivity(homepageIntent);
 
         } else {    //Tell user to fill in correct information

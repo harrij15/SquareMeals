@@ -76,7 +76,8 @@
         android:id="@+id/button2"
         android:layout_alignTop="@+id/button"
         android:layout_alignStart="@+id/password"
-        android:onClick="signUp"/>
+        android:onClick="signUp"
+        android:background="@color/Orange" />
 
     <!--
         Login button
@@ -93,7 +94,8 @@
         android:layout_marginTop="28dp"
         android:layout_below="@+id/password"
         android:layout_alignEnd="@+id/imageView"
-        android:onClick="logIn"/>
+        android:onClick="logIn"
+        android:background="@color/Orange"/>
 
     <!--
         Guest button
@@ -107,7 +109,8 @@
         android:layout_below="@+id/button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="31dp"
-        android:onClick="guestEnter"/>
+        android:onClick="guestEnter"
+        android:background="@color/Orange"/>
 
     <TextView
         android:layout_width="wrap_content"

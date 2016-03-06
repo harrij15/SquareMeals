@@ -42,11 +42,13 @@ public class HomepageActivity extends AppCompatActivity {
         // TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-/*        toolbar.setTitle(null);
-        toolbar.setLogo(R.drawable.leaf);
-        toolbar.setLogoDescription("It is a leaf");*/
 
-        // TABS
+        // Retrieve username from MainActivity
+        String username = getIntent().getExtras().getString("USERNAME");
+        getSupportActionBar().setTitle("Hello "+username+"!");
+
+
+        // TABS ------------------------------------------------------------------------------------
         TabHost host = (TabHost)findViewById(R.id.tabHost);
         host.setup();
 
@@ -61,18 +63,9 @@ public class HomepageActivity extends AppCompatActivity {
             spec.setContent(R.id.tab2);
             spec.setIndicator("My Cookbook");
             host.addTab(spec);
+        // -----------------------------------------------------------------------------------------
 
-        /**
-         * Creates a dropdown menu in the homepage
-         */
-/*        Spinner dropdown = (Spinner) findViewById(R.id.spinner);
-        String[] dropdown_list = new String[]{"*","Preferences","Settings"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, dropdown_list);
-        dropdown.setAdapter(adapter);*/
-
-        /**
-         * Creates a grid view of recipe recommendations
-         */
+        // Grid View that shows recipe recommendations in Tab 1
         GridView gridView = (GridView) findViewById(R.id.homepage_tab1_gridView);
         gridView.setAdapter(new HomepageButtonAdapter(this));
     }
