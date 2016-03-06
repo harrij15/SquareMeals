@@ -20,8 +20,7 @@
 
     <include
         android:id="@+id/tool_bar"
-        layout="@layout/tool_bar"
-        ></include>
+        layout="@layout/tool_bar"></include>
 
     <TabHost
         android:layout_width="match_parent"

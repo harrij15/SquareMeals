@@ -5,7 +5,8 @@
     android:id="@+id/login"
     android:orientation="vertical"
     android:textAlignment="center"
-    android:visibility="visible">
+    android:visibility="visible"
+    android:background="@color/White">
 
     <!--
         This is the initial page for the login process.
