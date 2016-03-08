@@ -1,7 +1,12 @@
 package sm;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -55,11 +60,9 @@ public class HomepageButtonAdapter extends BaseAdapter {
 
     // references to our images
     private Integer[] pictures = {
-            R.drawable.vegan2, R.drawable.soy,
-            R.drawable.gluten, R.drawable.peanuts2,
+            R.drawable.dairy2, R.drawable.shellfish2,
+            R.drawable.fish2, R.drawable.peanuts2,
             R.drawable.gluten2, R.drawable.eggs2
     };
-
-
 
 }
