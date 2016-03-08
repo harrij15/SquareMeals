@@ -27,4 +27,6 @@ proguard/
 *.log
 
 #Workspace
+/.idea/
 /.idea/workspace.xml
+
