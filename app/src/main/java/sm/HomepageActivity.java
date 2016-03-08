@@ -31,20 +31,25 @@ public class HomepageActivity extends AppCompatActivity {
 
         // TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);
 
-        // Retrieve username from MainActivity
-        //String username = getIntent().getExtras().getString("USERNAME");
-
-        EditText username = (EditText)findViewById(R.id.user_name);
-        if (getSupportActionBar() != null && username != null) {
-            if (username.getText().length() != 0) {
-                String name = username.getText().toString();
-                getSupportActionBar().setTitle("Hello " + name + "!");
-            } else {
-                getSupportActionBar().setTitle("Hello Guest!");
-            }
+        String username, name;
+        if (getIntent().getExtras() != null) {
+            username = getIntent().getExtras().getString("USERNAME");
+            name = getIntent().getExtras().getString("NAME");
+        } else {
+            username = "";
+            name = "";
         }
+
+        if (name != "") {
+            toolbar.setTitle("Hello " + name + "!");
+        }
+        else if (username != "") { // If username is filled
+            toolbar.setTitle("Hello " + username + "!");
+        } else {
+            toolbar.setTitle("Hello Guest!");
+        }
+        setSupportActionBar(toolbar);
 
 
 
