@@ -27,15 +27,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by putriz on 2/23/2016.
  */
 
-
 public class HomepageActivity extends AppCompatActivity {
 
     TabHost tabhost;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -74,13 +75,21 @@ public class HomepageActivity extends AppCompatActivity {
 
         // List View that shows recipes saved in cookbook
         ListView listView = (ListView) findViewById(R.id.cookbook_list);
+        List listRecipe = new ArrayList();
 
-        String[] recipes = new String[] {"RECIPE 1", "RECIPE 2", "RECIPE 3"};
+        ArrayList<String> str = new ArrayList<String>();
+        str.add("sugar"); str.add("water");
+
+        listRecipe.add(new Recipe("Recipe 1",str,"fish","delicious",15));
+        listRecipe.add(new Recipe("Recipe 2",str,"eggs","awesome",10));
+
+/*       String[] recipes = new String[] {"RECIPE 1", "RECIPE 2", "RECIPE 3"};
         ArrayList<String> recipe_list = new ArrayList<String>();
         for (int i = 0; i < recipes.length; ++i){
             recipe_list.add(recipes[i]);
-        }
-        HomepageListArrayAdapter adapter = new HomepageListArrayAdapter(this, android.R.layout.simple_list_item_1, recipe_list);
+        }*/
+
+        HomepageListArrayAdapter adapter = new HomepageListArrayAdapter(this, R.layout.homepage_list, listRecipe);
         listView.setAdapter(adapter);
 
         // -----------------------------------------------------------------------------------------

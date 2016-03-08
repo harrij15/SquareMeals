@@ -92,7 +92,8 @@
                     <SearchView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/homepage_tab2_searchView" />
+                        android:id="@+id/homepage_tab2_searchView"
+                        android:queryHint="Search Cookbook..." />
 
                     <ListView
                         android:layout_width="wrap_content"
