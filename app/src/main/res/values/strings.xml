@@ -18,4 +18,5 @@
     <string name="name_subtext">Other users will only be able to see your username.</string>
     <string name="guest">Guest</string>
     <string name="incorrect_info">Oops! Incorrect username or password</string>
+
 </resources>
