@@ -1,26 +1,11 @@
 package sm;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Display;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.PopupWindow;
-import android.widget.Spinner;
 import android.widget.TabHost;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -46,11 +31,26 @@ public class HomepageActivity extends AppCompatActivity {
 
         // TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+
+        String username, name;
+        if (getIntent().getExtras() != null) {
+            username = getIntent().getExtras().getString("USERNAME");
+            name = getIntent().getExtras().getString("NAME");
+        } else {
+            username = "";
+            name = "";
+        }
+
+        if (name != "") {
+            toolbar.setTitle("Hello " + name + "!");
+        }
+        else if (username != "") { // If username is filled
+            toolbar.setTitle("Hello " + username + "!");
+        } else {
+            toolbar.setTitle("Hello Guest!");
+        }
         setSupportActionBar(toolbar);
 
-        // Retrieve username from MainActivity
-        String username = getIntent().getExtras().getString("USERNAME");
-        getSupportActionBar().setTitle("Hello "+username+"!");
 
 
         // TABS ------------------------------------------------------------------------------------

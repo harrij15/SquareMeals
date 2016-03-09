@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
     }
 
     //Pushes on sign up view on click of sign up button
@@ -35,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
             Intent homepageIntent = new Intent(this, HomepageActivity.class);
 
             // This will save the username to be used in HomepageActivity
-            String name = username.getText().toString();
-            homepageIntent.putExtra("USERNAME",name);
+            String user_name = username.getText().toString();
+            String name_ = user_name;
+            homepageIntent.putExtra("USERNAME",user_name);
+            homepageIntent.putExtra("NAME",name_);
 
             startActivity(homepageIntent);
 

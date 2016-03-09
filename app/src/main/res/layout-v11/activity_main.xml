@@ -47,6 +47,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_below="@+id/incorrect"
         android:layout_alignStart="@+id/imageView"
+        android:layout_alignLeft="@+id/imageView"
         android:layout_centerHorizontal="true" />
 
     <!--
