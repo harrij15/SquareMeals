@@ -57,12 +57,15 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <SearchView
+                    <!--<SearchView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/tab1_searchView"
                         android:layout_gravity="center_horizontal"
-                        android:queryHint="Search recipes/restaurants..." />
+                        android:queryHint="@string/search_hint"
+                        android:showAsAction="collapseActionView|ifRoom"
+                        android:actionViewClass="android.widget.SearchView"
+                        />        -->
 
                     <GridView
                         android:layout_width="match_parent"

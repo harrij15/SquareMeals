@@ -1,11 +1,12 @@
 package sm;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TabHost;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -99,7 +100,17 @@ public class HomepageActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_hompage, menu);
+        getMenuInflater().inflate(R.menu.menu_homepage, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) (menu.findItem(R.id.search)).getActionView();
+
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+            searchView.setIconifiedByDefault(false);
+        }
+
+
         return true;
     }
 
@@ -115,7 +126,22 @@ public class HomepageActivity extends AppCompatActivity {
             return true;
         }
 
+        /*if (id == R.id.tab1_searchView) {
+            onSearchRequested();
+            return true;
+        }      */
+
         return super.onOptionsItemSelected(item);
     }
 
-} /* end of HompageAcitivity class */
+    @Override
+    public boolean onSearchRequested() {
+        Bundle appData = new Bundle();
+        appData.putString("hello", "world");
+        startSearch(null,false,appData,false);
+        return true;
+    }
+
+
+
+} /* end of HomepageAcitivity class */
