@@ -3,12 +3,19 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#ff9933</color>
-
+    <color name="afternoonColor1">#6BBEF2</color>
+    <color name="afternoonColor2">#3EAEF5</color>
+    <color name="eveningColor1">#698BA7</color>
+    <color name="eveningColor2">#587595</color>
+    <color name="nightColor1">#1c1b1a</color>
+    <color name="nightColor2">#0b0b0b</color>
     <color name="colorGreen">#44cc00</color>
     <color name="White">#FFFFFF</color>
     <color name="Grey">#e6e6e6</color>
+    <color name="lightOrange">#f6d3ac</color>
     <color name="Orange">#ff9933</color>
     <color name="Orange2">#ff8c1a</color>
+    <color name="red">#ff2121</color>
 
     <color name="toolbar_title">#001a00</color>
 </resources>
