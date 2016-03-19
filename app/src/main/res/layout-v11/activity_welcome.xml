@@ -13,7 +13,7 @@
     -->
 
     <!--
-        Logo
+        logo
     -->
 
     <ImageView
@@ -22,7 +22,7 @@
         android:id="@+id/logo"
         android:contentDescription="@string/logo"
         android:adjustViewBounds="true"
-        android:src="@drawable/leaf"
+        android:src="@drawable/logo2"
         android:scaleType="fitXY"
         android:focusable="true"
         android:cropToPadding="false"
@@ -49,7 +49,7 @@
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
         android:typeface="normal"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
 
 </RelativeLayout>

@@ -3,11 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#ff9933</color>
-    <color name="afternoonColor1">#6BBEF2</color>
+    <color name="afternoonColor1">#add9f4</color>
     <color name="afternoonColor2">#3EAEF5</color>
-    <color name="eveningColor1">#698BA7</color>
-    <color name="eveningColor2">#587595</color>
-    <color name="nightColor1">#1c1b1a</color>
+    <color name="eveningColor1">#3e96df</color>
+    <color name="eveningColor2">#213750</color>
+    <color name="nightColor1">#2d3a60</color>
     <color name="nightColor2">#0b0b0b</color>
     <color name="colorGreen">#44cc00</color>
     <color name="White">#FFFFFF</color>

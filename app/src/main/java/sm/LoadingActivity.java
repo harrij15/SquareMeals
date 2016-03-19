@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,9 +28,6 @@ import java.util.Date;
 import java.util.List;
 
 public class LoadingActivity extends AppCompatActivity {
-
-    // Thread to run the transition of colors, while information is gathered
-    private Thread thread;
 
     // Drawable that allows view to transition colors
     TransitionDrawable transitionDrawable = new TransitionDrawable(new Drawable[]{});
@@ -58,10 +56,11 @@ public class LoadingActivity extends AppCompatActivity {
             transitionDrawable = (TransitionDrawable) ResourcesCompat.getDrawable(getResources(),R.drawable.transition_night,getTheme());
         }
 
+        // Create TransitionView
         transitionView = new TransitionView(this,transitionDrawable);
 
+
         // Access user information from input
-        TextView greeting = new TextView(this);
         String username, name;
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
@@ -71,20 +70,33 @@ public class LoadingActivity extends AppCompatActivity {
             name = "";
         }
 
+        // Create text views for loading screen
+        TextView greeting = new TextView(this);
+        TextView preparing = new TextView(this);
+
+        // Make text for text views
         String emptyString = "";
         String greetingString;
+        String preparingString = "Preparing your meals...";
 
         // Set up greeting for user, based on user input
-        if (name != null && !name.equals(emptyString)) {
-            greetingString = "Hello " + name + "!";
+        if (name != null && !name.equals(username) && !name.equals(emptyString)) {
+            greetingString = "Hi " + name + "!";
         }
         else if (username != null && !username.equals(emptyString)) { // If username is filled
-            greetingString = "Hello " + username + "!";
+            greetingString = "Hi " + username + "!";
         } else {
-            greetingString = "Hello Guest!";
+            greetingString = "Welcome to SquareMeals!";
         }
+
+        // Set text of text views
         greeting.setText(greetingString);
+        preparing.setText(preparingString);
+
+        // Set color for text
         greeting.setTextColor(Color.WHITE);
+        preparing.setTextColor(Color.WHITE);
+
 
         // Access screen size
         Display display = getWindowManager().getDefaultDisplay();
@@ -92,22 +104,30 @@ public class LoadingActivity extends AppCompatActivity {
         display.getSize(size);
 
         // Give greeting TextView an arbitrary size
-        greeting.setHeight(size.y);
+        greeting.setHeight(size.y / 2);
         greeting.setWidth(size.x);
+        preparing.setHeight(size.y / 2);
+        preparing.setWidth(size.x);
 
         // Position greeting TextView on screen and resize text size
-        greeting.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        greeting.setY(size.y / 4);
+        greeting.setGravity(Gravity.CENTER);
+        preparing.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        greeting.setY(0);
+        preparing.setY(size.y/2);
         greeting.setTextSize(size.y / 35);
+        preparing.setTextSize(size.y / 90);
 
-        // Set up content view and add transition view and text view to it
+        // Set up content view and add transition view and text views to it
         RelativeLayout relativeLayout = new RelativeLayout(this);
-        relativeLayout.addView(greeting);
         relativeLayout.addView(transitionView);
-        relativeLayout.bringChildToFront(greeting);
+        relativeLayout.addView(greeting);
+        relativeLayout.addView(preparing);
         setContentView(relativeLayout);
 
-        // Run thread to start transitioning colors
+        // Thread to run the transition of colors, while information is gathered
+        Thread thread;
+
+        // Run thread to start transitioning color
         thread = new Thread(transitionView.getRunnable());
         thread.start();
 
@@ -228,7 +248,7 @@ public class LoadingActivity extends AppCompatActivity {
                 // If the data has been fetched and the
                 // number of iterations has been reached,
                 // start the homepage activity
-                if (canStop && iterations >= 4) {
+                if (canStop && iterations >= 3) {
 
                     //Built-in function to finish the current activity
                     finish();
