@@ -27,7 +27,10 @@
             android:parentActivityName=".MainActivity">
         </activity>
 
->>>>>>> refs/remotes/origin/master
+        <activity android:name=".HomepageGuestActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
+
     </application>
 
 </manifest>

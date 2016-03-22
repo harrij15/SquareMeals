@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void guestEnter(View view) {
-        Intent homepageIntent = new Intent(this, HomepageActivity.class);
+        Intent homepageIntent = new Intent(this, HomepageGuestActivity.class);
         startActivity(homepageIntent);
 
     }

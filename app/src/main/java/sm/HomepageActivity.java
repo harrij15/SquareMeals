@@ -46,8 +46,6 @@ public class HomepageActivity extends AppCompatActivity {
         }
         else if (username != "") { // If username is filled
             toolbar.setTitle("Hello " + username + "!");
-        } else {
-            toolbar.setTitle("Hello Guest!");
         }
         setSupportActionBar(toolbar);
 
