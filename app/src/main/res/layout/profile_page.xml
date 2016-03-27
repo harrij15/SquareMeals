@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="SquareMeals.com.squaremeals.ProfilePage">
+
+
+
+
+<ImageView
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:id="@+id/imageViewUserImage"
+    android:src="@drawable/no_user"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="55dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/fill_all"
+        android:id="@+id/fill_all"
+        android:textColor="#da0808"
+        android:layout_below="@+id/imageView"
+        android:layout_alignStart="@+id/user_name"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
+
+    <!--
+        Name
+   -->
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/real_name"
+        android:hint="@string/name"
+        android:layout_above="@+id/textView"
+        android:layout_alignStart="@+id/textView"  />
+
+    <!--
+        Name subtext
+   -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/name_subtext"
+        android:id="@+id/textView"
+        android:textSize="5pt"
+        android:textIsSelectable="true"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/user_name"
+        android:textColor="#aea9a9"
+        android:layout_above="@+id/user_name"
+        />
+
+    <!--
+        Username
+   -->
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/user_name"
+        android:hint="@string/username_hint"
+        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/email"
+        android:layout_alignStart="@+id/email" />
+
+    <!--
+        Email
+   -->
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/email"
+        android:hint="@string/email"
+        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/password"
+        android:layout_alignStart="@+id/password"    />
+
+    <!--
+        Password
+   -->
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/password"
+        android:hint="@string/password_hint"
+        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/retype"
+        android:layout_alignStart="@+id/retype" />
+
+    <!--
+        Confirm password
+   -->
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/retype"
+        android:hint="@string/retype"
+        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp" />
+
+    <!--
+        Signup button
+   -->
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Update_Changes"
+        android:id="@+id/button"
+        android:singleLine="false"
+        android:layout_gravity="center_horizontal"
+        android:enabled="true"
+        android:layout_marginBottom="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="Update_Changes"/>
+
+</RelativeLayout>

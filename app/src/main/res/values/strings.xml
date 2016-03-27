@@ -19,5 +19,6 @@
     <string name="guest">Guest</string>
     <string name="incorrect_info">Oops! Incorrect username or password</string>
     <string name="fill_all">Please fill in all of the following fields.</string>
+    <string name="Update_Changes">Update Changes</string>
 
 </resources>
