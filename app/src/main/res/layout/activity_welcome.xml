@@ -22,14 +22,15 @@
         android:id="@+id/logo"
         android:contentDescription="@string/logo"
         android:adjustViewBounds="true"
-        android:src="@drawable/logo2"
+        android:src="@drawable/logo_original"
         android:scaleType="fitXY"
         android:focusable="true"
         android:cropToPadding="false"
-        android:layout_marginLeft="90dp"
-        android:layout_marginRight="90dp"
-        android:layout_marginTop="123dp"
-        android:layout_alignParentTop="true" />
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="66dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 
     <!--
          App name

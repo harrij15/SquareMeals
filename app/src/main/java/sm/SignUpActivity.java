@@ -36,8 +36,10 @@ public class SignUpActivity extends AppCompatActivity {
             Intent loadingIntent = new Intent(this, LoadingActivity.class);
 
             String user_name = username.getText().toString();
+            String name_ = name.getText().toString();
+            Log.d("name",name_);
             loadingIntent.putExtra("USERNAME",user_name);
-            loadingIntent.putExtra("NAME", user_name);
+            loadingIntent.putExtra("NAME", name_);
 
             startActivity(loadingIntent);
 

@@ -212,17 +212,19 @@ public class LoadingActivity extends AppCompatActivity {
     private void startHomepageActivity() {
         Intent homepageIntent = new Intent(LoadingActivity.this,HomepageActivity.class);
 
-        String username;
+        String username,name;
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
+            name = getIntent().getExtras().getString("NAME");
         } else {
             username = "";
+            name = "";
         }
 
         // This will save the username to be used in HomepageActivity
         //String user_name = username.getText().toString();
         homepageIntent.putExtra("USERNAME", username);
-        homepageIntent.putExtra("NAME", username);
+        homepageIntent.putExtra("NAME", name);
 
         startActivity(homepageIntent);
         finish();
