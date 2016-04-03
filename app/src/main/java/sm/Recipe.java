@@ -1,6 +1,7 @@
 package sm;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by putriz on 3/6/2016.
@@ -15,6 +16,18 @@ public class Recipe {
     private String description;
     private int cook_time;
 
+    /**
+     *  Default constructor of Recipe.
+     *
+     */
+    public Recipe(){
+        this.name = "recipe_name";
+        this.image = "recipe_image";
+        this.ingredients = new ArrayList<String>();
+        this.description = "recipe_description";
+        this.cook_time = 0;
+    }
+
     // constructor
     public Recipe(String name, ArrayList<String> ingredients, String image, String description, int cook_time){
         super();
@@ -26,26 +39,49 @@ public class Recipe {
     }
 
 
-    // methods
+    // METHODS
 
-    // returns the name of the recipe
+    /**
+     * Get the name of the recipe.
+     * @return the name of the recipe
+     */
     public String getName(){
         return name;
     }
 
-    // returns the name of the image
+    /**
+     * Set the name of the recipe.
+     * @param name, a new name for the recipe
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    /**
+     * Get the image of the recipe.
+     * @return the string name of the image of the recipe.
+     */
     public String getImage(){
         return image;
     }
 
-    // sets the image of the recipe
+    /**
+     * Set the image of the recipe.
+     * @param image, a string of the name of the image
+     */
     public void setImage(String image){
         this.image = image;
     }
 
+
     // returns the description of the recipe
     public String getDescription(){
         return description;
+    }
+    // set the description of the image
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 
