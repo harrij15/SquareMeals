@@ -26,5 +26,7 @@
     <string name="settings">Settings</string>
     <string name="search">Search</string>
     <string name="slogan">Perfectly squared to your dietary needs!</string>
+    <string name="Update_Changes">Update Changes</string>
+    <string name="action_settings">Action Settings</string>
 
 </resources>
