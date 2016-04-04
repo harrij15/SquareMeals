@@ -5,19 +5,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomepageActivity">
 
+    <item android:id="@+id/search"
+        android:title="@string/search"
+        android:icon="@android:drawable/ic_search_category_default"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.widget.SearchView"/>
+
     <item android:id="@+id/action_settings"
-        android:title="Profile"
+        android:title="@string/profile"
         android:orderInCategory="100"
         app:showAsAction="never" />
 
     <item android:id="@+id/action_refresh"
-        android:title="Edit Preferences"
+        android:title="@string/edit_preferences"
         android:orderInCategory="200"
         app:showAsAction="never" />
 
     <item android:id="@+id/action_new"
-        android:title="Settings"
+        android:title="@string/settings"
         android:orderInCategory="300"
         app:showAsAction="never" />
+
+
 
 </menu>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Transition color scheme for the evening
+-->
+<transition xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/eveningColor1" />
+    <item android:drawable="@color/eveningColor2" />
+</transition>
