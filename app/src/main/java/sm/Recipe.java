@@ -84,5 +84,18 @@ public class Recipe {
         this.description = description;
     }
 
+    public ArrayList<String> getIngredients() {
+        return ingredients;
+    }
+    public void setIngredients( ArrayList<String> ingredients ){
+        this.ingredients = ingredients;
+    }
+
+    public int getCook_time() {
+        return cook_time;
+    }
+    public void setCook_time(int cook_time) {
+        this.cook_time = cook_time;
+    }
 
 }

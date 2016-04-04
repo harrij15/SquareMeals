@@ -16,6 +16,8 @@ import java.util.List;
 
 /**
  * Created by putriz on 2/23/2016.
+ * This class implements the layout of the homepage for an existing user,
+ * including a recommendations tab and a cookbook tab (where the user's recipes are saved)
  */
 
 public class HomepageActivity extends AppCompatActivity {
@@ -75,6 +77,7 @@ public class HomepageActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.cookbook_list);
         List listRecipe = new ArrayList();
 
+        // RANDOM DATA FOR TESTING
         ArrayList<String> str = new ArrayList<String>();
         str.add("sugar"); str.add("water");
 

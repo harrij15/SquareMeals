@@ -15,7 +15,7 @@
 
 
     <!--
-        Logo
+        logo
     -->
     <ImageView
         android:layout_width="wrap_content"

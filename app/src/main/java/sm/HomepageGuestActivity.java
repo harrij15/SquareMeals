@@ -7,6 +7,8 @@ import android.widget.GridView;
 
 /**
  * Created by putriz on 3/21/2016.
+ * This class implements the layout for a guest
+ * The page only shows a gridView recommendations of recipes
  */
 
 public class HomepageGuestActivity extends AppCompatActivity{
