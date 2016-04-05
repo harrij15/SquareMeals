@@ -1,11 +1,14 @@
 package sm;
 
+import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.EditText;
+import android.view.KeyEvent;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TabHost;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -31,6 +34,7 @@ public class HomepageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
+
         // TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
 
@@ -43,10 +47,12 @@ public class HomepageActivity extends AppCompatActivity {
             name = "";
         }
 
-        if (name != "") {
+        String emptyString = "";
+
+        if (name != null && !name.equals(emptyString)) {
             toolbar.setTitle("Hello " + name + "!");
         }
-        else if (username != "") { // If username is filled
+        else if (username != null && !username.equals(emptyString)) { // If username is filled
             toolbar.setTitle("Hello " + username + "!");
         }
         setSupportActionBar(toolbar);
@@ -100,7 +106,17 @@ public class HomepageActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_hompage, menu);
+        getMenuInflater().inflate(R.menu.menu_homepage, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) (menu.findItem(R.id.search)).getActionView();
+
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+            searchView.setIconifiedByDefault(false);
+        }
+
+
         return true;
     }
 
@@ -116,7 +132,32 @@ public class HomepageActivity extends AppCompatActivity {
             return true;
         }
 
+        /*if (id == R.id.tab1_searchView) {
+            onSearchRequested();
+            return true;
+        }      */
+
         return super.onOptionsItemSelected(item);
     }
 
-} /* end of HompageAcitivity class */
+    @Override
+    public boolean onSearchRequested() {
+        Bundle appData = new Bundle();
+        appData.putString("hello", "world");
+        startSearch(null,false,appData,false);
+        return true;
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent keyEvent) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
+    }
+
+
+
+} /* end of HomepageAcitivity class */

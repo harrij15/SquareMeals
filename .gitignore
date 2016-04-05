@@ -17,6 +17,10 @@ gen/
 build/
 /*/build/
 
+# iml files
+*.iml
+app/app.iml
+
 # Local configuration file (sdk path, etc)
 local.properties
 
@@ -30,3 +34,4 @@ proguard/
 /.idea/
 /.idea/workspace.xml
 
+app/src/main/res/drawable/logo_original.png
