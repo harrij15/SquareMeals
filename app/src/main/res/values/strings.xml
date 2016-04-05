@@ -19,7 +19,6 @@
     <string name="guest">Guest</string>
     <string name="incorrect_info">Oops! Incorrect username or password</string>
     <string name="fill_all">Please fill in all of the following fields.</string>
-<<<<<<< HEAD
     <string name="search_hint">Search recipes/restaurants&#8230;</string>
     <string name="search_results">Results</string>
     <string name="profile">Profile</string>
@@ -29,7 +28,6 @@
     <string name="slogan">Perfectly squared to your dietary needs!</string>
     <string name="Update_Changes">Update Changes</string>
     <string name="action_settings">Action Settings</string>
-=======
     <string name="mydiet">My Diet</string>
     <string name="back">Back</string>
     <string name="allgood">save</string>
@@ -37,11 +35,10 @@
     <string name="editprefpgtitle">New Item</string>
     <string-array name="list_view_items">
         <item>Kosher</item>
-        <item>vegiterian</item>
+        <item>vegetarian</item>
         <item>low carb</item>
         <item>high protein</item>
 
     </string-array>
->>>>>>> parent of 2ea80de... Revert "Added the Preferences Page and the Page to Edit Preferences"
 
 </resources>
