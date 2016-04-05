@@ -15,8 +15,9 @@ public class ProfilePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        //setSupportActionBar(toolbar);
+        setContentView(R.layout.profile_page);
         profilepic=(ImageView) findViewById(R.id.imageViewUserImage);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

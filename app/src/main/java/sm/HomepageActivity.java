@@ -128,6 +128,8 @@ public class HomepageActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent profileIntent = new Intent(HomepageActivity.this,ProfilePage.class);
+            startActivity(profileIntent);
             return true;
         }
 
@@ -136,7 +138,8 @@ public class HomepageActivity extends AppCompatActivity {
             return true;
         }      */
 
-        return super.onOptionsItemSelected(item);
+        //return super.onOptionsItemSelected(item);
+        return true;
     }
 
     @Override
