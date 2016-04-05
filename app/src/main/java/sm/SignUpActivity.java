@@ -3,7 +3,10 @@ package sm;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -30,19 +33,44 @@ public class SignUpActivity extends AppCompatActivity {
                 name.getText().length() != 0 && email.getText().length() != 0 &&
                 confirm.getText().length() != 0 ) {
 
+            Intent loadingIntent = new Intent(this, LoadingActivity.class);
+
+            String user_name = username.getText().toString();
+            String name_ = name.getText().toString();
+            Log.d("name",name_);
+            loadingIntent.putExtra("USERNAME",user_name);
+            loadingIntent.putExtra("NAME", name_);
+
+            startActivity(loadingIntent);
 
 
-            Intent homepageIntent = new Intent(this,HomepageActivity.class);
 
-            String real_name = name.getText().toString();
-            homepageIntent.putExtra("NAME",real_name);
-
-            startActivity(homepageIntent);
-
-        } else {
-            fillAll.setVisibility(View.VISIBLE);
+        } else {  // Change the text color of the instructions to red
+            fillAll.setTextColor(0xffff0000);
         }
 
 
+    }
+
+    // On a keyboard press
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent keyEvent) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_ENTER: // Allow the user to sign in from keyboard
+                signUp(null);
+                return true;
+            case KeyEvent.KEYCODE_BACK:  // Allow the user to go back to the login screen
+                Intent logInIntent = new Intent(this,LoginActivity.class);
+                startActivity(logInIntent);
+                return true;
+        }
+
+        return false;
+    }
+
+    // Allows the user to click on the screen to hide the keyboard
+    public void hideKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
 }
