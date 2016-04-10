@@ -28,7 +28,9 @@
         android:height="50dp"
         android:width="500dp"
         android:textSize="25dp"
-        android:paddingTop="8dp" />
+        android:paddingTop="8dp"
+        android:elevation="5dp"
+        android:elegantTextHeight="false" />
 
     <SearchView
         android:layout_width="fill_parent"
