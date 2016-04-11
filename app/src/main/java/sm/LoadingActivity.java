@@ -168,10 +168,11 @@ public class LoadingActivity extends AppCompatActivity {
                 System.err.println("Exception: " + e.getMessage());
             }
 
+            Log.d("page", json);
+
             Gson gson = new Gson();
             Page page = gson.fromJson(json, Page.class);
-
-            Log.d("page", page.toString());
+            Log.d("page", page.title);
 
             return null;
         }
