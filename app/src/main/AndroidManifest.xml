@@ -14,17 +14,14 @@
         <activity
             android:name=".LoginActivity"
             android:windowSoftInputMode="adjustPan" >
-
-
-
         </activity>
-        <activity android:name=".SignUpActivity"
-            android:windowSoftInputMode="adjustPan">
+        <activity
+            android:name=".SignUpActivity"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name=".HomepageActivity"
-            android:parentActivityName=".LoginActivity"
-            >
+            android:parentActivityName=".LoginActivity" >
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value=".SearchActivity" />
@@ -49,6 +46,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".LoadResultsActivity" >
+        </activity>
+        <activity android:name=".SelectPreferencesActivity" >
         </activity>
     </application>
 

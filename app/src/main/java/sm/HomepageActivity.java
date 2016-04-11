@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -36,7 +38,7 @@ public class HomepageActivity extends AppCompatActivity {
         // TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
 
-        String username, name;
+        String username, name, diet;
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
@@ -108,11 +110,55 @@ public class HomepageActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_homepage, menu);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) (menu.findItem(R.id.search)).getActionView();
+        final SearchView searchView = (SearchView) (menu.findItem(R.id.search)).getActionView();
 
+        // Get diet preference
+        final String diet;
+        if (getIntent().getExtras() != null) {
+            diet = getIntent().getExtras().getString("DIET");
+        } else {
+            diet = "";
+        }
+
+        // Handle query
         if (searchView != null) {
+
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
             searchView.setIconifiedByDefault(false);
+            String queryHint = "Search recipes...";
+            searchView.setQueryHint(queryHint);
+            searchView.setOnSearchClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent searchIntent = new Intent(HomepageActivity.this, SearchActivity.class);
+
+                    // This will save the username to be used in LoadingActivity
+                    String query = searchView.getQuery().toString();
+                    query = encodeQuery(query);
+                    searchIntent.putExtra("DIET",diet);
+                    searchIntent.putExtra("QUERY", query);
+                    startActivity(searchIntent);
+                }
+            });
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    Intent loadSearchIntent = new Intent(HomepageActivity.this, LoadResultsActivity.class);
+
+                    query = searchView.getQuery().toString();
+                    query = encodeQuery(query);
+                    loadSearchIntent.putExtra("DIET", diet);
+                    loadSearchIntent.putExtra("QUERY", query);
+                    startActivity(loadSearchIntent);
+                    return true;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    return false;
+                }
+            });
+
         }
 
 
@@ -154,7 +200,28 @@ public class HomepageActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+
         return false;
+    }
+
+    // Encode inputted query for url
+    private String encodeQuery(String query) {
+        if (query == null) {
+            return "";
+        }
+
+        char[] newString = new char[query.length()+1];
+        newString[0] = '&';
+
+        for (int i = 0; i < query.length(); ++i) {
+            if (query.charAt(i) == ' ') {
+                newString[i+1] = '+';
+            } else {
+                newString[i+1] = query.charAt(i);
+            }
+        }
+
+        return new String(newString);
     }
 
 

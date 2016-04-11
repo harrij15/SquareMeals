@@ -33,17 +33,17 @@ public class SignUpActivity extends AppCompatActivity {
                 name.getText().length() != 0 && email.getText().length() != 0 &&
                 confirm.getText().length() != 0 ) {
 
-            Intent loadingIntent = new Intent(this, LoadingActivity.class);
+            Intent preferencesIntent = new Intent(this, SelectPreferencesActivity.class);
 
             String user_name = username.getText().toString();
             String name_ = name.getText().toString();
-            Log.d("name",name_);
-            loadingIntent.putExtra("USERNAME",user_name);
-            loadingIntent.putExtra("NAME", name_);
 
-            startActivity(loadingIntent);
+            preferencesIntent.putExtra("USERNAME",user_name);
+            preferencesIntent.putExtra("NAME", name_);
 
+            startActivity(preferencesIntent);
 
+            finish();
 
         } else {  // Change the text color of the instructions to red
             fillAll.setTextColor(0xffff0000);

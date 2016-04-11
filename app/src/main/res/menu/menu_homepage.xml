@@ -9,7 +9,8 @@
         android:title="@string/search"
         android:icon="@android:drawable/ic_search_category_default"
         app:showAsAction="ifRoom|collapseActionView"
-        app:actionViewClass="android.widget.SearchView"/>
+        app:actionViewClass="android.widget.SearchView"
+        />
 
     <item android:id="@+id/action_settings"
         android:title="@string/profile"

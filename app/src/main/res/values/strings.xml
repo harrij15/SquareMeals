@@ -19,8 +19,8 @@
     <string name="guest">Guest</string>
     <string name="incorrect_info">Oops! Incorrect username or password</string>
     <string name="fill_all">Please fill in all of the following fields.</string>
-    <string name="search_hint">Search recipes/restaurants&#8230;</string>
-    <string name="search_results">Results</string>
+    <string name="search_hint">Search recipes&#8230;</string>
+    <string name="search_results">Search Results</string>
     <string name="profile">Profile</string>
     <string name="edit_preferences">Edit Preferences</string>
     <string name="settings">Settings</string>
