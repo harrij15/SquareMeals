@@ -9,8 +9,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity {
+
+    UserDatabaseHelper helper = new UserDatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +36,37 @@ public class SignUpActivity extends AppCompatActivity {
                 name.getText().length() != 0 && email.getText().length() != 0 &&
                 confirm.getText().length() != 0 ) {
 
-            Intent loadingIntent = new Intent(this, LoadingActivity.class);
-
             String user_name = username.getText().toString();
             String name_ = name.getText().toString();
-            Log.d("name",name_);
-            loadingIntent.putExtra("USERNAME",user_name);
-            loadingIntent.putExtra("NAME", name_);
+            String email_ = email.getText().toString();
+            String password_ = password.getText().toString();
+            String confirm_ = confirm.getText().toString();
 
-            startActivity(loadingIntent);
+            if (!password_.equals(confirm_)){
+                // if password and confirm don't match!
+                Toast pass = Toast.makeText(SignUpActivity.this,"Passwords don't match!", Toast.LENGTH_SHORT);
+                pass.show();
 
+            } else {
 
+                // insert information into the user database
+                User user = new User(user_name);
+                user.setName(name_);
+                user.setEmail(email_);
+                user.setPassword(password_);
+
+                // insert info into database helper
+                helper.insertUser(user);
+
+                Intent loadingIntent = new Intent(this, LoadingActivity.class);
+
+                Log.d("name",name_);
+                loadingIntent.putExtra("USERNAME",user_name);
+                loadingIntent.putExtra("NAME", name_);
+
+                startActivity(loadingIntent);
+
+            }
 
         } else {  // Change the text color of the instructions to red
             fillAll.setTextColor(0xffff0000);
