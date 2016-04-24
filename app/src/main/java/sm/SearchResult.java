@@ -2,6 +2,7 @@ package sm;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -11,19 +12,21 @@ import java.util.ArrayList;
 // Similar to Recipe class to handle search results
 public class SearchResult {
     private String name; // name of recipe
-    private String image; // picture of the recipe
+    private ImageView image; // picture of the recipe
     private ArrayList<String> ingredients;
     private String description;
     private int cook_time;
+    private String link;
 
     // constructor
-    public SearchResult(String name, ArrayList<String> ingredients, String image, String description, int cook_time){
+    public SearchResult(String name, ArrayList<String> ingredients, ImageView image, String description, int cook_time, String lnk){
         super();
         this.name = name;
         this.ingredients = ingredients;
         this.image = image;
         this.cook_time = cook_time;
         this.description = description;
+        this.link = lnk;
     }
 
 
@@ -35,14 +38,12 @@ public class SearchResult {
     }
 
     // returns the name of the image
-    public String getImage(){
+    public ImageView getImage(){
         return image;
     }
 
-    // sets the image of the recipe
-    /*public void setImage(String image){
-        this.image = image;
-    }*/
+    // returns the link associated with the picture
+    public String getLink() {return link;}
 
     // returns the description of the recipe
     public String getDescription(){

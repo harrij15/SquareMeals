@@ -49,27 +49,21 @@ public class SearchResultsAdapter extends ArrayAdapter {
         convertView = (RelativeLayout) inflater.inflate( resource, null);
         SearchResult recipe = (SearchResult) getItem( position );
 
+
         TextView name = (TextView) convertView.findViewById(R.id.recipe_name);
         name.setText(recipe.getName());
 
         TextView description = (TextView) convertView.findViewById(R.id.description);
         description.setText(recipe.getDescription());
 
+        ImageView icon = (ImageView) convertView.findViewById(R.id.icon);
+        ImageView imageView = recipe.getImage();
 
-
-       /* try {
-            ImageView imageView = (ImageView)convertView.findViewById(R.id.icon);
-            Bitmap bitmap = BitmapFactory.decodeStream((InputStream) new URL(recipe.getImage()).getContent());
-            imageView.setImageBitmap(bitmap);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-        /*ImageView imageView = (ImageView)convertView.findViewById(R.id.icon);
-        imageView.setImageResource(R.drawable.leaf);*/
-
-       /* ImageView imageView = (ImageView)convertView.findViewById(R.id.icon);
-        imageView.setImageBitmap(recipe.getImage());*/
-
+        if (imageView != null) {
+            icon.setImageDrawable(recipe.getImage().getDrawable());
+        } else {
+            throw new RuntimeException("imageView is null!");
+        }
 
         return convertView;
 

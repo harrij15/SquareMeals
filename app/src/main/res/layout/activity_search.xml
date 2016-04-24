@@ -14,7 +14,7 @@
         android:text="@string/search_results"
         android:id="@+id/search_results_text"
         android:layout_centerHorizontal="true"
-        android:singleLine="true" />
+        android:singleLine="false"/>
 
     <ListView
         android:layout_width="wrap_content"

@@ -190,20 +190,20 @@ public class SelectPreferencesActivity extends AppCompatActivity {
                         diet = "Pescetarian";
                         break;
                     case 4:
-                        diet = "Lacto vegetarian";
+                        diet = "Lacto+vegetarian";
                         break;
                     case 5:
-                        diet = "Ovo vegetarian";
+                        diet = "Ovo+vegetarian";
                         break;
                     case 6:
                         diet = "Paleo";
                         break;
-                    case 7:
+                    /*case 7:
                         diet = "Not Sure";
                         break;
                     case 8:
                         diet = "None";
-                        break;
+                        break;*/
                     default:
                         break;
                 }

@@ -12,12 +12,12 @@
         app:actionViewClass="android.widget.SearchView"
         />
 
-    <item android:id="@+id/action_settings"
+    <item android:id="@+id/action_profile"
         android:title="@string/profile"
         android:orderInCategory="100"
         app:showAsAction="never" />
 
-    <item android:id="@+id/action_refresh"
+    <item android:id="@+id/action_preferences"
         android:title="@string/edit_preferences"
         android:orderInCategory="200"
         app:showAsAction="never" />
