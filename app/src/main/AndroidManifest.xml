@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sm" >
 
-    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -11,20 +11,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".LoginActivity"
             android:windowSoftInputMode="adjustPan" >
-
-
-
         </activity>
-        <activity android:name=".SignUpActivity"
-            android:windowSoftInputMode="adjustPan">
+
+        <activity
+            android:name=".SignUpActivity"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
+
         <activity
             android:name=".HomepageActivity"
-            android:parentActivityName=".LoginActivity"
-            >
+            android:parentActivityName=".LoginActivity" >
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value=".SearchActivity" />
@@ -57,6 +57,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoadResultsActivity" >
+        </activity>
+        <activity android:name=".SelectPreferencesActivity" >
+        </activity>
+        <activity android:name=".ProfilePage">
+        </activity>
+        <activity android:name=".EditPref">
+        </activity>
+        <activity android:name=".MyDietActivity">
+        </activity>
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

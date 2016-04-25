@@ -56,9 +56,13 @@ public class LoginActivity extends AppCompatActivity {
                 String user_name = username.getText().toString();
                 loadingIntent.putExtra("USERNAME",user_name);
                 loadingIntent.putExtra("NAME",name);
+
+                // Default value until database is implemented
+                String diet = "None";
+                loadingIntent.putExtra("DIET",diet);
+
                 startActivity(loadingIntent);
             }
-
 
         } else {    //Tell user to fill in correct information
             incorrect.setVisibility(View.VISIBLE);

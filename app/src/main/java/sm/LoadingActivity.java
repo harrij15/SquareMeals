@@ -20,12 +20,23 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+
+import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
 
 public class LoadingActivity extends AppCompatActivity {
 
@@ -150,29 +161,20 @@ public class LoadingActivity extends AppCompatActivity {
             String title;
             String link;
             String description;
-            String language;
+            String criteria;
             List<Item> items;
+        }
+
+        private class Attribution {
+            String html;
+            String url;
+            String text;
+            String logo;
         }
 
         // Fetching the data in the background
         @Override
         protected Void doInBackground(Void... arg0) {
-
-            String json = new String();
-
-            try {
-                json = readUrl("http://www.javascriptkit.com/"
-                        + "dhtmltutors/javascriptkit.json");
-                //json = readUrl("http://food2fork.com/api/search?key={0bf0a55d4ebdd49b03def31263e6799a}&q=shredded%20chicken");
-            } catch (Exception e){
-                System.err.println("Exception: " + e.getMessage());
-            }
-
-            Log.d("page", json);
-
-            Gson gson = new Gson();
-            Page page = gson.fromJson(json, Page.class);
-            Log.d("page", page.title);
 
             return null;
         }
@@ -213,19 +215,22 @@ public class LoadingActivity extends AppCompatActivity {
     private void startHomepageActivity() {
         Intent homepageIntent = new Intent(LoadingActivity.this,HomepageActivity.class);
 
-        String username,name;
+        String username, name, diet;
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
+            diet = getIntent().getExtras().getString("DIET");
         } else {
             username = "";
             name = "";
+            diet = "";
         }
 
         // This will save the username to be used in HomepageActivity
         //String user_name = username.getText().toString();
         homepageIntent.putExtra("USERNAME", username);
         homepageIntent.putExtra("NAME", name);
+        homepageIntent.putExtra("DIET", diet);
 
         startActivity(homepageIntent);
         finish();

@@ -5,51 +5,33 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="SquareMeals.com.squaremeals.SignUpActivity"
-    android:visibility="visible"
-    android:onClick="hideKeyboard"
-    android:background="@color/White" >
+    tools:context="SquareMeals.com.squaremeals.ProfilePage">
 
-    <!--
-       This is the layout for the sign up page during the login process.
-       It contains an ImageView for the app's logo, and multiple text fields for user input.
-    -->
 
-    <!--
-         logo
-    -->
+
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:contentDescription="@string/logo"
-        android:adjustViewBounds="true"
-        android:src="@drawable/logo2"
-        android:scaleType="fitXY"
-        android:focusable="true"
-        android:cropToPadding="false"
-        android:layout_marginLeft="90dp"
-        android:layout_marginRight="90dp"
-
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageViewUserImage"
+        android:src="@drawable/no_user"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp" />
-
-    <!--
-       Notice to fill in all fields
-    -->
+        android:layout_marginTop="55dp"
+        android:contentDescription="&quot;no_use&quot;"/>
 
     <TextView
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/fill_all"
         android:id="@+id/fill_all"
+        android:textColor="#da0808"
+        android:layout_below="@+id/imageView"
+        android:layout_alignStart="@+id/user_name"
         android:textAlignment="center"
-        android:visibility="visible"
-        android:layout_above="@+id/real_name"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
 
     <!--
         Name
@@ -62,8 +44,26 @@
         android:ems="10"
         android:id="@+id/real_name"
         android:hint="@string/name"
+        android:layout_above="@+id/textView"
+        android:layout_alignStart="@+id/textView"  />
+
+    <!--
+        Name subtext
+   -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/name_subtext"
+        android:id="@+id/textView"
+        android:textSize="5pt"
+        android:textIsSelectable="true"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/user_name"
+        android:textColor="#aea9a9"
         android:layout_above="@+id/user_name"
-        android:layout_alignStart="@+id/user_name" />
+        />
 
     <!--
         Username
@@ -122,18 +122,18 @@
         android:id="@+id/retype"
         android:hint="@string/retype"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="28dp"
         android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp" />
 
     <!--
-        Sign up button
+        Signup button
    -->
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sign_up"
+        android:text="@string/Update_Changes"
         android:id="@+id/button"
         android:singleLine="false"
         android:layout_gravity="center_horizontal"
@@ -141,7 +141,6 @@
         android:layout_marginBottom="24dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="signUp"
-        android:background="@color/Orange"/>
+        android:onClick="Update_Changes"/>
 
 </RelativeLayout>

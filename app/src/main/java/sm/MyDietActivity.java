@@ -10,8 +10,6 @@ import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
-import sm.R;
-
 public class MyDietActivity extends ListActivity implements OnItemClickListener {
     public static final int EDIT_REQUEST_CODE = 1;
     // public static final int ADD_REQUEST_CODE = 2;

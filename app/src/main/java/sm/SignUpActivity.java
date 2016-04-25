@@ -58,7 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
                 pass.show();
 
             } else if (helper.isUsernameTaken(user_name)) {
-                // If the desired usernmae already exists in the database
+                // If the desired username already exists in the database
                 Toast pass = Toast.makeText(SignUpActivity.this,"Username already taken!", Toast.LENGTH_SHORT);
                 pass.show();
 
@@ -74,15 +74,39 @@ public class SignUpActivity extends AppCompatActivity {
                 // insert info into database helper
                 helper.insertUser(user);
 
-                Intent loadingIntent = new Intent(this, LoadingActivity.class);
+                //Intent loadingIntent = new Intent(this, LoadingActivity.class);
 
-                Log.d("name", name_);
-                loadingIntent.putExtra("USERNAME", user_name);
-                loadingIntent.putExtra("NAME", name_);
 
-                startActivity(loadingIntent);
+                Intent preferencesIntent = new Intent(this, SelectPreferencesActivity.class);
+
+//                String user_name = username.getText().toString();
+//                String name_ = name.getText().toString();
+
+                preferencesIntent.putExtra("USERNAME", user_name);
+                preferencesIntent.putExtra("NAME", name_);
+
+                startActivity(preferencesIntent);
+
+                finish();
+
+//                Log.d("name", name_);
+//                loadingIntent.putExtra("USERNAME", user_name);
+//                loadingIntent.putExtra("NAME", name_);
+//
+//                startActivity(loadingIntent);
 
             }
+//            Intent preferencesIntent = new Intent(this, SelectPreferencesActivity.class);
+//
+//            String user_name = username.getText().toString();
+//            String name_ = name.getText().toString();
+//
+//            preferencesIntent.putExtra("USERNAME",user_name);
+//            preferencesIntent.putExtra("NAME", name_);
+//
+//            startActivity(preferencesIntent);
+//
+//            finish();
 
         } else {  // Change the text color of the instructions to red
             fillAll.setTextColor(0xffff0000);

@@ -17,7 +17,9 @@
     android:src="@drawable/no_user"
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true"
-    android:layout_marginTop="55dp" />
+    android:layout_marginTop="55dp"
+    android:contentDescription="&quot;no_use&quot;"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

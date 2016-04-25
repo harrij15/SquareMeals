@@ -7,7 +7,8 @@
     <ImageView
         android:id="@+id/icon"
         android:layout_width="90sp"
-        android:layout_height="90sp" />
+        android:layout_height="90sp"
+        android:contentDescription="icon"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -20,13 +21,15 @@
             android:id="@+id/recipe_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textColor="#2f2727" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:textColor="#372c2c" />
 
     </LinearLayout>
 
