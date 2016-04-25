@@ -131,7 +131,7 @@ public class HomepageActivity extends AppCompatActivity {
             searchView.setIconifiedByDefault(false);
             String queryHint = "Search recipes...";
             searchView.setQueryHint(queryHint);
-            
+
             searchView.setOnQueryTextFocusChangeListener(new SearchView.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
