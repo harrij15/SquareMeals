@@ -73,10 +73,66 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
                     break;
                 }
 
-            } while(cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
 
         return pass;
+    }
+
+    /**
+     * Gets the name of a user
+     *
+     * @param username
+     * @return
+     */
+    public String searchName(String username) {
+
+        db = this.getReadableDatabase();
+        String query = "select username, name from "+ TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+
+        String uname, name;
+        name = "not found";
+
+        if (cursor.moveToFirst()) {
+
+            do {
+                uname = cursor.getString(0);
+                if (uname.equals(username)) {
+                    name = cursor.getString(1);
+                    break;
+                }
+            } while (cursor.moveToNext());
+        }
+
+        return name;
+    }
+
+    /**
+     * Check to see if a username already exists
+     *
+     * @param username
+     * @return
+     */
+    public boolean isUsernameTaken(String username) {
+
+        db = this.getReadableDatabase();
+        String query = "select username from "+ TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+
+        String uname;
+
+        if (cursor.moveToFirst()) {
+
+            do {
+                uname = cursor.getString(0);
+                if(uname.equals(username)) {
+                    return true;
+                }
+            } while (cursor.moveToNext());
+        }
+
+        return false;
     }
 
 

@@ -80,7 +80,7 @@ public class LoadingActivity extends AppCompatActivity {
         String preparingString = "Preparing your meals...";
 
         // Set up greeting for user, based on user input
-        if (name != null && !name.equals(username) && !name.equals(emptyString)) {
+        if (name != null && !name.equals("not found") && !name.equals(username) && !name.equals(emptyString)) {
             greetingString = "Hi " + name + "!";
         }
         else if (username != null && !username.equals(emptyString)) { // If username is filled

@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             String username_ = username.getText().toString();
             String password_ = password.getText().toString();
             String pass = helper.searchPassword(username_);
+            String name = helper.searchName(username_);
 
             if (!pass.equals(password_)){
             // if username and password don't match
@@ -54,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                 // This will save the username to be used in LoadingActivity
                 String user_name = username.getText().toString();
                 loadingIntent.putExtra("USERNAME",user_name);
-                loadingIntent.putExtra("NAME",user_name);
+                loadingIntent.putExtra("NAME",name);
                 startActivity(loadingIntent);
             }
 

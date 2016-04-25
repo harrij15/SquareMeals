@@ -49,7 +49,7 @@ public class HomepageActivity extends AppCompatActivity {
 
         String emptyString = "";
 
-        if (name != null && !name.equals(emptyString)) {
+        if ((name != null && !name.equals("not found")) && !name.equals(emptyString)) {
             toolbar.setTitle("Hello " + name + "!");
         }
         else if (username != null && !username.equals(emptyString)) { // If username is filled

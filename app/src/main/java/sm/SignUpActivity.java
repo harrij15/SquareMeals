@@ -42,12 +42,28 @@ public class SignUpActivity extends AppCompatActivity {
             String password_ = password.getText().toString();
             String confirm_ = confirm.getText().toString();
 
-            if (!password_.equals(confirm_)){
+            if (password_.length() < 8 || password_.length() > 16) {
+                // if the length of the password is less than the min or greater than the max
+                Toast pass = Toast.makeText(SignUpActivity.this,"Enter a password in 8-16 characters!", Toast.LENGTH_SHORT);
+                pass.show();
+
+            } else if (user_name.length() > 15) {
+                // if the length of the username exceeds the max number of characters
+                Toast pass = Toast.makeText(SignUpActivity.this,"Username is too long!", Toast.LENGTH_SHORT);
+                pass.show();
+
+            } else if (!password_.equals(confirm_)){
                 // if password and confirm don't match!
                 Toast pass = Toast.makeText(SignUpActivity.this,"Passwords don't match!", Toast.LENGTH_SHORT);
                 pass.show();
 
+            } else if (helper.isUsernameTaken(user_name)) {
+                // If the desired usernmae already exists in the database
+                Toast pass = Toast.makeText(SignUpActivity.this,"Username already taken!", Toast.LENGTH_SHORT);
+                pass.show();
+
             } else {
+                // everything is good for sign up
 
                 // insert information into the user database
                 User user = new User(user_name);
@@ -60,8 +76,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                 Intent loadingIntent = new Intent(this, LoadingActivity.class);
 
-                Log.d("name",name_);
-                loadingIntent.putExtra("USERNAME",user_name);
+                Log.d("name", name_);
+                loadingIntent.putExtra("USERNAME", user_name);
                 loadingIntent.putExtra("NAME", name_);
 
                 startActivity(loadingIntent);
