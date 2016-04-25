@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
 
+    UserDatabaseHelper helper = new UserDatabaseHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,18 +38,31 @@ public class LoginActivity extends AppCompatActivity {
         // Logs in user only if the username/password fields are filled
         if (username.getText().length() != 0 && password.getText().length() != 0) {    // If user/pass are both filled
 
-            Intent loadingIntent = new Intent(this, LoadingActivity.class);
+            // See if the username and password match up
+            String username_ = username.getText().toString();
+            String password_ = password.getText().toString();
+            String pass = helper.searchPassword(username_);
+            String name = helper.searchName(username_);
 
-            // This will save the username to be used in LoadingActivity
-            String user_name = username.getText().toString();
-            loadingIntent.putExtra("USERNAME",user_name);
-            loadingIntent.putExtra("NAME",user_name);
+            if (!pass.equals(password_)){
+            // if username and password don't match
+                incorrect.setVisibility(View.VISIBLE);
 
-            // Default value until database is implemented
-            String diet = "None";
+            } else {
 
-            loadingIntent.putExtra("DIET",diet);
-            startActivity(loadingIntent);
+                Intent loadingIntent = new Intent(this, LoadingActivity.class);
+
+                // This will save the username to be used in LoadingActivity
+                String user_name = username.getText().toString();
+                loadingIntent.putExtra("USERNAME",user_name);
+                loadingIntent.putExtra("NAME",name);
+
+                // Default value until database is implemented
+                String diet = "None";
+                loadingIntent.putExtra("DIET",diet);
+
+                startActivity(loadingIntent);
+            }
 
         } else {    //Tell user to fill in correct information
             incorrect.setVisibility(View.VISIBLE);

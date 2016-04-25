@@ -9,8 +9,11 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity {
+
+    UserDatabaseHelper helper = new UserDatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +36,77 @@ public class SignUpActivity extends AppCompatActivity {
                 name.getText().length() != 0 && email.getText().length() != 0 &&
                 confirm.getText().length() != 0 ) {
 
-            Intent preferencesIntent = new Intent(this, SelectPreferencesActivity.class);
-
             String user_name = username.getText().toString();
             String name_ = name.getText().toString();
+            String email_ = email.getText().toString();
+            String password_ = password.getText().toString();
+            String confirm_ = confirm.getText().toString();
 
-            preferencesIntent.putExtra("USERNAME",user_name);
-            preferencesIntent.putExtra("NAME", name_);
+            if (password_.length() < 8 || password_.length() > 16) {
+                // if the length of the password is less than the min or greater than the max
+                Toast pass = Toast.makeText(SignUpActivity.this,"Enter a password in 8-16 characters!", Toast.LENGTH_SHORT);
+                pass.show();
 
-            startActivity(preferencesIntent);
+            } else if (user_name.length() > 15) {
+                // if the length of the username exceeds the max number of characters
+                Toast pass = Toast.makeText(SignUpActivity.this,"Username is too long!", Toast.LENGTH_SHORT);
+                pass.show();
 
-            finish();
+            } else if (!password_.equals(confirm_)){
+                // if password and confirm don't match!
+                Toast pass = Toast.makeText(SignUpActivity.this,"Passwords don't match!", Toast.LENGTH_SHORT);
+                pass.show();
+
+            } else if (helper.isUsernameTaken(user_name)) {
+                // If the desired username already exists in the database
+                Toast pass = Toast.makeText(SignUpActivity.this,"Username already taken!", Toast.LENGTH_SHORT);
+                pass.show();
+
+            } else {
+                // everything is good for sign up
+
+                // insert information into the user database
+                User user = new User(user_name);
+                user.setName(name_);
+                user.setEmail(email_);
+                user.setPassword(password_);
+
+                // insert info into database helper
+                helper.insertUser(user);
+
+                //Intent loadingIntent = new Intent(this, LoadingActivity.class);
+
+
+                Intent preferencesIntent = new Intent(this, SelectPreferencesActivity.class);
+
+//                String user_name = username.getText().toString();
+//                String name_ = name.getText().toString();
+
+                preferencesIntent.putExtra("USERNAME", user_name);
+                preferencesIntent.putExtra("NAME", name_);
+
+                startActivity(preferencesIntent);
+
+                finish();
+
+//                Log.d("name", name_);
+//                loadingIntent.putExtra("USERNAME", user_name);
+//                loadingIntent.putExtra("NAME", name_);
+//
+//                startActivity(loadingIntent);
+
+            }
+//            Intent preferencesIntent = new Intent(this, SelectPreferencesActivity.class);
+//
+//            String user_name = username.getText().toString();
+//            String name_ = name.getText().toString();
+//
+//            preferencesIntent.putExtra("USERNAME",user_name);
+//            preferencesIntent.putExtra("NAME", name_);
+//
+//            startActivity(preferencesIntent);
+//
+//            finish();
 
         } else {  // Change the text color of the instructions to red
             fillAll.setTextColor(0xffff0000);

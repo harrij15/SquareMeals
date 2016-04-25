@@ -24,6 +24,8 @@ import java.util.List;
 
 /**
  * Created by putriz on 2/23/2016.
+ * This class implements the layout of the homepage for an existing user,
+ * including a recommendations tab and a cookbook tab (where the user's recipes are saved)
  */
 
 public class HomepageActivity extends AppCompatActivity {
@@ -52,13 +54,11 @@ public class HomepageActivity extends AppCompatActivity {
 
         String emptyString = "";
 
-        if (name != null && !name.equals(emptyString)) {
+        if ((name != null && !name.equals("not found")) && !name.equals(emptyString)) {
             toolbar.setTitle("Hello " + name + "!");
         }
         else if (username != null && !username.equals(emptyString)) { // If username is filled
             toolbar.setTitle("Hello " + username + "!");
-        } else {
-            toolbar.setTitle("Hello Guest!");
         }
         setSupportActionBar(toolbar);
 
@@ -88,6 +88,7 @@ public class HomepageActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.cookbook_list);
         List listRecipe = new ArrayList();
 
+        // RANDOM DATA FOR TESTING
         ArrayList<String> str = new ArrayList<String>();
         str.add("sugar"); str.add("water");
 
@@ -130,8 +131,6 @@ public class HomepageActivity extends AppCompatActivity {
             searchView.setIconifiedByDefault(false);
             String queryHint = "Search recipes...";
             searchView.setQueryHint(queryHint);
-
-
 
             searchView.setOnQueryTextFocusChangeListener(new SearchView.OnFocusChangeListener() {
                 @Override
