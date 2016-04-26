@@ -3,6 +3,7 @@ package sm;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -74,6 +75,22 @@ public class MyDietActivity extends ListActivity implements OnItemClickListener 
                 }
             }
         }
+    }
+
+    public void goBack(View view) {
+        Intent intent = new Intent(this,HomepageActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent keyEvent) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(this,HomepageActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return false;
     }
 }
 

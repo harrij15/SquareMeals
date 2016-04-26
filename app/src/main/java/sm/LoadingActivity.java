@@ -46,6 +46,8 @@ public class LoadingActivity extends AppCompatActivity {
     // View that will change colors
     TransitionView transitionView;
 
+    String json;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,13 +74,15 @@ public class LoadingActivity extends AppCompatActivity {
 
 
         // Access user information from input
-        String username, name;
+        final String username, name, diet;
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
+            diet = getIntent().getExtras().getString("DIET");
         } else {
             username = "";
             name = "";
+            diet = "";
         }
 
         // Create text views for loading screen
@@ -142,12 +146,58 @@ public class LoadingActivity extends AppCompatActivity {
         thread = new Thread(transitionView.getRunnable());
         thread.start();
 
+        new AsyncTask<Void,Void,Void>() {
+
+            /*Drawable drawable;*/
+            @Override
+            protected Void doInBackground(Void... params) {
+                /*newImageString = parseImage(imageString);
+                drawable = LoadImageFromWebOperations(newImageString);*/
+                try {
+                    String url = "http://api.yummly.com/v1/api/recipes?_app_id=c9c36e2c&_app_key=02f8047150cb8a270d7b5bef56f8d3e3";
+                    url = url + "&q=" + diet;
+                    json = readUrl(url);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void result) {
+                super.onPostExecute(result);
+                transitionView.setHomepageReady(true);
+
+                /*if (drawable != null) {
+
+                    imageView.setImageDrawable(drawable);
+                    imageViewArray[index] = imageView;
+                    index++;
+
+                    int time = -1;
+
+                    try {
+                        time = Integer.parseInt(cook_time);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    if (imageViewArray[index-1] != null) {
+                        recipeList.add(new SearchResult(name, ingredients, imageViewArray[index - 1], name, time, newImageString));
+                        SearchResultsAdapter adapter = new SearchResultsAdapter(getApplicationContext(), R.layout.homepage_list, recipeList);
+                        listView.setAdapter(adapter);
+                    }
+                } else {
+                    throw new RuntimeException("Drawable is null!");
+                }*/
+            }
+        }.execute();
+
         // Fetch data from internet
-        new PrefetchData().execute();
+        //new PrefetchData().execute();
     }
 
     // Asynchronized task used to fetch data from the internet
-    public class PrefetchData extends AsyncTask<Void, Void, Void> {
+    /*public class PrefetchData extends AsyncTask<Void, Void, Void> {
 
         // These two classes will be modified to
         // organize the JSON that is read in
@@ -189,7 +239,7 @@ public class LoadingActivity extends AppCompatActivity {
 
         }
 
-    }
+    }*/
 
     // Function to read the URL
     private static String readUrl(String urlString) throws Exception {
@@ -231,6 +281,7 @@ public class LoadingActivity extends AppCompatActivity {
         homepageIntent.putExtra("USERNAME", username);
         homepageIntent.putExtra("NAME", name);
         homepageIntent.putExtra("DIET", diet);
+        homepageIntent.putExtra("JSON", json);
 
         startActivity(homepageIntent);
         finish();
