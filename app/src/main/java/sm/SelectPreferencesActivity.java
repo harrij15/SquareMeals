@@ -10,7 +10,9 @@ import android.widget.CheckedTextView;
 public class SelectPreferencesActivity extends AppCompatActivity {
     CheckedTextView checked;
     int id;
-    String username, name;
+    String username, name, email, password;
+    UserDatabaseHelper helper = new UserDatabaseHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,9 +22,13 @@ public class SelectPreferencesActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
+            email = getIntent().getExtras().getString("EMAIL");
+            password = getIntent().getExtras().getString("PASSWORD");
         } else {
             username = "";
             name = "";
+            email = "";
+            password = "";
         }
 
         final CheckedTextView vegetarianBox = (CheckedTextView) findViewById(R.id.VegetarianCheck);
@@ -218,6 +224,13 @@ public class SelectPreferencesActivity extends AppCompatActivity {
     public void submit(String diet) {
 
         Intent loadingIntent = new Intent(this, LoadingActivity.class);
+
+        // create new user and insert it into the database
+
+        User user = new User(username,name,password,email);
+        user.setPreference(diet);
+
+        helper.insertUser(user);
 
         loadingIntent.putExtra("DIET", diet);
         loadingIntent.putExtra("USERNAME", username);

@@ -47,6 +47,7 @@ public class HomepageActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
+
         } else {
             username = "";
             name = "";

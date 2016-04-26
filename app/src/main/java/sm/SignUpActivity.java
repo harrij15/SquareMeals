@@ -66,24 +66,23 @@ public class SignUpActivity extends AppCompatActivity {
                 // everything is good for sign up
 
                 // insert information into the user database
-                User user = new User(user_name);
-                user.setName(name_);
-                user.setEmail(email_);
-                user.setPassword(password_);
+//                User user = new User(user_name);
+//                user.setName(name_);
+//                user.setEmail(email_);
+//                user.setPassword(password_);
 
                 // insert info into database helper
-                helper.insertUser(user);
+//                helper.insertUser(user);
 
                 //Intent loadingIntent = new Intent(this, LoadingActivity.class);
 
-
+                // go into the preferences page
                 Intent preferencesIntent = new Intent(this, SelectPreferencesActivity.class);
-
-//                String user_name = username.getText().toString();
-//                String name_ = name.getText().toString();
 
                 preferencesIntent.putExtra("USERNAME", user_name);
                 preferencesIntent.putExtra("NAME", name_);
+                preferencesIntent.putExtra("EMAIL", email_);
+                preferencesIntent.putExtra("PASSWORD", password_);
 
                 startActivity(preferencesIntent);
 

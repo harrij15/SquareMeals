@@ -19,12 +19,17 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_USERNAME = "username";
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_EMAIL = "email";
+    private static final String COLUMN_PREFERENCE = "preference"; // for now the user can only have one preference
 
     private static final String TABLE_CREATE = "create table users (name text not null, username text not null, " +
-            "password text not null, email text not null);";
+            "password text not null, email text not null, preference text not null);";
 
     SQLiteDatabase db;
 
+    /**
+     * Constructor
+     * @param context
+     */
     public UserDatabaseHelper(Context context) {
         // default constructor
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -33,7 +38,8 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     /**
      * Inserts a new user into the database
      *
-     * @param user
+     * @param user The new User object after sign up to insert into the database
+     * @effects
      */
     public void insertUser(User user) {
 
@@ -44,10 +50,35 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_USERNAME, user.getUsername());
         values.put(COLUMN_PASSWORD, user.getPassword());
         values.put(COLUMN_EMAIL, user.getEmail());
+        values.put(COLUMN_PREFERENCE, user.getPreference());
 
         db.insert(TABLE_NAME, null, values);
         db.close();
 
+    }
+
+    /**
+     * Updates the data of a user
+     *
+     * @param username
+     * @param name
+     * @param password
+     * @param email
+     * @param preference
+     */
+    public void updateData(String username, String name, String password, String email, String preference) {
+
+        db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_USERNAME, username);
+        values.put(COLUMN_NAME, name);
+        values.put(COLUMN_PASSWORD, password);
+        values.put(COLUMN_EMAIL, email);
+        values.put(COLUMN_PREFERENCE, preference);
+
+        db.update(TABLE_NAME, values, COLUMN_USERNAME + "=" + username, null);
+        db.close();
     }
 
     /**
@@ -109,6 +140,34 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * Gets the email of a user
+     *
+     * @param username
+     * @return
+     */
+    public String searchEmail(String username) {
+
+        db = this.getReadableDatabase();
+        String query = "select username, email from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query,null);
+
+        String uname, email;
+        email = "not found";
+
+        if (cursor.moveToFirst()) {
+
+            do {
+                uname = cursor.getString(0);
+                if (uname.equals(username)) {
+                    email = cursor.getString(1);
+                    break;
+                }
+            } while (cursor.moveToNext());
+        }
+        return email;
+    }
+
+    /**
      * Check to see if a username already exists
      *
      * @param username
@@ -133,6 +192,17 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         }
 
         return false;
+    }
+
+
+    /**
+     * Deletes a user account
+     *
+     * @param username
+     * @return
+     */
+    public boolean deleteUser(String username) {
+        return db.delete(TABLE_NAME, COLUMN_USERNAME + "=" + username, null) > 0;
     }
 
 
