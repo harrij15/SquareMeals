@@ -3,8 +3,11 @@ package sm;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,8 +20,14 @@ import android.widget.TabHost;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +41,11 @@ public class HomepageActivity extends AppCompatActivity {
 
     TabHost tabhost;
     private Context context;
+
+    ImageView[] imageViewArray;
+    int index, screenWidth;
     String username, name, diet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
 
@@ -44,12 +57,18 @@ public class HomepageActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
 
 
+        String json;
+
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
+            diet = getIntent().getExtras().getString("DIET");
+            json = getIntent().getExtras().getString("JSON");
         } else {
             username = "";
             name = "";
+            diet = "";
+            json = "";
         }
 
         String emptyString = "";
@@ -81,28 +100,87 @@ public class HomepageActivity extends AppCompatActivity {
             host.addTab(spec);
 
         // Grid View that shows recipe recommendations in Tab 1
-        GridView gridView = (GridView) findViewById(R.id.homepage_tab1_gridView);
-        gridView.setAdapter(new HomepageButtonAdapter(this));
+        final GridView gridView = (GridView) findViewById(R.id.homepage_tab1_gridView);
+        //gridView.setAdapter(new HomepageButtonAdapter(this));
 
         // List View that shows recipes saved in cookbook
-        ListView listView = (ListView) findViewById(R.id.cookbook_list);
-        List listRecipe = new ArrayList();
+        final ListView listView = (ListView) findViewById(R.id.cookbook_list);
+        final ArrayList<Recipe> listRecipe = new ArrayList<Recipe>();
 
-        // RANDOM DATA FOR TESTING
-        ArrayList<String> str = new ArrayList<String>();
-        str.add("sugar"); str.add("water");
+        JSONObject obj;
+        final ArrayList<Recipe> recipeList = new ArrayList<>();
+        index = 0;
+        // Parse json string to get desired info
+        try {
+            obj = new JSONObject(json);
+            JSONArray matchesArray = obj.getJSONArray("matches");
+            imageViewArray = new ImageView[matchesArray.length()];
 
-        listRecipe.add(new Recipe("Recipe 1",str,"fish","delicious",15));
-        listRecipe.add(new Recipe("Recipe 2",str,"eggs","awesome",10));
+            if (matchesArray.length()==0) {
+                TextView searchResultsText = (TextView) findViewById(R.id.search_results_text);
+                searchResultsText.setText("Oops! We couldn't find anything :(");
+            }
 
-/*       String[] recipes = new String[] {"RECIPE 1", "RECIPE 2", "RECIPE 3"};
-        ArrayList<String> recipe_list = new ArrayList<String>();
-        for (int i = 0; i < recipes.length; ++i){
-            recipe_list.add(recipes[i]);
-        }*/
+            DisplayMetrics displaymetrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+            screenWidth = displaymetrics.widthPixels;
 
-        HomepageListArrayAdapter adapter = new HomepageListArrayAdapter(this, R.layout.homepage_list, listRecipe);
-        listView.setAdapter(adapter);
+
+            for (int i = 0; i < matchesArray.length(); ++i) {
+
+                final String recipe = matchesArray.getJSONObject(i).getString("recipeName");
+                final String ingredientString = matchesArray.getJSONObject(i).getString("ingredients");
+                final String imageString = matchesArray.getJSONObject(i).getString("smallImageUrls");
+                final String cook_time = matchesArray.getJSONObject(i).getString("totalTimeInSeconds");
+                final ArrayList<String> ingredients = parseIngredientsList(ingredientString);
+                final ImageView imageView = new ImageView(this);
+
+                new AsyncTask<Void,Void,Void>() {
+                    String newImageString;
+                    Drawable drawable;
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        newImageString = parseImage(imageString);
+                        drawable = LoadImageFromWebOperations(newImageString);
+                        return null;
+                    }
+                    @Override
+                    protected void onPostExecute(Void result) {
+
+                        if (drawable != null) {
+
+                            imageView.setImageDrawable(drawable);
+                            imageViewArray[index] = imageView;
+                            index++;
+
+                            int time = -1;
+
+                            try {
+                                time = Integer.parseInt(cook_time);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                            if (imageViewArray[index-1] != null) {
+                                recipeList.add(new Recipe(recipe, ingredients, imageViewArray[index - 1], recipe, time));
+                                HomepageListArrayAdapter adapter = new HomepageListArrayAdapter(getApplicationContext(), R.layout.homepage_item, recipeList,screenWidth);
+                                gridView.setAdapter(adapter);
+                                //listView.setAdapter(adapter);
+                                //gridView.setAdapter(new HomepageButtonAdapter(this,adapter));
+                            }
+                        } else {
+                            throw new RuntimeException("Drawable is null!");
+                        }
+                    }
+                }.execute();
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
 
         // -----------------------------------------------------------------------------------------
 
@@ -185,8 +263,10 @@ public class HomepageActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_preferences) {
+
             Intent prefIntent = new Intent(this, MyDietActivity.class);
             prefIntent.putExtra("DIET",diet);
+
             startActivity(prefIntent);
             return true;
         }
@@ -208,14 +288,6 @@ public class HomepageActivity extends AppCompatActivity {
         return true;
 
     }
-
-   /* @Override
-    public boolean onSearchRequested() {
-        Bundle appData = new Bundle();
-        appData.putString("hello", "world");
-        startSearch(null,false,appData,false);
-        return true;
-    }*/
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent keyEvent) {
@@ -268,6 +340,91 @@ public class HomepageActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    // Parse ingredient string
+    private ArrayList<String> parseIngredientsList(String ingredientString) {
+        ArrayList<String> ingredientList = new ArrayList<>();
+        String stringFragment = "";
+
+        for (int i = 0; i < ingredientString.length(); ++i) {
+
+            if (ingredientString.charAt(i) == '[' ||
+                    ingredientString.charAt(i) == '\"')   {
+                continue;
+            }
+
+            else if (ingredientString.charAt(i) == ','
+                    || ingredientString.charAt(i) == ']') {
+                ingredientList.add(stringFragment);
+                stringFragment = "";
+            }
+
+            else {
+                stringFragment = stringFragment + ingredientString.charAt(i);
+            }
+        }
+
+        return ingredientList;
+    }
+
+    // Parse image string
+    private String parseImage(String imageString) {
+
+        String stringFragment = "";
+
+        for (int i = 0; i < imageString.length(); ++i) {
+
+            if (imageString.charAt(i) == '\"' || imageString.charAt(i) == '[') {
+                continue;
+            }
+
+            else if (imageString.charAt(i) == ','
+                    || imageString.charAt(i) == ']') {
+                break;
+            }
+
+            else {
+                stringFragment = stringFragment + imageString.charAt(i);
+            }
+        }
+        String finalFragment = "";
+        int count = 0;
+        boolean shouldRemove = true;
+        for (int i = 0; i < stringFragment.length(); ++i) {
+
+            if (count == 2) {
+                shouldRemove = false;
+            }
+
+            if (stringFragment.charAt(i) == 's' && shouldRemove) {
+                continue;
+            }
+
+            if (stringFragment.charAt(i) == '\\') {
+                continue;
+            }
+
+            if (stringFragment.charAt(i) == '/') {
+                count++;
+            }
+
+            finalFragment = finalFragment + stringFragment.charAt(i);
+        }
+
+        return finalFragment;
+    }
+
+    public static Drawable LoadImageFromWebOperations(String url) {
+        try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            Drawable d = Drawable.createFromStream(is, "");
+            return d;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
 

@@ -251,4 +251,5 @@ public class SelectPreferencesActivity extends AppCompatActivity {
         }
 
     }
+
 }
