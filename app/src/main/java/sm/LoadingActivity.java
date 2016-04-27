@@ -101,7 +101,7 @@ public class LoadingActivity extends AppCompatActivity {
         String preparingString = "Preparing your meals...";
 
         // Set up greeting for user, based on user input
-        if (changed != null) {
+        if (changed != null && changed.equals("yes")) {
             greetingString = "Saving your changes...";
             preparingString = "";
         }
