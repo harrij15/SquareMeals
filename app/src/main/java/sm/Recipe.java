@@ -17,6 +17,7 @@ public class Recipe {
     private ArrayList<String> ingredients;
     private String description;
     private int cook_time;
+    private String link;
 
     /**
      *  Default constructor of Recipe.
@@ -31,13 +32,14 @@ public class Recipe {
     }*/
 
     // constructor
-    public Recipe(String name, ArrayList<String> ingredients, ImageView image, String description, int cook_time){
+    public Recipe(String name, ArrayList<String> ingredients, ImageView image, String description, int cook_time, String link){
         super();
         this.name = name;
         this.ingredients = ingredients;
         this.image = image;
         this.cook_time = cook_time;
         this.description = description;
+        this.link = link;
     }
 
 
@@ -86,8 +88,12 @@ public class Recipe {
         this.description = description;
     }
 
-    public ArrayList<String> getIngredients() {
-        return ingredients;
+    public String[] getIngredients() {
+        String[] ingredientsArray = new String[ingredients.size()];
+        for (int i = 0; i < ingredients.size(); ++i) {
+            ingredientsArray[i] = ingredients.get(i);
+        }
+        return ingredientsArray;
     }
     public void setIngredients( ArrayList<String> ingredients ){
         this.ingredients = ingredients;
@@ -99,5 +105,7 @@ public class Recipe {
     public void setCook_time(int cook_time) {
         this.cook_time = cook_time;
     }
+
+    public String getLink() { return link; }
 
 }

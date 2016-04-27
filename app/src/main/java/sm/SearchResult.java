@@ -45,6 +45,16 @@ public class SearchResult {
     // returns the link associated with the picture
     public String getLink() {return link;}
 
+    public String[] getIngredients() {
+        String[] ingredientsArray = new String[ingredients.size()];
+        for (int i = 0; i < ingredients.size(); ++i) {
+            ingredientsArray[i] = ingredients.get(i);
+        }
+        return ingredientsArray;
+    }
+
+    public int getTime() { return cook_time; }
+
     // returns the description of the recipe
     public String getDescription(){
         return description;

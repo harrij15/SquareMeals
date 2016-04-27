@@ -36,6 +36,7 @@ public class SearchActivity extends AppCompatActivity {
     int index;
     String json, username, name, diet, flag, oldJson;
     Intent intent;
+    int time;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +104,7 @@ public class SearchActivity extends AppCompatActivity {
                             imageViewArray[index] = imageView;
                             index++;
 
-                            int time = -1;
+                            time = -1;
 
                             try {
                                 time = Integer.parseInt(cook_time);
@@ -121,6 +122,12 @@ public class SearchActivity extends AppCompatActivity {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                         Intent newIntent = new Intent(intent);
+                                        SearchResult searchResult = (SearchResult) listView.getItemAtPosition(position);
+                                        newIntent.putExtra("IMAGE",searchResult.getLink());
+                                        newIntent.putExtra("INGREDIENTS",searchResult.getIngredients());
+                                        newIntent.putExtra("TIME",searchResult.getTime());
+                                        newIntent.putExtra("NAME",searchResult.getName());
+                                        System.out.println(name);
                                         startActivity(newIntent);
                                     }
                                 });

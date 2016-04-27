@@ -8,12 +8,13 @@
     tools:context="sm.RecipeInfoActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90sp"
+        android:layout_height="90sp"
         android:id="@+id/recipeImage"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="47dp"
+        android:adjustViewBounds="true"
         android:contentDescription="Image of the recipe" />
 
     <TextView
@@ -23,7 +24,8 @@
         android:layout_below="@+id/recipeImage"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp"
-        android:contentDescription="The name of the recipe" />
+        android:contentDescription="The name of the recipe"
+        android:textAlignment="center" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,7 +33,9 @@
         android:id="@+id/ingredients"
         android:layout_below="@+id/recipeName"
         android:layout_centerHorizontal="true"
-        android:contentDescription="The ingredients of the recipe" />
+        android:contentDescription="The ingredients of the recipe"
+        android:textAlignment="center"
+        android:layout_marginTop="55dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,7 +43,10 @@
         android:id="@+id/cookTime"
         android:layout_below="@+id/ingredients"
         android:layout_centerHorizontal="true"
-        android:contentDescription="The cook time of the recipe" />
+        android:contentDescription="The cook time of the recipe"
+        android:textAlignment="center"
+        android:layout_marginTop="55dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,5 +54,8 @@
         android:id="@+id/link"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:contentDescription="The link to the recipe" />
+        android:contentDescription="The link to the recipe"
+        android:textAlignment="center"
+        android:layout_below="@+id/cookTime"
+        android:layout_marginTop="55dp" />
 </RelativeLayout>

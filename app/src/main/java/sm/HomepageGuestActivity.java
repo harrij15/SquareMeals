@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -43,6 +44,7 @@ public class HomepageGuestActivity extends AppCompatActivity{
     Context context;
     int screenWidth;
     String username, name;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,7 @@ public class HomepageGuestActivity extends AppCompatActivity{
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         screenWidth = displaymetrics.widthPixels;
+        intent = new Intent(this, RecipeInfoActivity.class);
 
         // Set GridView
         gridView = (GridView) findViewById(R.id.guest_homepage_gridView);
@@ -129,9 +132,23 @@ public class HomepageGuestActivity extends AppCompatActivity{
                             }
 
                             if (imageViewArray[index-1] != null) {
-                                recipeList.add(new Recipe(recipe, ingredients, imageViewArray[index - 1], recipe, time));
+                                recipeList.add(new Recipe(recipe, ingredients, imageViewArray[index - 1], recipe, time, newImageString));
                                 HomepageListArrayAdapter adapter = new HomepageListArrayAdapter(context, R.layout.homepage_item, recipeList, screenWidth);
                                 gridView.setAdapter(adapter);
+
+                                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        Intent newIntent = new Intent(intent);
+                                        Recipe recipe = (Recipe) gridView.getItemAtPosition(position);
+                                        newIntent.putExtra("IMAGE", recipe.getLink());
+                                        newIntent.putExtra("INGREDIENTS", recipe.getIngredients());
+                                        newIntent.putExtra("TIME", recipe.getCook_time());
+                                        newIntent.putExtra("NAME", recipe.getName());
+                                        System.out.println(name);
+                                        startActivity(newIntent);
+                                    }
+                                });
                                 //listView.setAdapter(adapter);
                                 //gridView.setAdapter(new HomepageButtonAdapter(this,adapter));
                             }

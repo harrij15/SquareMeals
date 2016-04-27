@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -45,6 +46,7 @@ public class HomepageActivity extends AppCompatActivity {
     ImageView[] imageViewArray;
     int index, screenWidth;
     String username, name, diet, json;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -109,6 +111,7 @@ public class HomepageActivity extends AppCompatActivity {
         JSONObject obj;
         final ArrayList<Recipe> recipeList = new ArrayList<>();
         index = 0;
+
         // Parse json string to get desired info
         try {
             //System.out.println(json);
@@ -124,6 +127,7 @@ public class HomepageActivity extends AppCompatActivity {
             DisplayMetrics displaymetrics = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
             screenWidth = displaymetrics.widthPixels;
+            intent = new Intent(this, RecipeInfoActivity.class);
 
 
             for (int i = 0; i < matchesArray.length(); ++i) {
@@ -134,6 +138,8 @@ public class HomepageActivity extends AppCompatActivity {
                 final String cook_time = matchesArray.getJSONObject(i).getString("totalTimeInSeconds");
                 final ArrayList<String> ingredients = parseIngredientsList(ingredientString);
                 final ImageView imageView = new ImageView(this);
+
+
 
                 new AsyncTask<Void,Void,Void>() {
                     String newImageString;
@@ -164,9 +170,23 @@ public class HomepageActivity extends AppCompatActivity {
                             }
 
                             if (imageViewArray[index-1] != null) {
-                                recipeList.add(new Recipe(recipe, ingredients, imageViewArray[index - 1], recipe, time));
+                                recipeList.add(new Recipe(recipe, ingredients, imageViewArray[index - 1], recipe, time, newImageString));
                                 HomepageListArrayAdapter adapter = new HomepageListArrayAdapter(getApplicationContext(), R.layout.homepage_item, recipeList,screenWidth);
                                 gridView.setAdapter(adapter);
+
+                                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        Intent newIntent = new Intent(intent);
+                                        Recipe recipe = (Recipe) gridView.getItemAtPosition(position);
+                                        newIntent.putExtra("IMAGE", recipe.getLink());
+                                        newIntent.putExtra("INGREDIENTS", recipe.getIngredients());
+                                        newIntent.putExtra("TIME", recipe.getCook_time());
+                                        newIntent.putExtra("NAME", recipe.getName());
+                                        System.out.println(name);
+                                        startActivity(newIntent);
+                                    }
+                                });
                                 //listView.setAdapter(adapter);
                                 //gridView.setAdapter(new HomepageButtonAdapter(this,adapter));
                             }
