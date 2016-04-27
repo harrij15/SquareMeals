@@ -60,6 +60,9 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     /**
      * Updates the data of a user
      *
+     * This function is used whenever a user updates their profile information
+     * or when a user updates a preference in editPref
+     *
      * @param username
      * @param name
      * @param password
