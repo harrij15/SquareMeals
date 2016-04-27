@@ -7,12 +7,15 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import sm.R;
 
 public class UpdateProfileActivity extends AppCompatActivity {
-    String username, name, diet, json;
-    EditText realName, userName, email, password, confirmPassword;
+    String username, name, diet, json, user_email;
+    EditText realName, userName, userEmail, password, confirmPassword;
+    UserDatabaseHelper helper = new UserDatabaseHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +23,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         realName = (EditText)findViewById(R.id.real_name);
         userName = (EditText)findViewById(R.id.user_name);
-        email = (EditText)findViewById(R.id.email);
+        userEmail = (EditText)findViewById(R.id.email);
         password = (EditText)findViewById(R.id.password);
         confirmPassword = (EditText)findViewById(R.id.retype);
 
@@ -29,16 +32,18 @@ public class UpdateProfileActivity extends AppCompatActivity {
             name = getIntent().getExtras().getString("NAME");
             diet = getIntent().getExtras().getString("DIET");
             json = getIntent().getExtras().getString("JSON");
+            user_email = getIntent().getExtras().getString("EMAIL");
         } else {
             username = "";
             name = "";
             diet = "";
             json = "";
+            user_email = "";
         }
 
         userName.setText(username);
         realName.setText(name);
-        email.setText("@rpi.edu");
+        userEmail.setText(user_email);
 
     }
 
@@ -46,12 +51,53 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         String user = userName.getText().toString();
         String name = realName.getText().toString();
-        Intent intent = new Intent(this,ProfilePage.class);
-        intent.putExtra("DIET",diet);
-        intent.putExtra("USERNAME",user);
-        intent.putExtra("NAME", name);
-        intent.putExtra("JSON", json);
-        startActivity(intent);
+        String email = userEmail.getText().toString();
+        String pass = password.getText().toString();
+        String confirm = confirmPassword.getText().toString();
+
+        if (pass.length() == 0 || confirm.length() == 0) {
+            // if the passwords fields are empty, just set them back to the original passwords
+            pass = helper.searchPassword(username);
+            confirm = pass;
+        }
+
+        if (!pass.equals(confirm)) {
+            // if password and confirm don't match!
+            Toast p = Toast.makeText(UpdateProfileActivity.this,"Passwords don't match!", Toast.LENGTH_SHORT);
+            p.show();
+
+        } else if (pass.length() < 8 || pass.length() > 16) {
+            // if the password doesn't lie within 8-16 characters
+            Toast p = Toast.makeText(UpdateProfileActivity.this,"Enter a password in 8-16 characters!", Toast.LENGTH_SHORT);
+            p.show();
+
+        } else if (user.length() > 15) {
+            // if the username is too long
+            Toast p = Toast.makeText(UpdateProfileActivity.this,"Username is too long!", Toast.LENGTH_SHORT);
+            p.show();
+
+        } else {
+            // everything is good for updating the database
+            long id = helper.searchID(username);
+            boolean update = helper.updateData(id,user,name,pass,email,diet);
+            helper.close();
+
+            if (update) {
+                Toast p = Toast.makeText(UpdateProfileActivity.this,"Update was successful!", Toast.LENGTH_SHORT);
+                p.show();
+            } else {
+                Toast p = Toast.makeText(UpdateProfileActivity.this,"Update was not successful", Toast.LENGTH_SHORT);
+                p.show();
+            }
+
+            Intent intent = new Intent(this,ProfilePage.class);
+            intent.putExtra("DIET", diet);
+            intent.putExtra("USERNAME",user);
+            intent.putExtra("NAME", name);
+            intent.putExtra("JSON", json);
+            startActivity(intent);
+
+        }
 
     }
 

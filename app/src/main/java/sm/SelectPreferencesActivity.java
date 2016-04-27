@@ -272,9 +272,9 @@ public class SelectPreferencesActivity extends AppCompatActivity {
 
             // create new user and insert it into the database
 
-            User user = new User(username,name,password,email);
-            user.setPreference(diet);
+            User user = new User(username,name,password,email,diet);
             helper.insertUser(user);
+            helper.close();
 
             startActivity(loadingIntent);
             finish();

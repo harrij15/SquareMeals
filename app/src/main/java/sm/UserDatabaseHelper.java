@@ -12,16 +12,17 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class UserDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "users.db";
     private static final String TABLE_NAME = "users";
+    private static final String ROW_ID = "_id";
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_USERNAME = "username";
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_PREFERENCE = "preference"; // for now the user can only have one preference
 
-    private static final String TABLE_CREATE = "create table users (name text not null, username text not null, " +
+    private static final String TABLE_CREATE = "create table users (_id integer primary key autoincrement, name text not null, username text not null, " +
             "password text not null, email text not null, preference text not null);";
 
     SQLiteDatabase db;
@@ -41,7 +42,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
      * @param user The new User object after sign up to insert into the database
      * @effects
      */
-    public void insertUser(User user) {
+    public long insertUser(User user) {
 
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -52,9 +53,8 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_EMAIL, user.getEmail());
         values.put(COLUMN_PREFERENCE, user.getPreference());
 
-        db.insert(TABLE_NAME, null, values);
-        db.close();
-
+        return db.insert(TABLE_NAME, null, values); // returns row id
+        //db.close();
     }
 
     /**
@@ -63,13 +63,14 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
      * This function is used whenever a user updates their profile information
      * or when a user updates a preference in editPref
      *
+     * @param id
      * @param username
      * @param name
      * @param password
      * @param email
      * @param preference
      */
-    public void updateData(String username, String name, String password, String email, String preference) {
+    public boolean updateData(long id, String username, String name, String password, String email, String preference) {
 
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -80,8 +81,41 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_EMAIL, email);
         values.put(COLUMN_PREFERENCE, preference);
 
-        db.update(TABLE_NAME, values, COLUMN_USERNAME + "=" + username, null);
+        return db.update(TABLE_NAME, values, ROW_ID + "=" + id, null) > 0;
+
+    }
+
+    /**
+     * Closes the database after opening it for insert or update
+     */
+    public void close() {
         db.close();
+    }
+
+    /**
+     *
+     * @param username
+     * @return
+     */
+    public long searchID(String username) {
+
+        db = this.getReadableDatabase();
+        String query = "select _id, username from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+
+        long id = -1;
+        String uname;
+
+        if (cursor.moveToFirst()) {
+
+            do {
+                uname = cursor.getString(1);
+                if (uname.equals(username)) {
+                    id = cursor.getLong(cursor.getColumnIndex(ROW_ID));
+                }
+            } while (cursor.moveToNext());
+        }
+        return id;
     }
 
     /**

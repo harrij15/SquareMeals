@@ -25,13 +25,13 @@ public class User {
         email = "email";
     }
 
-    public User(String username, String name, String password, String email){
+    public User(String username, String name, String password, String email, String preference){
         this.username = username;
         this.name = name;
         this.password = password;
         this.email = email;
         //this.preferences = new ArrayList<String>();
-        this.preference = "None"; // default preference
+        this.preference = preference; // default preference
     }
 
     // METHODS
@@ -45,31 +45,6 @@ public class User {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
-
-//    public ArrayList<String> getPreferences() { return preferences; }
-//
-//    /**
-//     *
-//     * @return
-//     */
-//    public String getStringPreferences() {
-//        String s = "";
-//        for (int i = 0; i < preferences.size(); i++) {
-//            s += preferences.get(i);
-//        }
-//        return s;
-//    }
-
-//    /**
-//     *
-//     * @param preference
-//     */
-//    public void setInitialPreference(String preference) {
-//        if (!preference.equals("None")) {
-//            this.preferences.add(preference);
-//        }
-//    }
-
 
     /**
      *

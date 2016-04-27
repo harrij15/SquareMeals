@@ -15,7 +15,8 @@ import android.widget.TextView;
 
 public class ProfilePage extends AppCompatActivity {
     ImageView profilepic;
-    String username, name, diet, json;
+    String username, name, diet, json, user_email;
+    UserDatabaseHelper helper = new UserDatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +29,13 @@ public class ProfilePage extends AppCompatActivity {
             name = getIntent().getExtras().getString("NAME");
             diet = getIntent().getExtras().getString("DIET");
             json = getIntent().getExtras().getString("JSON");
+            user_email = helper.searchEmail(username); // get email from the database
         } else {
             username = "";
             name = "";
             diet = "";
             json = "";
+            user_email = "";
         }
 
         TextView realName = (TextView)findViewById(R.id.real_name);
@@ -41,13 +44,13 @@ public class ProfilePage extends AppCompatActivity {
         System.out.println(name + " " + username);
         realName.setText(name);
         userName.setText(username);
-        email.setText("@rpi.edu");
+        email.setText(user_email);
 
 
-        profilepic.setOnClickListener(new View.OnClickListener(){
+        profilepic.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                Intent intent=new Intent();
+            public void onClick(View view) {
+                Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Contact Image"), 1);
@@ -69,6 +72,7 @@ public class ProfilePage extends AppCompatActivity {
         intent.putExtra("USERNAME",username);
         intent.putExtra("NAME", name);
         intent.putExtra("JSON",json);
+        intent.putExtra("EMAIL",user_email);
         startActivity(intent);
     }
 

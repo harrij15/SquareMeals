@@ -15,6 +15,8 @@ import android.widget.EditText;
 
 public class EditPref extends Activity {
 
+    UserDatabaseHelper helper = new UserDatabaseHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
