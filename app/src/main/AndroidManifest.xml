@@ -61,6 +61,8 @@
         </activity>
         <activity android:name=".RecipeInfoActivity" >
         </activity>
+        <activity android:name=".UpdateProfileActivity" >
+        </activity>
     </application>
 
 </manifest>

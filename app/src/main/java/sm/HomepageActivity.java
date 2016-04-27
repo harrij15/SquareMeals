@@ -284,6 +284,10 @@ public class HomepageActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_profile) {
             Intent profileIntent = new Intent(HomepageActivity.this,ProfilePage.class);
+            profileIntent.putExtra("DIET",diet);
+            profileIntent.putExtra("USERNAME",username);
+            profileIntent.putExtra("NAME", name);
+            profileIntent.putExtra("JSON",json);
             startActivity(profileIntent);
             return true;
         }
