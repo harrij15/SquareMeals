@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -41,7 +42,8 @@ public class HomepageActivity extends AppCompatActivity {
     TabHost tabhost;
     private Context context;
     ImageView[] imageViewArray;
-    int index;
+    int index, screenWidth;
+    String diet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -53,7 +55,7 @@ public class HomepageActivity extends AppCompatActivity {
         // TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
 
-        String username, name, diet, json;
+        String username, name, json;
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
@@ -95,15 +97,15 @@ public class HomepageActivity extends AppCompatActivity {
             host.addTab(spec);
 
         // Grid View that shows recipe recommendations in Tab 1
-        GridView gridView = (GridView) findViewById(R.id.homepage_tab1_gridView);
-        gridView.setAdapter(new HomepageButtonAdapter(this));
+        final GridView gridView = (GridView) findViewById(R.id.homepage_tab1_gridView);
+        //gridView.setAdapter(new HomepageButtonAdapter(this));
 
         // List View that shows recipes saved in cookbook
         final ListView listView = (ListView) findViewById(R.id.cookbook_list);
-        final List listRecipe = new ArrayList();
+        final ArrayList<Recipe> listRecipe = new ArrayList<Recipe>();
 
         JSONObject obj;
-        final List<SearchResult> recipeList = new ArrayList<>();
+        final ArrayList<Recipe> recipeList = new ArrayList<>();
         index = 0;
         // Parse json string to get desired info
         try {
@@ -115,6 +117,10 @@ public class HomepageActivity extends AppCompatActivity {
                 TextView searchResultsText = (TextView) findViewById(R.id.search_results_text);
                 searchResultsText.setText("Oops! We couldn't find anything :(");
             }
+
+            DisplayMetrics displaymetrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+            screenWidth = displaymetrics.widthPixels;
 
 
             for (int i = 0; i < matchesArray.length(); ++i) {
@@ -153,9 +159,11 @@ public class HomepageActivity extends AppCompatActivity {
                             }
 
                             if (imageViewArray[index-1] != null) {
-                                listRecipe.add(new SearchResult(recipe, ingredients, imageViewArray[index - 1], recipe, time, newImageString));
-                                SearchResultsAdapter adapter = new SearchResultsAdapter(getApplicationContext(), R.layout.homepage_list, listRecipe);
-                                listView.setAdapter(adapter);
+                                recipeList.add(new Recipe(recipe, ingredients, imageViewArray[index - 1], recipe, time));
+                                HomepageListArrayAdapter adapter = new HomepageListArrayAdapter(getApplicationContext(), R.layout.homepage_item, recipeList,screenWidth);
+                                gridView.setAdapter(adapter);
+                                //listView.setAdapter(adapter);
+                                //gridView.setAdapter(new HomepageButtonAdapter(this,adapter));
                             }
                         } else {
                             throw new RuntimeException("Drawable is null!");
@@ -253,6 +261,7 @@ public class HomepageActivity extends AppCompatActivity {
 
         if (id == R.id.action_preferences) {
             Intent prefIntent = new Intent(HomepageActivity.this, MyDietActivity.class);
+
             startActivity(prefIntent);
             return true;
         }

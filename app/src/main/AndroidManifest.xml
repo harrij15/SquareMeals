@@ -50,10 +50,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".HomepageGuestActivity"
-            android:parentActivityName=".MainActivity">
-        </activity>
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -66,6 +62,8 @@
         <activity android:name=".EditPref">
         </activity>
         <activity android:name=".MyDietActivity">
+        </activity>
+        <activity android:name=".HomepageGuestActivity">
         </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />

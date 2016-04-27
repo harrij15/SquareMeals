@@ -1,5 +1,7 @@
 package sm;
 
+import android.widget.ImageView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +13,7 @@ import java.util.List;
 public class Recipe {
 
     private String name; // name of recipe
-    private String image; // picture of the recipe
+    private ImageView image; // picture of the recipe
     private ArrayList<String> ingredients;
     private String description;
     private int cook_time;
@@ -20,16 +22,16 @@ public class Recipe {
      *  Default constructor of Recipe.
      *
      */
-    public Recipe(){
+    /*public Recipe(){
         this.name = "recipe_name";
         this.image = "recipe_image";
         this.ingredients = new ArrayList<String>();
         this.description = "recipe_description";
         this.cook_time = 0;
-    }
+    }*/
 
     // constructor
-    public Recipe(String name, ArrayList<String> ingredients, String image, String description, int cook_time){
+    public Recipe(String name, ArrayList<String> ingredients, ImageView image, String description, int cook_time){
         super();
         this.name = name;
         this.ingredients = ingredients;
@@ -62,7 +64,7 @@ public class Recipe {
      * Get the image of the recipe.
      * @return the string name of the image of the recipe.
      */
-    public String getImage(){
+    public ImageView getImage(){
         return image;
     }
 
@@ -70,7 +72,7 @@ public class Recipe {
      * Set the image of the recipe.
      * @param image, a string of the name of the image
      */
-    public void setImage(String image){
+    public void setImage(ImageView image){
         this.image = image;
     }
 

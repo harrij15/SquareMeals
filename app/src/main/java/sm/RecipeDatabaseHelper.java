@@ -43,7 +43,7 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(COLUMN_NAME, recipe.getName());
-        values.put(COLUMN_IMAGE, recipe.getImage());
+        values.put(COLUMN_IMAGE, recipe.getImage().toString());
         values.put(COLUMN_DESCRIPTION, recipe.getDescription());
 
         db.insert(TABLE_NAME, null, values);

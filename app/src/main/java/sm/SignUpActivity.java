@@ -84,6 +84,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 preferencesIntent.putExtra("USERNAME", user_name);
                 preferencesIntent.putExtra("NAME", name_);
+                preferencesIntent.putExtra("FLAG", "signUp");
 
                 startActivity(preferencesIntent);
 

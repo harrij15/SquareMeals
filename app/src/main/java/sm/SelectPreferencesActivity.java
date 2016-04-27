@@ -226,4 +226,5 @@ public class SelectPreferencesActivity extends AppCompatActivity {
         startActivity(loadingIntent);
         finish();
     }
+
 }

@@ -72,7 +72,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/homepage_tab1_gridView"
                         android:numColumns="2"
-                        android:paddingTop="5dp"
+                        android:paddingTop="20dp"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:verticalSpacing="5dp"
