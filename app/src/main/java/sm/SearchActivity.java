@@ -32,18 +32,26 @@ import java.util.List;
 public class SearchActivity extends AppCompatActivity {
     ImageView[] imageViewArray;
     int index;
+    String json, username, name, diet, flag, oldJson;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        String json, inputDiet = "";
+
         if (getIntent().getExtras() != null) {
+            oldJson = getIntent().getExtras().getString("OLDJSON");
+            diet = getIntent().getExtras().getString("DIET");
+            username = getIntent().getExtras().getString("USERNAME");
+            name = getIntent().getExtras().getString("NAME");
+            flag = getIntent().getExtras().getString("FLAG");
             json = getIntent().getExtras().getString("JSON");
-            inputDiet = getIntent().getExtras().getString("DIET");
         } else {
-            json = "";
-            inputDiet = "";
+            oldJson = "";
+            diet = "";
+            username = "";
+            name = "";
+            flag = "";
         }
 
 
@@ -205,7 +213,19 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent keyEvent) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent intent = new Intent(this,HomepageActivity.class);
+
+            String guestString = "guest";
+            Intent intent;
+            if (flag.equals(guestString)) {
+                intent = new Intent(this,HomepageGuestActivity.class);
+            } else {
+                intent = new Intent(this,HomepageActivity.class);
+            }
+            intent.putExtra("USERNAME",username);
+            intent.putExtra("NAME",name);
+            intent.putExtra("JSON",oldJson);
+            intent.putExtra("DIET",diet);
+
             startActivity(intent);
             return true;
         }

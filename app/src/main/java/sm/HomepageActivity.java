@@ -44,7 +44,7 @@ public class HomepageActivity extends AppCompatActivity {
 
     ImageView[] imageViewArray;
     int index, screenWidth;
-    String username, name, diet;
+    String username, name, diet, json;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -57,7 +57,6 @@ public class HomepageActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
 
 
-        String json;
 
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
@@ -112,6 +111,7 @@ public class HomepageActivity extends AppCompatActivity {
         index = 0;
         // Parse json string to get desired info
         try {
+            //System.out.println(json);
             obj = new JSONObject(json);
             JSONArray matchesArray = obj.getJSONArray("matches");
             imageViewArray = new ImageView[matchesArray.length()];
@@ -140,7 +140,9 @@ public class HomepageActivity extends AppCompatActivity {
                     Drawable drawable;
                     @Override
                     protected Void doInBackground(Void... params) {
+                        //System.out.println(imageString);
                         newImageString = parseImage(imageString);
+                       // System.out.println(newImageString);
                         drawable = LoadImageFromWebOperations(newImageString);
                         return null;
                     }
@@ -195,7 +197,7 @@ public class HomepageActivity extends AppCompatActivity {
         final SearchView searchView = (SearchView) (menu.findItem(R.id.search)).getActionView();
 
         // Get diet preference
-        final String diet;
+        //final String diet;
         if (getIntent().getExtras() != null) {
             diet = getIntent().getExtras().getString("DIET");
         } else {
@@ -232,6 +234,10 @@ public class HomepageActivity extends AppCompatActivity {
 
                     loadSearchIntent.putExtra("DIET", diet);
                     loadSearchIntent.putExtra("QUERY", query);
+                    loadSearchIntent.putExtra("USERNAME",username);
+                    loadSearchIntent.putExtra("JSON",json);
+                    loadSearchIntent.putExtra("NAME",name);
+                    loadSearchIntent.putExtra("FLAG","user");
                     startActivity(loadSearchIntent);
                     return true;
                 }
@@ -266,7 +272,9 @@ public class HomepageActivity extends AppCompatActivity {
 
             Intent prefIntent = new Intent(this, MyDietActivity.class);
             prefIntent.putExtra("DIET",diet);
-
+            prefIntent.putExtra("USERNAME",username);
+            prefIntent.putExtra("NAME", name);
+            prefIntent.putExtra("JSON",json);
             startActivity(prefIntent);
             return true;
         }

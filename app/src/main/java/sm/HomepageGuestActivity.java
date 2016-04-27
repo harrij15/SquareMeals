@@ -42,6 +42,7 @@ public class HomepageGuestActivity extends AppCompatActivity{
     GridView gridView;
     Context context;
     int screenWidth;
+    String username, name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +59,14 @@ public class HomepageGuestActivity extends AppCompatActivity{
         if (getIntent().getExtras() != null) {
             json = getIntent().getExtras().getString("JSON");
             diet = getIntent().getExtras().getString("DIET");
+            username = getIntent().getExtras().getString("USERNAME");
+            name = getIntent().getExtras().getString("NAME");
+
         } else {
             json = "";
             diet = "";
+            username = "";
+            name = "";
         }
 
         context = this;
@@ -152,7 +158,7 @@ public class HomepageGuestActivity extends AppCompatActivity{
         final SearchView searchView = (SearchView) (menu.findItem(R.id.search)).getActionView();
 
         // Get diet preference
-        final String diet;
+        //final String diet;
         if (getIntent().getExtras() != null) {
             diet = getIntent().getExtras().getString("DIET");
         } else {
@@ -189,6 +195,10 @@ public class HomepageGuestActivity extends AppCompatActivity{
 
                     loadSearchIntent.putExtra("DIET", diet);
                     loadSearchIntent.putExtra("QUERY", query);
+                    loadSearchIntent.putExtra("USERNAME",username);
+                    loadSearchIntent.putExtra("JSON",json);
+                    loadSearchIntent.putExtra("NAME",name);
+                    loadSearchIntent.putExtra("FLAG","user");
                     startActivity(loadSearchIntent);
                     return true;
                 }

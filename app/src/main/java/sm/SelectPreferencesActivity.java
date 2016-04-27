@@ -9,11 +9,13 @@ import android.widget.CheckedTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class SelectPreferencesActivity extends AppCompatActivity {
     CheckedTextView checked;
     int id;
     String username, name , flag;
+    String diet, json, inputDiet;
     int position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,8 @@ public class SelectPreferencesActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
-
+            json = getIntent().getExtras().getString("JSON");
+            inputDiet = getIntent().getExtras().getString("DIET");
             if(getIntent().getExtras().getString("FLAG")!=null){
                 flag = getIntent().getExtras().getString("FLAG");
 
@@ -34,6 +37,14 @@ public class SelectPreferencesActivity extends AppCompatActivity {
         } else {
             username = "";
             name = "";
+            json = "";
+            inputDiet = "";
+            flag = "";
+        }
+
+        if ("EditExisting".equals(flag)) {
+            TextView header = (TextView)findViewById(R.id.dietTextView);
+            header.setText("What's your new diet?");
         }
 
         final CheckedTextView vegetarianBox = (CheckedTextView) findViewById(R.id.VegetarianCheck);
@@ -188,8 +199,6 @@ public class SelectPreferencesActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
-                String diet = "";
-
                 switch(id) {
                     case 1:
                         diet = "Vegetarian";
@@ -216,23 +225,30 @@ public class SelectPreferencesActivity extends AppCompatActivity {
                         diet = "None";
                         break;*/
                     default:
+                        diet = "";
                         break;
                 }
 
-                submit(diet);
+                submit();
 
             }
         });
     }
 
     // Submit preferences
-    public void submit(String diet) {
+    public void submit() {
         if("EditExisting".equals(flag)){
-            System.out.println("got the new information");
+            //System.out.println("got the new information");
             Intent newdata = new Intent(this, MyDietActivity.class);
             position = 0 ;
             newdata.putExtra("ItemPosition", position);
+            newdata.putExtra("USERNAME", username);
+            newdata.putExtra("NAME",name);
+            newdata.putExtra("JSON",json);
             newdata.putExtra("DIET", diet);
+            if (!inputDiet.equals(diet)) {
+                newdata.putExtra("CHANGED","yes");
+            }
             // Notify calling activity the user accepted changes.
             setResult(RESULT_OK, newdata);
             // End execution.
