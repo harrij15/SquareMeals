@@ -33,5 +33,3 @@ proguard/
 #Workspace
 /.idea/
 /.idea/workspace.xml
-
-app/src/main/res/drawable/logo_original.png

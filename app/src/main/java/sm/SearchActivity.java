@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -32,18 +34,28 @@ import java.util.List;
 public class SearchActivity extends AppCompatActivity {
     ImageView[] imageViewArray;
     int index;
+    String json, username, name, diet, flag, oldJson;
+    Intent intent;
+    int time;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        String json, inputDiet = "";
+
         if (getIntent().getExtras() != null) {
+            oldJson = getIntent().getExtras().getString("OLDJSON");
+            diet = getIntent().getExtras().getString("DIET");
+            username = getIntent().getExtras().getString("USERNAME");
+            name = getIntent().getExtras().getString("NAME");
+            flag = getIntent().getExtras().getString("FLAG");
             json = getIntent().getExtras().getString("JSON");
-            inputDiet = getIntent().getExtras().getString("DIET");
         } else {
-            json = "";
-            inputDiet = "";
+            oldJson = "";
+            diet = "";
+            username = "";
+            name = "";
+            flag = "";
         }
 
 
@@ -51,6 +63,7 @@ public class SearchActivity extends AppCompatActivity {
         JSONObject obj;
         final List<SearchResult> recipeList = new ArrayList<>();
         final ListView listView = (ListView)findViewById(R.id.search_list);
+        intent = new Intent(this, RecipeInfoActivity.class);
 
         // Parse json string to get desired info
         try {
@@ -91,7 +104,7 @@ public class SearchActivity extends AppCompatActivity {
                             imageViewArray[index] = imageView;
                             index++;
 
-                            int time = -1;
+                            time = -1;
 
                             try {
                                 time = Integer.parseInt(cook_time);
@@ -100,9 +113,24 @@ public class SearchActivity extends AppCompatActivity {
                             }
 
                             if (imageViewArray[index-1] != null) {
-                                recipeList.add(new SearchResult(name, ingredients, imageViewArray[index - 1], name, time, newImageString));
+                                SearchResult newResult = new SearchResult(name, ingredients, imageViewArray[index - 1], name, time, newImageString);
+                                recipeList.add(newResult);
                                 SearchResultsAdapter adapter = new SearchResultsAdapter(getApplicationContext(), R.layout.homepage_list, recipeList);
                                 listView.setAdapter(adapter);
+
+                                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        Intent newIntent = new Intent(intent);
+                                        SearchResult searchResult = (SearchResult) listView.getItemAtPosition(position);
+                                        newIntent.putExtra("IMAGE",searchResult.getLink());
+                                        newIntent.putExtra("INGREDIENTS",searchResult.getIngredients());
+                                        newIntent.putExtra("TIME",searchResult.getTime());
+                                        newIntent.putExtra("NAME",searchResult.getName());
+                                        System.out.println(name);
+                                        startActivity(newIntent);
+                                    }
+                                });
                             }
                         } else {
                             throw new RuntimeException("Drawable is null!");
@@ -116,6 +144,8 @@ public class SearchActivity extends AppCompatActivity {
         }
 
     }
+
+
 
     // Parse ingredient string
     private ArrayList<String> parseIngredientsList(String ingredientString) {
@@ -205,7 +235,19 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent keyEvent) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent intent = new Intent(this,HomepageActivity.class);
+
+            String guestString = "guest";
+            Intent intent;
+            if (flag.equals(guestString)) {
+                intent = new Intent(this,HomepageGuestActivity.class);
+            } else {
+                intent = new Intent(this,HomepageActivity.class);
+            }
+            intent.putExtra("USERNAME",username);
+            intent.putExtra("NAME",name);
+            intent.putExtra("JSON",oldJson);
+            intent.putExtra("DIET",diet);
+
             startActivity(intent);
             return true;
         }

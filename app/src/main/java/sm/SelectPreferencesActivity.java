@@ -6,12 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckedTextView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class SelectPreferencesActivity extends AppCompatActivity {
     CheckedTextView checked;
     int id;
-    String username, name, email, password;
+
     UserDatabaseHelper helper = new UserDatabaseHelper(this);
+    String username, name , email, password, flag;
+    String diet, json, inputDiet;
+    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +31,28 @@ public class SelectPreferencesActivity extends AppCompatActivity {
             name = getIntent().getExtras().getString("NAME");
             email = getIntent().getExtras().getString("EMAIL");
             password = getIntent().getExtras().getString("PASSWORD");
+
+            json = getIntent().getExtras().getString("JSON");
+            inputDiet = getIntent().getExtras().getString("DIET");
+            if(getIntent().getExtras().getString("FLAG")!=null){
+                flag = getIntent().getExtras().getString("FLAG");
+
+            } else {
+                flag = "";
+            }
+
         } else {
             username = "";
             name = "";
             email = "";
-            password = "";
+            json = "";
+            inputDiet = "";
+            flag = "";
+        }
+
+        if ("EditExisting".equals(flag)) {
+            TextView header = (TextView)findViewById(R.id.dietTextView);
+            header.setText("What's your new diet?");
         }
 
         final CheckedTextView vegetarianBox = (CheckedTextView) findViewById(R.id.VegetarianCheck);
@@ -183,8 +207,6 @@ public class SelectPreferencesActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
-                String diet = "";
-
                 switch(id) {
                     case 1:
                         diet = "Vegetarian";
@@ -211,32 +233,52 @@ public class SelectPreferencesActivity extends AppCompatActivity {
                         diet = "None";
                         break;*/
                     default:
+                        diet = "";
                         break;
                 }
 
-                submit(diet);
+                submit();
 
             }
         });
     }
 
     // Submit preferences
-    public void submit(String diet) {
+    public void submit() {
+        if("EditExisting".equals(flag)){
+            //System.out.println("got the new information");
+            Intent newdata = new Intent(this, MyDietActivity.class);
+            position = 0 ;
+            newdata.putExtra("ItemPosition", position);
+            newdata.putExtra("USERNAME", username);
+            newdata.putExtra("NAME",name);
+            newdata.putExtra("JSON",json);
+            newdata.putExtra("DIET", diet);
+            if (!inputDiet.equals(diet)) {
+                newdata.putExtra("CHANGED","yes");
+            }
+            // Notify calling activity the user accepted changes.
+            setResult(RESULT_OK, newdata);
+            // End execution.
+            startActivity(newdata);
+            finish();
+        }
+        else{
+            Intent loadingIntent = new Intent(this, LoadingActivity.class);
 
-        Intent loadingIntent = new Intent(this, LoadingActivity.class);
+            loadingIntent.putExtra("DIET", diet);
+            loadingIntent.putExtra("USERNAME", username);
+            loadingIntent.putExtra("NAME", name);
 
-        // create new user and insert it into the database
+            // create new user and insert it into the database
 
-        User user = new User(username,name,password,email);
-        user.setPreference(diet);
+            User user = new User(username,name,password,email);
+            user.setPreference(diet);
+            helper.insertUser(user);
 
-        helper.insertUser(user);
-
-        loadingIntent.putExtra("DIET", diet);
-        loadingIntent.putExtra("USERNAME", username);
-        loadingIntent.putExtra("NAME", name);
-
-        startActivity(loadingIntent);
-        finish();
+            startActivity(loadingIntent);
+            finish();
+        }
     }
+
 }

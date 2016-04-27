@@ -72,7 +72,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/homepage_tab1_gridView"
                         android:numColumns="2"
-                        android:paddingTop="5dp"
+                        android:paddingTop="20dp"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:verticalSpacing="5dp"
@@ -87,17 +87,17 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-<!--                    <TextView
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="This is Tab 2" />-->
+                        android:text="This feature is coming soon!" />
 
-                    <SearchView
+                    <!--<SearchView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/homepage_tab2_searchView"
                         android:queryHint="Search Cookbook..."
-                        />
+                        />-->
 
                     <ListView
                         android:layout_width="wrap_content"

@@ -7,9 +7,6 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="SquareMeals.com.squaremeals.ProfilePage">
 
-
-
-
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -20,7 +17,7 @@
         android:layout_marginTop="55dp"
         android:contentDescription="&quot;no_use&quot;"/>
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -31,75 +28,86 @@
         android:layout_alignStart="@+id/user_name"
         android:textAlignment="center"
         android:layout_centerHorizontal="true"
-        android:visibility="invisible" />
+        android:visibility="invisible" />-->
 
     <!--
         Name
    -->
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType=""
         android:ems="10"
         android:id="@+id/real_name"
-        android:hint="@string/name"
-        android:layout_above="@+id/textView"
-        android:layout_alignStart="@+id/textView"  />
+        android:clickable="false"
+        android:textIsSelectable="false"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:layout_below="@+id/imageViewUserImage"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="65dp" />
 
     <!--
         Name subtext
    -->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/name_subtext"
-        android:id="@+id/textView"
-        android:textSize="5pt"
-        android:textIsSelectable="true"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/user_name"
-        android:textColor="#aea9a9"
-        android:layout_above="@+id/user_name"
-        />
+    <!-- <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:textAppearance="?android:attr/textAppearanceSmall"
+         android:text="@string/name_subtext"
+         android:id="@+id/textView"
+         android:textSize="5pt"
+         android:textIsSelectable="true"
+         android:layout_centerVertical="true"
+         android:layout_alignStart="@+id/user_name"
+         android:textColor="#aea9a9"
+         android:layout_above="@+id/user_name"
+         />-->
 
     <!--
         Username
    -->
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/user_name"
-        android:hint="@string/username_hint"
         android:layout_gravity="center_horizontal"
-        android:layout_above="@+id/email"
-        android:layout_alignStart="@+id/email" />
+        android:clickable="false"
+        android:textIsSelectable="false"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:layout_below="@+id/real_name"
+        android:layout_alignParentStart="true" />
 
     <!--
         Email
    -->
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/email"
-        android:hint="@string/email"
         android:layout_gravity="center_horizontal"
-        android:layout_above="@+id/password"
-        android:layout_alignStart="@+id/password"    />
+        android:paddingTop="10sp"
+        android:clickable="false"
+        android:textIsSelectable="false"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:layout_below="@+id/user_name"
+        android:layout_centerHorizontal="true" />
 
     <!--
         Password
    -->
 
-    <EditText
+    <!--<EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
@@ -108,23 +116,23 @@
         android:hint="@string/password_hint"
         android:layout_gravity="center_horizontal"
         android:layout_above="@+id/retype"
-        android:layout_alignStart="@+id/retype" />
+        android:layout_alignStart="@+id/retype" />-->
 
     <!--
         Confirm password
    -->
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/retype"
-        android:hint="@string/retype"
-        android:layout_gravity="center_horizontal"
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="21dp" />
+    <!-- <EditText
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:inputType="textPassword"
+         android:ems="10"
+         android:id="@+id/retype"
+         android:hint="@string/retype"
+         android:layout_gravity="center_horizontal"
+         android:layout_above="@+id/button"
+         android:layout_centerHorizontal="true"
+         android:layout_marginBottom="21dp" />-->
 
     <!--
         Signup button
@@ -138,9 +146,20 @@
         android:singleLine="false"
         android:layout_gravity="center_horizontal"
         android:enabled="true"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="39dp"
+        android:onClick="Update_Changes"
+        android:layout_above="@+id/button3"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        android:id="@+id/button3"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="Update_Changes"/>
+        android:layout_marginBottom="32dp"
+        android:onClick="goBack"
+         />
 
 </RelativeLayout>
