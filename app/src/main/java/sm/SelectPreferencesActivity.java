@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckedTextView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 
 public class SelectPreferencesActivity extends AppCompatActivity {
     CheckedTextView checked;
     int id;
-    String username, name;
+    String username, name , flag;
+    int position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +24,13 @@ public class SelectPreferencesActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
+
+            if(getIntent().getExtras().getString("FLAG")!=null){
+                flag = getIntent().getExtras().getString("FLAG");
+
+            } else {
+                flag = "";
+            }
         } else {
             username = "";
             name = "";
@@ -216,14 +227,28 @@ public class SelectPreferencesActivity extends AppCompatActivity {
 
     // Submit preferences
     public void submit(String diet) {
+        if("EditExisting".equals(flag)){
+            System.out.println("got the new information");
+            Intent newdata = new Intent(this, MyDietActivity.class);
+            position = 0 ;
+            newdata.putExtra("ItemPosition", position);
+            newdata.putExtra("DIET", diet);
+            // Notify calling activity the user accepted changes.
+            setResult(RESULT_OK, newdata);
+            // End execution.
+            startActivity(newdata);
+            finish();
+        }
+        else{
+            Intent loadingIntent = new Intent(this, LoadingActivity.class);
 
-        Intent loadingIntent = new Intent(this, LoadingActivity.class);
+            loadingIntent.putExtra("DIET", diet);
+            loadingIntent.putExtra("USERNAME", username);
+            loadingIntent.putExtra("NAME", name);
 
-        loadingIntent.putExtra("DIET", diet);
-        loadingIntent.putExtra("USERNAME", username);
-        loadingIntent.putExtra("NAME", name);
+            startActivity(loadingIntent);
+            finish();
+        }
 
-        startActivity(loadingIntent);
-        finish();
     }
 }

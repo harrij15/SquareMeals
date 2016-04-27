@@ -32,7 +32,7 @@ public class HomepageActivity extends AppCompatActivity {
 
     TabHost tabhost;
     private Context context;
-
+    String username, name, diet;
     @Override
     protected void onCreate(Bundle savedInstanceState){
 
@@ -43,7 +43,7 @@ public class HomepageActivity extends AppCompatActivity {
         // TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
 
-        String username, name, diet;
+
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
@@ -185,7 +185,8 @@ public class HomepageActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_preferences) {
-            Intent prefIntent = new Intent(HomepageActivity.this, MyDietActivity.class);
+            Intent prefIntent = new Intent(this, MyDietActivity.class);
+            prefIntent.putExtra("DIET",diet);
             startActivity(prefIntent);
             return true;
         }

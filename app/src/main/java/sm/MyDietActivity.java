@@ -14,17 +14,25 @@ public class MyDietActivity extends ListActivity implements OnItemClickListener 
     public static final int EDIT_REQUEST_CODE = 1;
     // public static final int ADD_REQUEST_CODE = 2;
     // public static final int REMOVE_REQUEST_CODE = 3;
-
+    String diet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_diet);
+        if(getIntent().getExtras()!= null){
+            diet = getIntent().getExtras().getString("DIET");
+            System.out.println("this is the not null diet"+diet);
+        }
+        else{
+            diet = "click to insert diet";
+        }
         // Create and populate item collection.
         ArrayList<String> itemList = new ArrayList<>();
-        String[] itemArray = getResources().getStringArray(R.array.list_view_items);
+        itemList.add(diet);
+       /* String[] itemArray = getResources().getStringArray(R.array.list_view_items);
         for (String item: itemArray) {
             itemList.add(item);
-        }
+        }*/
         // Initialise the list view adapter.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,                                 // context
@@ -41,10 +49,10 @@ public class MyDietActivity extends ListActivity implements OnItemClickListener 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         // Initialise intent.
-        Intent intent = new Intent(getApplicationContext(), EditPref.class);
-        // Add the position of the clicked item and its value as extra data.
-        intent.putExtra("ItemPosition", position);
+        Intent intent = new Intent(getApplicationContext(),  SelectPreferencesActivity.class);
+        // Add the position of the clicked item and its value as extra data
         intent.putExtra("ItemValue", parent.getItemAtPosition(position).toString());
+        intent.putExtra("FLAG", "EditExisting");
         // Start the activity to edit the item value.
         startActivityForResult(intent, EDIT_REQUEST_CODE);
     }
@@ -61,13 +69,14 @@ public class MyDietActivity extends ListActivity implements OnItemClickListener 
                     // Retrieved data is valid, ask adapter to update data set.
                     ArrayAdapter<String> adapter = (ArrayAdapter<String>) getListAdapter();
                     ArrayList<String> items = new ArrayList<String>();
-                    for (int i = 0; i < adapter.getCount(); i++) {
+                    /*for (int i = 0; i < adapter.getCount(); i++) {
                         if (i != position) {
                             items.add(adapter.getItem(i));
                         } else {
                             items.add(value);
                         }
-                    }
+                    }*/
+                    items.add(value);
                     adapter.clear();
                     adapter.addAll(items);
                     adapter.notifyDataSetChanged();
