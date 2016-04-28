@@ -50,6 +50,8 @@ public class LoadingActivity extends AppCompatActivity {
 
     boolean guest = false;
 
+    UserDatabaseHelper helper = new UserDatabaseHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,8 +82,11 @@ public class LoadingActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
-            diet = getIntent().getExtras().getString("DIET");
             changed = getIntent().getExtras().getString("CHANGED");
+
+            // get diet from the database
+            diet = helper.searchPreference(username);
+
         } else {
             username = "";
             name = "";

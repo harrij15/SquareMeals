@@ -178,6 +178,35 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * Gets the preference of a user
+     *
+     * @param username
+     * @return
+     */
+    public String searchPreference(String username) {
+
+        db = this.getReadableDatabase();
+        String query = "select username, preference from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+
+        String uname, prefer;
+        prefer = "not found";
+
+        if (cursor.moveToFirst()) {
+
+            do {
+                uname = cursor.getString(0);
+                if (uname.equals(username)) {
+                    prefer = cursor.getString(1);
+                    break;
+                }
+            } while (cursor.moveToNext());
+        }
+
+        return prefer;
+    }
+
+    /**
      * Gets the email of a user
      *
      * @param username

@@ -16,18 +16,20 @@ public class MyDietActivity extends ListActivity implements OnItemClickListener 
     // public static final int ADD_REQUEST_CODE = 2;
     // public static final int REMOVE_REQUEST_CODE = 3;
     String diet, username, name, json, changedFlag;
+    UserDatabaseHelper helper = new UserDatabaseHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_diet);
         if(getIntent().getExtras()!= null){
-            diet = getIntent().getExtras().getString("DIET");
             //System.out.println("this is the not null diet: "+diet);
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
             json = getIntent().getExtras().getString("JSON");
             //System.out.println("Entering: " + json);
             changedFlag = getIntent().getExtras().getString("CHANGED");
+            diet = helper.searchPreference(username); // get diet from the database
         }
         else{
             diet = "";
