@@ -23,15 +23,13 @@ public class MyDietActivity extends ListActivity implements OnItemClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_diet);
         if(getIntent().getExtras()!= null){
-            //diet = getIntent().getExtras().getString("DIET");
             //System.out.println("this is the not null diet: "+diet);
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
             json = getIntent().getExtras().getString("JSON");
             //System.out.println("Entering: " + json);
             changedFlag = getIntent().getExtras().getString("CHANGED");
-
-            diet = helper.searchPreference(username);
+            diet = helper.searchPreference(username); // get diet from the database
         }
         else{
             diet = "";
