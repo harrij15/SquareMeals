@@ -57,10 +57,6 @@ public class LoginActivity extends AppCompatActivity {
                 loadingIntent.putExtra("USERNAME",user_name);
                 loadingIntent.putExtra("NAME",name);
 
-                // Default value until database is implemented
-                String diet = "None";
-                loadingIntent.putExtra("DIET",diet);
-
                 startActivity(loadingIntent);
             }
 
