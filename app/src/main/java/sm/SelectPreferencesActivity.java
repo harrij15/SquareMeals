@@ -10,13 +10,17 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SelectPreferencesActivity extends AppCompatActivity {
     CheckedTextView checked;
     int id;
-    String username, name , flag;
+
+    UserDatabaseHelper helper = new UserDatabaseHelper(this);
+    String username, name , email, password, flag;
     String diet, json, inputDiet;
     int position;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,9 @@ public class SelectPreferencesActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
+            email = getIntent().getExtras().getString("EMAIL");
+            password = getIntent().getExtras().getString("PASSWORD");
+
             json = getIntent().getExtras().getString("JSON");
             inputDiet = getIntent().getExtras().getString("DIET");
             if(getIntent().getExtras().getString("FLAG")!=null){
@@ -34,9 +41,11 @@ public class SelectPreferencesActivity extends AppCompatActivity {
             } else {
                 flag = "";
             }
+
         } else {
             username = "";
             name = "";
+            email = "";
             json = "";
             inputDiet = "";
             flag = "";
@@ -246,9 +255,24 @@ public class SelectPreferencesActivity extends AppCompatActivity {
             newdata.putExtra("NAME",name);
             newdata.putExtra("JSON",json);
             newdata.putExtra("DIET", diet);
+
             if (!inputDiet.equals(diet)) {
+
                 newdata.putExtra("CHANGED","yes");
+
+                // update the database on the new diet info
+                long id = helper.searchID(username);
+                String pass = helper.searchPassword(username);
+                String email_ = helper.searchEmail(username);
+                boolean update = helper.updateData(id,username,name,pass,email_,diet);
+                if (update) {
+                    // success message
+                    Toast p = Toast.makeText(SelectPreferencesActivity.this,"Update was successful!", Toast.LENGTH_SHORT);
+                    p.show();
+                }
+
             }
+
             // Notify calling activity the user accepted changes.
             setResult(RESULT_OK, newdata);
             // End execution.
@@ -262,10 +286,14 @@ public class SelectPreferencesActivity extends AppCompatActivity {
             loadingIntent.putExtra("USERNAME", username);
             loadingIntent.putExtra("NAME", name);
 
+            // create a new user and insert it into the database
+            User user = new User(username,name,password,email,diet);
+            helper.insertUser(user);
+            helper.close();
+
             startActivity(loadingIntent);
             finish();
         }
-
     }
 
 }

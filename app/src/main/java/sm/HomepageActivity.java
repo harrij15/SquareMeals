@@ -65,6 +65,7 @@ public class HomepageActivity extends AppCompatActivity {
             name = getIntent().getExtras().getString("NAME");
             diet = getIntent().getExtras().getString("DIET");
             json = getIntent().getExtras().getString("JSON");
+
         } else {
             username = "";
             name = "";

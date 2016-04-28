@@ -1,5 +1,7 @@
 package sm;
 
+import java.util.ArrayList;
+
 /**
  * Created by putriz on 4/10/2016.
  * This class stores a user's imformation
@@ -10,6 +12,8 @@ public class User {
     private final String username; // user cannot change username after
     private String password;
     private String email;
+    //private ArrayList<String> preferences;
+    private String preference; // for now the user can only have one preference
 
     /**
      * Constructor
@@ -21,11 +25,13 @@ public class User {
         email = "email";
     }
 
-    public User(String username, String name, String password, String email){
+    public User(String username, String name, String password, String email, String preference){
         this.username = username;
         this.name = name;
         this.password = password;
         this.email = email;
+        //this.preferences = new ArrayList<String>();
+        this.preference = preference; // default preference
     }
 
     // METHODS
@@ -39,5 +45,23 @@ public class User {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+
+    /**
+     *
+     * @return
+     */
+    public String getPreference() { return this.preference; }
+
+    /**
+     *
+     * @param preference
+     */
+    public void setPreference(String preference) {
+        this.preference = preference;
+    }
+
+//    public void addPreferences(String preferences) {
+//
+//    }
 
 }
