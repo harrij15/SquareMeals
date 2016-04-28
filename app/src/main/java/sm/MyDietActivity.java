@@ -40,7 +40,19 @@ public class MyDietActivity extends ListActivity implements OnItemClickListener 
         ArrayList<String> itemList = new ArrayList<>();
         String emptyString = "";
         if (!diet.equals(emptyString) && !diet.equals("None") && !diet.equals("Not Sure")) {
-            itemList.add(diet);
+            String dietName;
+            switch(diet) {
+                case "Lacto+vegetarian":
+                    dietName = "Lacto-vegetarian";
+                    break;
+                case "Ovo+vegetarian":
+                    dietName = "Ovo-vegetarian";
+                    break;
+                default:
+                    dietName = diet;
+                    break;
+            }
+            itemList.add(dietName);
         } else {
             itemList.add("Click to insert diet");
         }
@@ -111,7 +123,7 @@ public class MyDietActivity extends ListActivity implements OnItemClickListener 
             intent = new Intent(this,LoadingActivity.class);
             intent.putExtra("CHANGED",changedFlag);
         } else {
-            intent = new Intent(this,HomepageActivity.class);
+            intent = new Intent(this, HomepageActivity.class);
             intent.putExtra("JSON", json);
         }
         intent.putExtra("USERNAME",username);
