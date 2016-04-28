@@ -54,7 +54,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_PREFERENCE, user.getPreference());
 
         return db.insert(TABLE_NAME, null, values); // returns row id
-        //db.close();
+
     }
 
     /**
@@ -93,6 +93,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * Gets the ROW_ID of a user
      *
      * @param username
      * @return

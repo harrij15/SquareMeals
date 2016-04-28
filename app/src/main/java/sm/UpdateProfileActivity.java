@@ -85,9 +85,6 @@ public class UpdateProfileActivity extends AppCompatActivity {
             if (update) {
                 Toast p = Toast.makeText(UpdateProfileActivity.this,"Update was successful!", Toast.LENGTH_SHORT);
                 p.show();
-            } else {
-                Toast p = Toast.makeText(UpdateProfileActivity.this,"Update was not successful", Toast.LENGTH_SHORT);
-                p.show();
             }
 
             Intent intent = new Intent(this,ProfilePage.class);
