@@ -141,7 +141,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Update_Changes"
+        android:text="EDIT PROFILE"
         android:id="@+id/button"
         android:singleLine="false"
         android:layout_gravity="center_horizontal"
