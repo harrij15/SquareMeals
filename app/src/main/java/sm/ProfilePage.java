@@ -5,33 +5,57 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 public class ProfilePage extends AppCompatActivity {
     ImageView profilepic;
+    String username, name, diet, json, user_email;
+    UserDatabaseHelper helper = new UserDatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+<<<<<<< HEAD
         //Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         //setSupportActionBar(toolbar);
+=======
+>>>>>>> refs/remotes/origin/master
         setContentView(R.layout.profile_page);
         profilepic=(ImageView) findViewById(R.id.imageViewUserImage);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-        profilepic.setOnClickListener(new View.OnClickListener(){
+        if (getIntent().getExtras() != null) {
+            username = getIntent().getExtras().getString("USERNAME");
+            name = getIntent().getExtras().getString("NAME");
+            diet = getIntent().getExtras().getString("DIET");
+            json = getIntent().getExtras().getString("JSON");
+            user_email = helper.searchEmail(username); // get email from the database
+        } else {
+            username = "";
+            name = "";
+            diet = "";
+            json = "";
+            user_email = "";
+        }
+
+        TextView realName = (TextView)findViewById(R.id.real_name);
+        TextView userName = (TextView)findViewById(R.id.user_name);
+        TextView email = (TextView)findViewById(R.id.email);
+        System.out.println(name + " " + username);
+        realName.setText(name);
+        userName.setText(username);
+        email.setText(user_email);
+
+
+        profilepic.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                Intent intent=new Intent();
+            public void onClick(View view) {
+                Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Contact Image"), 1);
@@ -39,41 +63,45 @@ public class ProfilePage extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-    /*   profilepic.setOnClickListener(new View.OnClickListener(){
-           @Override
-           public void onClick(View view){
-               Intent intent=new Intent();
-               intent.setType("image/*");
-               intent.setAction(Intent.ACTION_GET_CONTENT);
-               startActivityForResult(Intent.createChooser(intent,"Select Contact Image"),1);
-           }
-       });*/
     public void OnActivityResult(int reqCode,int resCode, Intent data){
         if (resCode==RESULT_OK){
             if (reqCode==1){
                 profilepic.setImageURI(data.getData());
             }
         }
+    }
+
+    public void Update_Changes(View view) {
+        Intent intent = new Intent(this,UpdateProfileActivity.class);
+        intent.putExtra("DIET",diet);
+        intent.putExtra("USERNAME",username);
+        intent.putExtra("NAME", name);
+        intent.putExtra("JSON",json);
+        intent.putExtra("EMAIL",user_email);
+        startActivity(intent);
+    }
+
+    public void goBack(View view) {
+        Intent intent = new Intent(this,HomepageActivity.class);
+        intent.putExtra("DIET",diet);
+        intent.putExtra("USERNAME",username);
+        intent.putExtra("NAME", name);
+        intent.putExtra("JSON",json);
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent keyEvent) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(this,HomepageActivity.class);
+            intent.putExtra("DIET",diet);
+            intent.putExtra("USERNAME",username);
+            intent.putExtra("NAME", name);
+            intent.putExtra("JSON",json);
+            startActivity(intent);
+            return true;
+        }
+
+        return false;
     }
 }

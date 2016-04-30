@@ -17,23 +17,7 @@
         android:layout_marginTop="55dp"
         android:contentDescription="&quot;no_use&quot;"/>
 
-<<<<<<< HEAD
-
-
-<ImageView
-    android:layout_width="100dp"
-    android:layout_height="100dp"
-    android:id="@+id/imageViewUserImage"
-    android:src="@drawable/no_user"
-    android:layout_alignParentTop="true"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="55dp"
-    android:contentDescription="&quot;no_use&quot;" />
-
-    <TextView
-=======
     <!--<TextView
->>>>>>> refs/remotes/origin/master
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -162,10 +146,10 @@
         android:singleLine="false"
         android:layout_gravity="center_horizontal"
         android:enabled="true"
+        android:layout_marginBottom="39dp"
         android:onClick="Update_Changes"
         android:layout_above="@+id/button3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="23dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -176,6 +160,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
         android:onClick="goBack"
-        />
+         />
 
 </RelativeLayout>

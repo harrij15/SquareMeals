@@ -5,24 +5,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="sm.SearchActivity">
+    tools:context="sm.LoadResultsActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/search_results"
-        android:id="@+id/search_results_text"
+        android:text="Searching..."
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:singleLine="false" />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/search_list"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/search_results_text"/>
-
-
+        android:layout_marginTop="108dp" />
 </RelativeLayout>

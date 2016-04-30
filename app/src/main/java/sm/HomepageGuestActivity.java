@@ -7,115 +7,85 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TabHost;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
-import java.lang.reflect.Field;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by putriz on 2/23/2016.
- * This class implements the layout of the homepage for an existing user,
- * including a recommendations tab and a cookbook tab (where the user's recipes are saved)
+ * Created by putriz on 3/21/2016.
+ * This class implements the layout for a guest
+ * The page only shows a gridView recommendations of recipes
  */
 
-public class HomepageActivity extends AppCompatActivity {
-
-    TabHost tabhost;
-    private Context context;
-
+public class HomepageGuestActivity extends AppCompatActivity{
+    String json, diet;
+    int index;
     ImageView[] imageViewArray;
-    int index, screenWidth;
-    String username, name, diet, json;
+    GridView gridView;
+    Context context;
+    int screenWidth;
+    String username, name;
     Intent intent;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homepage);
-
+        setContentView(R.layout.activity_guest_homepage);
 
         // TOOLBAR
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar_guest);
 
-
-
-        if (getIntent().getExtras() != null) {
-            username = getIntent().getExtras().getString("USERNAME");
-            name = getIntent().getExtras().getString("NAME");
-            diet = getIntent().getExtras().getString("DIET");
-            json = getIntent().getExtras().getString("JSON");
-
-        } else {
-            username = "";
-            name = "";
-            diet = "";
-            json = "";
-        }
-
-        String emptyString = "";
-
-        if ((name != null && !name.equals("not found")) && !name.equals(emptyString)) {
-            toolbar.setTitle("Hello " + name + "!");
-        }
-        else if (username != null && !username.equals(emptyString)) { // If username is filled
-            toolbar.setTitle("Hello " + username + "!");
-        }
+        toolbar.setTitle("Hello Guest!");
         setSupportActionBar(toolbar);
 
+        if (getIntent().getExtras() != null) {
+            json = getIntent().getExtras().getString("JSON");
+            diet = getIntent().getExtras().getString("DIET");
+            username = getIntent().getExtras().getString("USERNAME");
+            name = getIntent().getExtras().getString("NAME");
 
+        } else {
+            json = "";
+            diet = "";
+            username = "";
+            name = "";
+        }
 
-        // TABS ------------------------------------------------------------------------------------
-        TabHost host = (TabHost)findViewById(R.id.tabHost);
-        host.setup();
+        context = this;
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        screenWidth = displaymetrics.widthPixels;
+        intent = new Intent(this, RecipeInfoActivity.class);
 
-            // Tab 1
-            TabHost.TabSpec spec = host.newTabSpec("Top Picks for You");
-            spec.setContent(R.id.tab1);
-            spec.setIndicator("Top Picks for You");
-            host.addTab(spec);
-
-            // Tab 2
-            spec = host.newTabSpec("My Cookbook");
-            spec.setContent(R.id.tab2);
-            spec.setIndicator("My Cookbook");
-            host.addTab(spec);
-
-        // Grid View that shows recipe recommendations in Tab 1
-        final GridView gridView = (GridView) findViewById(R.id.homepage_tab1_gridView);
+        // Set GridView
+        gridView = (GridView) findViewById(R.id.guest_homepage_gridView);
         //gridView.setAdapter(new HomepageButtonAdapter(this));
-
-        // List View that shows recipes saved in cookbook
-        final ListView listView = (ListView) findViewById(R.id.cookbook_list);
-        final ArrayList<Recipe> listRecipe = new ArrayList<Recipe>();
 
         JSONObject obj;
         final ArrayList<Recipe> recipeList = new ArrayList<>();
         index = 0;
-
         // Parse json string to get desired info
         try {
-            //System.out.println(json);
             obj = new JSONObject(json);
             JSONArray matchesArray = obj.getJSONArray("matches");
             imageViewArray = new ImageView[matchesArray.length()];
@@ -124,11 +94,6 @@ public class HomepageActivity extends AppCompatActivity {
                 TextView searchResultsText = (TextView) findViewById(R.id.search_results_text);
                 searchResultsText.setText("Oops! We couldn't find anything :(");
             }
-
-            DisplayMetrics displaymetrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-            screenWidth = displaymetrics.widthPixels;
-            intent = new Intent(this, RecipeInfoActivity.class);
 
 
             for (int i = 0; i < matchesArray.length(); ++i) {
@@ -140,16 +105,12 @@ public class HomepageActivity extends AppCompatActivity {
                 final ArrayList<String> ingredients = parseIngredientsList(ingredientString);
                 final ImageView imageView = new ImageView(this);
 
-
-
                 new AsyncTask<Void,Void,Void>() {
                     String newImageString;
                     Drawable drawable;
                     @Override
                     protected Void doInBackground(Void... params) {
-                        //System.out.println(imageString);
                         newImageString = parseImage(imageString);
-                       // System.out.println(newImageString);
                         drawable = LoadImageFromWebOperations(newImageString);
                         return null;
                     }
@@ -172,7 +133,7 @@ public class HomepageActivity extends AppCompatActivity {
 
                             if (imageViewArray[index-1] != null) {
                                 recipeList.add(new Recipe(recipe, ingredients, imageViewArray[index - 1], recipe, time, newImageString));
-                                HomepageListArrayAdapter adapter = new HomepageListArrayAdapter(getApplicationContext(), R.layout.homepage_item, recipeList,screenWidth);
+                                HomepageListArrayAdapter adapter = new HomepageListArrayAdapter(context, R.layout.homepage_item, recipeList, screenWidth);
                                 gridView.setAdapter(adapter);
 
                                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -203,11 +164,7 @@ public class HomepageActivity extends AppCompatActivity {
         }
 
 
-
-
-        // -----------------------------------------------------------------------------------------
-
-    } /* end of onCreate method */
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -242,7 +199,7 @@ public class HomepageActivity extends AppCompatActivity {
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    Intent loadSearchIntent = new Intent(HomepageActivity.this, LoadResultsActivity.class);
+                    Intent loadSearchIntent = new Intent(HomepageGuestActivity.this, LoadResultsActivity.class);
 
                     query = searchView.getQuery().toString();
                     query = encodeQuery(query);
@@ -282,38 +239,13 @@ public class HomepageActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-<<<<<<< HEAD
-        if (id == R.id.action_settings) {
-            Intent profileIntent = new Intent(HomepageActivity.this,ProfilePage.class);
-=======
-        if (id == R.id.action_profile) {
-            Intent profileIntent = new Intent(HomepageActivity.this,ProfilePage.class);
-            profileIntent.putExtra("DIET",diet);
-            profileIntent.putExtra("USERNAME",username);
-            profileIntent.putExtra("NAME", name);
-            profileIntent.putExtra("JSON",json);
->>>>>>> refs/remotes/origin/master
-            startActivity(profileIntent);
-            return true;
-        }
-
         if (id == R.id.action_preferences) {
+            Intent prefIntent = new Intent(HomepageGuestActivity.this, MyDietActivity.class);
 
-            Intent prefIntent = new Intent(this, MyDietActivity.class);
-            prefIntent.putExtra("DIET",diet);
-            prefIntent.putExtra("USERNAME",username);
-            prefIntent.putExtra("NAME", name);
-            prefIntent.putExtra("JSON",json);
             startActivity(prefIntent);
             return true;
         }
 
-<<<<<<< HEAD
-        //return super.onOptionsItemSelected(item);
-        return true;
-    }
-=======
         if (id == R.id.search) {
             SearchView searchView = (SearchView) item.getActionView();
             //searchView.dispatchSetActivated();
@@ -327,7 +259,6 @@ public class HomepageActivity extends AppCompatActivity {
             searchView.requestFocusFromTouch();
             return true;
         }
->>>>>>> refs/remotes/origin/master
 
         return true;
 
@@ -383,6 +314,25 @@ public class HomepageActivity extends AppCompatActivity {
             searchView.setIconified(true);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    // Function to read the URL
+    private static String readUrl(String urlString) throws Exception {
+        BufferedReader reader = null;
+        try {
+            URL url = new URL(urlString);
+            reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            StringBuffer buffer = new StringBuffer();
+            int read;
+            char[] chars = new char[1024];
+            while ((read = reader.read(chars)) != -1)
+                buffer.append(chars, 0, read);
+
+            return buffer.toString();
+        } finally {
+            if (reader != null)
+                reader.close();
         }
     }
 
@@ -465,12 +415,8 @@ public class HomepageActivity extends AppCompatActivity {
             Drawable d = Drawable.createFromStream(is, "");
             return d;
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
-
     }
 
-
-
-} /* end of HomepageActivity class */
+}

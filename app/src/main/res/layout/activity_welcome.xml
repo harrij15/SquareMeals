@@ -22,7 +22,7 @@
         android:id="@+id/logo"
         android:contentDescription="@string/logo"
         android:adjustViewBounds="true"
-        android:src="@drawable/logo_original"
+        android:src="@drawable/logo_the_first"
         android:scaleType="fitXY"
         android:focusable="true"
         android:cropToPadding="false"
