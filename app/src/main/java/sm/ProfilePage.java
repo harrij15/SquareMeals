@@ -21,11 +21,7 @@ public class ProfilePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        //setSupportActionBar(toolbar);
-=======
->>>>>>> refs/remotes/origin/master
+
         setContentView(R.layout.profile_page);
         profilepic=(ImageView) findViewById(R.id.imageViewUserImage);
 

@@ -1,5 +1,6 @@
-<<<<<<< Original<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="sm">
+<!--xml version="1.0" encoding="utf-8"?>-->
+<manifest
+xmlns:android="http://schemas.android.com/apk/res/android" package="sm">
 
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.INTERNET" />
@@ -27,15 +28,7 @@ package="sm">
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
-    <
-    <
-    <
-    <
-    <
-    <
-    < HEAD
-    <activity android:name=".ProfilePage">
-    =======
+    <activity android:name=".ProfilePage"></activity>
     <activity android:name=".LoadResultsActivity"></activity>
     <activity android:name=".SelectPreferencesActivity"></activity>
     <activity android:name=".ProfilePage"></activity>
@@ -49,11 +42,3 @@ package="sm">
 </application>
 
 </manifest>
-
-    =======<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
-<application>
-    <activity android:name="sm.SquareMeals.NavigationBar" android:label="@string/title_activity_navigation_bar"
-        android:theme="@style/AppTheme"></activity>
-</application>
-</manifest>>>>>>>> Added
