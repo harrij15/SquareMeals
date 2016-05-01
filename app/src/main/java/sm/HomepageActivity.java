@@ -285,10 +285,10 @@ public class HomepageActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
 
         if (id == R.id.action_settings) {
-            Intent profileIntent = new Intent(HomepageActivity.this,ProfilePage.class);
-
+            Intent profileIntent = new Intent(HomepageActivity.this, ProfilePage.class);
+        }
         if (id == R.id.action_profile) {
-            profileIntent = new Intent(HomepageActivity.this,ProfilePage.class);
+            Intent profileIntent = new Intent(HomepageActivity.this,ProfilePage.class);
             profileIntent.putExtra("DIET",diet);
             profileIntent.putExtra("USERNAME",username);
             profileIntent.putExtra("NAME", name);
@@ -301,18 +301,18 @@ public class HomepageActivity extends AppCompatActivity {
         if (id == R.id.action_preferences) {
 
             Intent prefIntent = new Intent(this, MyDietActivity.class);
-            prefIntent.putExtra("DIET",diet);
-            prefIntent.putExtra("USERNAME",username);
+            prefIntent.putExtra("DIET", diet);
+            prefIntent.putExtra("USERNAME", username);
             prefIntent.putExtra("NAME", name);
-            prefIntent.putExtra("JSON",json);
+            prefIntent.putExtra("JSON", json);
             startActivity(prefIntent);
             return true;
         }
 
 
         //return super.onOptionsItemSelected(item);
-        return true;
-    }
+     
+
 
         if (id == R.id.search) {
             SearchView searchView = (SearchView) item.getActionView();

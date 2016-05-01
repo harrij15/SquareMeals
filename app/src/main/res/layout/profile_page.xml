@@ -17,7 +17,7 @@
         android:layout_marginTop="55dp"
         android:contentDescription="&quot;no_use&quot;"/>
 
-<<<<<<< HEAD
+
 
 
 <ImageView
@@ -30,8 +30,7 @@
     android:layout_marginTop="55dp"
     android:contentDescription="&quot;no_use&quot;" />
 
-    <TextView
-=======
+
     <!--<TextView
 >>>>>>> refs/remotes/origin/master
         android:layout_width="wrap_content"
