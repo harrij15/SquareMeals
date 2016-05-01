@@ -283,12 +283,17 @@ public class HomepageActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+
+        if (id == R.id.action_settings) {
+            Intent profileIntent = new Intent(HomepageActivity.this, ProfilePage.class);
+        }
         if (id == R.id.action_profile) {
             Intent profileIntent = new Intent(HomepageActivity.this,ProfilePage.class);
             profileIntent.putExtra("DIET",diet);
             profileIntent.putExtra("USERNAME",username);
             profileIntent.putExtra("NAME", name);
             profileIntent.putExtra("JSON",json);
+
             startActivity(profileIntent);
             return true;
         }
@@ -296,13 +301,18 @@ public class HomepageActivity extends AppCompatActivity {
         if (id == R.id.action_preferences) {
 
             Intent prefIntent = new Intent(this, MyDietActivity.class);
-            prefIntent.putExtra("DIET",diet);
-            prefIntent.putExtra("USERNAME",username);
+            prefIntent.putExtra("DIET", diet);
+            prefIntent.putExtra("USERNAME", username);
             prefIntent.putExtra("NAME", name);
-            prefIntent.putExtra("JSON",json);
+            prefIntent.putExtra("JSON", json);
             startActivity(prefIntent);
             return true;
         }
+
+
+        //return super.onOptionsItemSelected(item);
+     
+
 
         if (id == R.id.search) {
             SearchView searchView = (SearchView) item.getActionView();
@@ -317,6 +327,7 @@ public class HomepageActivity extends AppCompatActivity {
             searchView.requestFocusFromTouch();
             return true;
         }
+
 
         return true;
 

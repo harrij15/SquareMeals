@@ -1,0 +1,10 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch UI/Layout
+# Changes to be committed:
+#	modified:   app/build.gradle
+#	modified:   app/src/main/java/sm/ChatBox.java
+#	modified:   build.gradle
+#
+
