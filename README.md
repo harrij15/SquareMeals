@@ -18,6 +18,23 @@ All you need to utilize this app is an android environment to run it off of.
 - [Blog](#blog)
 - [License](#license)
 
+
+## Installation
+Thus far, the app is not complete nor up on the app store, thus the only way to acquire the app is purely for developmental purposes.
+
+## Using the Interface
+
+### Account Creation
+
+### Preference Customization
+
+### Searching
+
+## Uninstalling
+N/A as of now
+
+## Known Issues
+
 ## Blog
 
 We've maintained this [blog](https://rcos.io/projects/harrij15/SquareMeals/blog) to provide updates in development.
