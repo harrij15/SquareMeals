@@ -31,7 +31,7 @@ xmlns:android="http://schemas.android.com/apk/res/android" package="sm">
     <activity android:name=".ProfilePage"></activity>
     <activity android:name=".LoadResultsActivity"></activity>
     <activity android:name=".SelectPreferencesActivity"></activity>
-    <activity android:name=".ProfilePage"></activity>
+    <!--<activity android:name=".ProfilePage"></activity>-->
     <activity android:name=".EditPref"></activity>
     <activity android:name=".MyDietActivity"></activity>
     <activity android:name=".HomepageGuestActivity"></activity>
@@ -39,6 +39,7 @@ xmlns:android="http://schemas.android.com/apk/res/android" package="sm">
     <activity android:name=".UpdateProfileActivity">
         >>>>>>> refs/remotes/origin/master
     </activity>
+
 </application>
 
 </manifest>

@@ -311,7 +311,7 @@ public class HomepageActivity extends AppCompatActivity {
 
 
         //return super.onOptionsItemSelected(item);
-     
+
 
 
         if (id == R.id.search) {
