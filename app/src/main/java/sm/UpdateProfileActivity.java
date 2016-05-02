@@ -9,7 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import sm.R;
+
 
 public class UpdateProfileActivity extends AppCompatActivity {
     String username, name, diet, json, user_email;
@@ -20,7 +20,6 @@ public class UpdateProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
-
         realName = (EditText)findViewById(R.id.real_name);
         userName = (EditText)findViewById(R.id.user_name);
         userEmail = (EditText)findViewById(R.id.email);
