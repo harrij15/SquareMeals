@@ -3,8 +3,6 @@
 **This is the end user documentation.** If you wish to observe the Technical User documentation check [here](https://github.com/harrij15/SquareMeals/blob/master/developers_documentation.md)
 SquareMeals is an mobile application that allows users (mainly college students) to compile different easy-to-make and affordable recipes that suit their dietary needs into a cookbook. This app also seeks to create a community where college students on the same campus can share/suggest recipes to others.
 
-All you need to utilize this app is an android environment to run it off of.
-
 ##Table of Contents
 - [Introduction](#squaremeals)
 - [Installation](#installation)
@@ -22,7 +20,7 @@ All you need to utilize this app is an android environment to run it off of.
 
 ## Installation
 Thus far, the app is not complete not up on the app store, thus the only way to acquire the app is mostly for developmental purposes.
-If you wish to install
+If you wish to install/utilize our app.
 
 ## Using the Interface
 
