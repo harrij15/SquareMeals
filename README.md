@@ -1,12 +1,13 @@
 # SquareMeals
-//(this is the user/end use documentation, figure out where to put the other types of documentation)
+//(this is the user/end use documentation, figure out where to put the other types of documentation
+**This is the end user documentation.** If you wish to observe the Technical User documentation check [here](https://github.com/harrij15/SquareMeals/blob/master/developers_documentation.md)
 SquareMeals is an mobile application that allows users (mainly college students) to compile different easy-to-make and affordable recipes that suit their dietary needs into a cookbook. This app also seeks to create a community where college students on the same campus can share/suggest recipes to others.
 
 All you need to utilize this app is an android environment to run it off of.
 
 ##Table of Contents
 - [Introduction](#squaremeals)
-- [Installation](#)
+- [Installation](#installation)
   - [Using git](#using-git) ////////***
   - [Manual Download](#manual-download) /*************
 - [Using the Interface](#using-the-interface)
@@ -20,7 +21,8 @@ All you need to utilize this app is an android environment to run it off of.
 
 
 ## Installation
-Thus far, the app is not complete nor up on the app store, thus the only way to acquire the app is purely for developmental purposes.
+Thus far, the app is not complete not up on the app store, thus the only way to acquire the app is mostly for developmental purposes.
+If you wish to install
 
 ## Using the Interface
 
@@ -34,6 +36,7 @@ Thus far, the app is not complete nor up on the app store, thus the only way to 
 N/A as of now
 
 ## Known Issues
+One of the main problems with our app so far is Lacto-Vegetarian will come up with cheese products.
 
 ## Blog
 
@@ -41,7 +44,7 @@ We've maintained this [blog](https://rcos.io/projects/harrij15/SquareMeals/blog)
 
 ## License
 
-You can refer to the LICENSE.md or read the terms below.
+You can refer to the [LICENSE.md](https://github.com/harrij15/SquareMeals/blob/master/LICENSE.md) or read the terms below.
 
 ###BSD 3-Clause LICENSE
 

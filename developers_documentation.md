@@ -2,7 +2,8 @@
 
 ## Classes
 
-HomepageActivity: displays recipe recommendations based off a user’s diet preference and also shows a user’s saved recipes. This class also has a search feature.
+HomepageActivity: displays recipe recommendations based off a user’s diet preference and also shows
+a user’s saved recipes. This class also has a search feature.
 	-display better images (the images are too small)
 	-no known bugs (nkb)
 
