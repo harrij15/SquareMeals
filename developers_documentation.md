@@ -1,5 +1,14 @@
 # SquareMeals Development Documentation
 
+## Table of Contents
+ -[Environment](#environment)
+ -[Classes](#classes)
+
+## Environment
+We utilized Android Studio to both create, and test our app thus far. Their website is provided below.
+
+[Android Studio](http://developer.android.com/sdk/index.html) is an IDE available to aid people with the development of android apps.
+
 ## Classes
 
 HomepageActivity: displays recipe recommendations based off a user’s diet preference and also shows
