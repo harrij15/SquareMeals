@@ -8,19 +8,19 @@
     android:weightSum="1"
     android:background="@color/White">
 
-<!--    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:minHeight="?attr/actionBarSize"
-        android:background="@color/Grey"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
-        </android.support.v7.widget.Toolbar>-->
+    <!--    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@color/Grey"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+            </android.support.v7.widget.Toolbar>-->
 
     <include
-    android:id="@+id/tool_bar"
-    layout="@layout/tool_bar"></include>
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"></include>
 
     <TabHost
         android:layout_width="match_parent"
@@ -67,12 +67,35 @@
                         android:actionViewClass="android.widget.SearchView"
                         />        -->
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/attribution_text"
+                        android:layout_gravity="center_horizontal"
+                        android:textAlignment="center" />
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/yummly_logo"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="yummly logo"
+                        android:layout_gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="27dp"
+                        android:id="@+id/attribution_url"
+                        android:layout_gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:autoLink="web"/>
+
                     <GridView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/homepage_tab1_gridView"
                         android:numColumns="2"
-                        android:paddingTop="20dp"
+                        android:paddingTop="10dp"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:verticalSpacing="5dp"

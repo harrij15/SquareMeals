@@ -67,6 +67,29 @@
                         android:actionViewClass="android.widget.SearchView"
                         />        -->
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/attribution_text"
+                        android:layout_gravity="center_horizontal"
+                        android:textAlignment="center" />
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/yummly_logo"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="yummly logo"
+                        android:layout_gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="27dp"
+                        android:id="@+id/attribution_url"
+                        android:layout_gravity="center_horizontal"
+                        android:textAlignment="center"
+                        android:autoLink="web"/>
+
                     <GridView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

@@ -93,7 +93,8 @@
         android:hint="@string/email"
         android:layout_gravity="center_horizontal"
         android:layout_above="@+id/password"
-        android:layout_alignStart="@+id/password"    />
+        android:layout_alignStart="@+id/password"
+        android:singleLine="false" />
 
     <!--
         Password
