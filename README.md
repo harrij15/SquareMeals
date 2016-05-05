@@ -3,6 +3,7 @@
 **This is the end user documentation.** The guide to acquire the development environment is provided below though.
 If you wish to observe the Technical User documentation check [here](https://github.com/harrij15/SquareMeals/blob/master/developers_documentation.md)
 
+
 SquareMeals is an mobile application that allows users (mainly college students) to compile different easy-to-make and affordable recipes that suit their dietary needs into a cookbook. This app also seeks to create a community where college students on the same campus can share/suggest recipes to others.
 
 ##Table of Contents
@@ -10,8 +11,8 @@ SquareMeals is an mobile application that allows users (mainly college students)
 - [Installation](#installation)
   -[Android Studio]
 - [Using the Interface](#using-the-interface)
-  - [Account Creation] ?
-  - [Preference Customization]
+  - [Account Creation] (#account-creation)
+  - [Preference Customization] (#preference-customization)
   - [Searching]
 - [Uninstalling](#) //???
 - [Known Issues](#known-issues)
@@ -28,13 +29,30 @@ Please refer to our [Technical User](https://github.com/harrij15/SquareMeals/blo
 The Android Studio Emulator appears as such. Soemtimes the app opens automatically but sometimes you must look for it in your apps.
 To do so, refer to the image below. Select the boxed, red icon and scroll until you find "SquareMeals"
 
-![Android Home Page](https://i.gyazo.com/ebf09c4f7efb630ba9fdf8794f4c3efd.png) ![SquareMeals selection](https://i.gyazo.com/4ab0852da99a710e805434483d7b5136.png)
+![Android Home Page](http://orig09.deviantart.net/25d1/f/2016/125/4/6/1_by_miinji-da1gpqs.png)
 
 ### Account Creation
+After being greeted by the SquareMeals logo, you are met with the login screen. As seen below:
+
+![Login Screen](http://orig15.deviantart.net/df4c/f/2016/125/5/1/2_by_miinji-da1gpqp.png)
+
+If you are a new user, click on the [Sign Up] button. You will be met with a standard login screen, which prompts you for your *name*
+, a *username*, your *email* and a *password*.
+
+You must have a unique username.
+
+Password must be between 8 and 16 characters.
 
 ### Preference Customization
+Upon the creation of your account, you will be met with the Preference Selection Page as shown below.
+
+![Preferences Page](http://orig05.deviantart.net/e82e/f/2016/125/a/7/3_by_miinji-da1gskr.png)
+
+You are only able to select a single type of diet as of now. We hope to expand the dietary selection in the future
+as well as let people select many types of restrictions, primarily allergies foods and similar types.
 
 ### Searching
+
 
 ## Uninstalling
 N/A as of now

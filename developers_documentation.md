@@ -73,6 +73,7 @@ SelectPreferencesActivity (already did this)
 SignUpActivity
 	Putting info in for database. (multiple checks pw/username stuff)
 	-check if username is taken already before hitting submit button
+	-Have legitimate email signups (sending email from server remotely that authenticates account)
 UpdateProfileActivity
 	Updates changes to profile. Pushes to database.
 WelcomeActivity
