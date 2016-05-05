@@ -12,7 +12,6 @@ SquareMeals is an mobile application that allows users (mainly college students)
   - [Account Creation] (#account-creation)
   - [Preference Customization] (#preference-customization)
   - [Searching]
-- [Uninstalling](#unstalling)
 - [Known Issues](#known-issues)
 - [Blog](#blog)
 - [License](#license)
@@ -46,14 +45,30 @@ Upon the creation of your account, you will be met with the Preference Selection
 
 ![Preferences Page](http://orig05.deviantart.net/e82e/f/2016/125/a/7/3_by_miinji-da1gskr.png)
 
-You are only able to select a single type of diet as of now. We hope to expand the dietary selection in the future
+After your preference is selected, your homepage will show recipes applicable to your current diet.
+
+NOTE: You are only able to select a single type of diet as of now. We hope to expand the dietary selection in the future
 as well as let people select many types of restrictions, primarily allergies foods and similar types.
+
+**Editting Preferences**
+If you want to change your diet select the dropdown menu shown below:
+
+![Editting Preferences](http://orig14.deviantart.net/e450/f/2016/126/7/8/4_by_miinji-da1gwl2.png)
+
+And select the [Edit Preferences] option. There you will be prompted to change your preferences once again.
 
 ### Searching
 
+To search, click the magnifying glass icon, shown below:
 
-## Uninstalling
-N/A as of now
+![Search function](http://orig01.deviantart.net/195c/f/2016/126/1/2/5_by_miinji-da1gwky.png)
+
+Search for a recipe you'd like and it filters hits according to your diet.
+
+Selecting a recipe will display an *image* of the recipe, the *ingredients* required, the *time required* to make and a
+*hyperlink* to the original recipe.
+
+As of now, we do not have the procedure available on the recipes, so please refer to the hyperlink for now for the procedure.
 
 ## Known Issues
 One of the main problems with our app so far is Lacto-Vegetarian will come up with cheese products.
