@@ -121,6 +121,7 @@ public class HomepageActivity extends AppCompatActivity {
             //System.out.println(json);
             obj = new JSONObject(json);
             JSONArray matchesArray = obj.getJSONArray("matches");
+
             /*JSONObject attribution = obj.getJSONObject("attribution");
             String url = attribution.getString("url");
             String text = attribution.getString("text");
@@ -133,6 +134,7 @@ public class HomepageActivity extends AppCompatActivity {
             attributionURL.setText(url);*/
 
             //yummlyIcon = (ImageView)findViewById(R.id.yummly_logo);
+
 
             imageViewArray = new ImageView[matchesArray.length()];
 
@@ -165,11 +167,13 @@ public class HomepageActivity extends AppCompatActivity {
                     protected Void doInBackground(Void... params) {
                         //System.out.println(imageString);
                         //logoString = parseImage(yummlyLogo);
+
                         //System.out.println(logoString);
 
                         newImageString = parseImage(imageString);
                        // System.out.println(newImageString);
                         //yummlyDrawable = LoadImageFromWebOperations(logoString);
+
                         //System.out.println(yummlyDrawable);
                         drawable = LoadImageFromWebOperations(newImageString);
 
@@ -206,7 +210,7 @@ public class HomepageActivity extends AppCompatActivity {
                                         newIntent.putExtra("INGREDIENTS", recipe.getIngredients());
                                         newIntent.putExtra("TIME", recipe.getCook_time());
                                         newIntent.putExtra("NAME", recipe.getName());
-                                        System.out.println(name);
+                                        //System.out.println(name);
                                         startActivity(newIntent);
                                     }
                                 });
@@ -220,6 +224,7 @@ public class HomepageActivity extends AppCompatActivity {
                         /*if (yummlyDrawable != null) {
                             yummlyIcon.setImageDrawable(yummlyDrawable);
                         }*/ /*else {
+
                             throw new RuntimeException("yummlyDrawable is null!");
                         }*/
                     }
@@ -311,12 +316,17 @@ public class HomepageActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+
+        if (id == R.id.action_settings) {
+            Intent profileIntent = new Intent(HomepageActivity.this, ProfilePage.class);
+        }
         if (id == R.id.action_profile) {
             Intent profileIntent = new Intent(HomepageActivity.this,ProfilePage.class);
             profileIntent.putExtra("DIET",diet);
             profileIntent.putExtra("USERNAME",username);
             profileIntent.putExtra("NAME", name);
             profileIntent.putExtra("JSON",json);
+
             startActivity(profileIntent);
             return true;
         }
@@ -324,13 +334,18 @@ public class HomepageActivity extends AppCompatActivity {
         if (id == R.id.action_preferences) {
 
             Intent prefIntent = new Intent(this, MyDietActivity.class);
-            prefIntent.putExtra("DIET",diet);
-            prefIntent.putExtra("USERNAME",username);
+            prefIntent.putExtra("DIET", diet);
+            prefIntent.putExtra("USERNAME", username);
             prefIntent.putExtra("NAME", name);
-            prefIntent.putExtra("JSON",json);
+            prefIntent.putExtra("JSON", json);
             startActivity(prefIntent);
             return true;
         }
+
+
+        //return super.onOptionsItemSelected(item);
+
+
 
         if (id == R.id.search) {
             SearchView searchView = (SearchView) item.getActionView();
@@ -345,6 +360,7 @@ public class HomepageActivity extends AppCompatActivity {
             searchView.requestFocusFromTouch();
             return true;
         }
+
 
         return true;
 

@@ -90,6 +90,7 @@ public class HomepageGuestActivity extends AppCompatActivity{
         try {
             obj = new JSONObject(json);
             JSONArray matchesArray = obj.getJSONArray("matches");
+
             JSONObject attribution;
             /*try {
                 attribution = obj.getJSONObject("attribution");
@@ -110,6 +111,7 @@ public class HomepageGuestActivity extends AppCompatActivity{
 
 
             //yummlyIcon = (ImageView)findViewById(R.id.yummly_logo);
+
             imageViewArray = new ImageView[matchesArray.length()];
 
             if (matchesArray.length()==0) {
@@ -135,6 +137,7 @@ public class HomepageGuestActivity extends AppCompatActivity{
                         //logoString = parseImage(yummlyLogo);
                         newImageString = parseImage(imageString);
                         //yummlyDrawable = LoadImageFromWebOperations(logoString);
+
                         drawable = LoadImageFromWebOperations(newImageString);
                         return null;
                     }
@@ -169,7 +172,7 @@ public class HomepageGuestActivity extends AppCompatActivity{
                                         newIntent.putExtra("INGREDIENTS", recipe.getIngredients());
                                         newIntent.putExtra("TIME", recipe.getCook_time());
                                         newIntent.putExtra("NAME", recipe.getName());
-                                        System.out.println(name);
+                                        //System.out.println(name);
                                         startActivity(newIntent);
                                     }
                                 });
@@ -182,6 +185,7 @@ public class HomepageGuestActivity extends AppCompatActivity{
                         /*if (yummlyDrawable != null) {
                             yummlyIcon.setImageDrawable(yummlyDrawable);
                         }*/
+
                     }
                 }.execute();
 

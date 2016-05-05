@@ -1,5 +1,6 @@
 package sm;
 
+
 import android.app.SearchManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -71,6 +72,7 @@ public class SearchActivity extends AppCompatActivity {
         try {
             obj = new JSONObject(json);
             JSONArray matchesArray = obj.getJSONArray("matches");
+
             /*JSONObject attribution = obj.getJSONObject("attribution");
             String url = attribution.getString("url");
             String text = attribution.getString("text");
@@ -83,6 +85,7 @@ public class SearchActivity extends AppCompatActivity {
             attributionURL.setText(url);*/
 
             //yummlyIcon = (ImageView)findViewById(R.id.yummly_logo);
+
             imageViewArray = new ImageView[matchesArray.length()];
 
             if (matchesArray.length()==0) {
@@ -108,6 +111,7 @@ public class SearchActivity extends AppCompatActivity {
                         //logoString = parseImage(yummlyLogo);
                         newImageString = parseImage(imageString);
                         //yummlyDrawable = LoadImageFromWebOperations(logoString);
+
                         drawable = LoadImageFromWebOperations(newImageString);
                         return null;
                     }
@@ -143,7 +147,7 @@ public class SearchActivity extends AppCompatActivity {
                                         newIntent.putExtra("INGREDIENTS",searchResult.getIngredients());
                                         newIntent.putExtra("TIME",searchResult.getTime());
                                         newIntent.putExtra("NAME",searchResult.getName());
-                                        System.out.println(name);
+                                        //System.out.println(name);
                                         startActivity(newIntent);
                                     }
                                 });
@@ -151,9 +155,11 @@ public class SearchActivity extends AppCompatActivity {
                         } else {
                             throw new RuntimeException("Drawable is null!");
                         }
+
                         /*if (yummlyDrawable != null) {
                             yummlyIcon.setImageDrawable(yummlyDrawable);
                         }*/
+
                     }
                 }.execute();
 

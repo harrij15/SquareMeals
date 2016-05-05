@@ -40,7 +40,6 @@
         <item>high protein</item>
 
     </string-array>
-
     <string name="title_activity_navigation_bar">NavigationBar</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
