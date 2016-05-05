@@ -11,7 +11,7 @@ SquareMeals is an mobile application that allows users (mainly college students)
 - [Using the Interface](#using-the-interface)
   - [Account Creation] (#account-creation)
   - [Preference Customization] (#preference-customization)
-  - [Searching]
+  - [Searching] (#searching)
 - [Known Issues](#known-issues)
 - [Blog](#blog)
 - [License](#license)
