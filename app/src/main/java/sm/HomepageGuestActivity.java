@@ -45,6 +45,8 @@ public class HomepageGuestActivity extends AppCompatActivity{
     int screenWidth;
     String username, name;
     Intent intent;
+    String yummlyLogo;
+    ImageView yummlyIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,26 @@ public class HomepageGuestActivity extends AppCompatActivity{
         try {
             obj = new JSONObject(json);
             JSONArray matchesArray = obj.getJSONArray("matches");
+            JSONObject attribution;
+            /*try {
+                attribution = obj.getJSONObject("attribution");
+                String url = attribution.getString("url");
+                String text = attribution.getString("text");
+                yummlyLogo = attribution.getString("logo");
+
+                TextView attributionTextView = (TextView)findViewById(R.id.attribution_text);
+                attributionTextView.setText(text);
+
+                TextView attributionURL = (TextView)findViewById(R.id.attribution_url);
+                attributionURL.setText(url);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }*/
+
+            //System.out.println(url + " " + text + " " + yummlyLogo);
+
+
+            //yummlyIcon = (ImageView)findViewById(R.id.yummly_logo);
             imageViewArray = new ImageView[matchesArray.length()];
 
             if (matchesArray.length()==0) {
@@ -106,11 +128,13 @@ public class HomepageGuestActivity extends AppCompatActivity{
                 final ImageView imageView = new ImageView(this);
 
                 new AsyncTask<Void,Void,Void>() {
-                    String newImageString;
-                    Drawable drawable;
+                    String newImageString, logoString;
+                    Drawable drawable, yummlyDrawable;
                     @Override
                     protected Void doInBackground(Void... params) {
+                        //logoString = parseImage(yummlyLogo);
                         newImageString = parseImage(imageString);
+                        //yummlyDrawable = LoadImageFromWebOperations(logoString);
                         drawable = LoadImageFromWebOperations(newImageString);
                         return null;
                     }
@@ -155,6 +179,9 @@ public class HomepageGuestActivity extends AppCompatActivity{
                         } else {
                             throw new RuntimeException("Drawable is null!");
                         }
+                        /*if (yummlyDrawable != null) {
+                            yummlyIcon.setImageDrawable(yummlyDrawable);
+                        }*/
                     }
                 }.execute();
 
@@ -215,7 +242,7 @@ public class HomepageGuestActivity extends AppCompatActivity{
                     loadSearchIntent.putExtra("USERNAME",username);
                     loadSearchIntent.putExtra("JSON",json);
                     loadSearchIntent.putExtra("NAME",name);
-                    loadSearchIntent.putExtra("FLAG","user");
+                    loadSearchIntent.putExtra("FLAG","guest");
                     startActivity(loadSearchIntent);
                     return true;
                 }

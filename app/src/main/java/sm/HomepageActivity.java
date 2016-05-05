@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.LinkMovementMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -47,6 +48,8 @@ public class HomepageActivity extends AppCompatActivity {
     int index, screenWidth;
     String username, name, diet, json;
     Intent intent;
+    String yummlyLogo;
+    ImageView yummlyIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -118,6 +121,19 @@ public class HomepageActivity extends AppCompatActivity {
             //System.out.println(json);
             obj = new JSONObject(json);
             JSONArray matchesArray = obj.getJSONArray("matches");
+            /*JSONObject attribution = obj.getJSONObject("attribution");
+            String url = attribution.getString("url");
+            String text = attribution.getString("text");
+            yummlyLogo = attribution.getString("logo");*/
+            //System.out.println(url + " " + text + " " + yummlyLogo);
+           /* TextView attributionTextView = (TextView)findViewById(R.id.attribution_text);
+            attributionTextView.setText(text);
+
+            TextView attributionURL = (TextView)findViewById(R.id.attribution_url);
+            attributionURL.setText(url);*/
+
+            //yummlyIcon = (ImageView)findViewById(R.id.yummly_logo);
+
             imageViewArray = new ImageView[matchesArray.length()];
 
             if (matchesArray.length()==0) {
@@ -143,14 +159,20 @@ public class HomepageActivity extends AppCompatActivity {
 
 
                 new AsyncTask<Void,Void,Void>() {
-                    String newImageString;
-                    Drawable drawable;
+                    String newImageString, logoString;
+                    Drawable drawable, yummlyDrawable;
                     @Override
                     protected Void doInBackground(Void... params) {
                         //System.out.println(imageString);
+                        //logoString = parseImage(yummlyLogo);
+                        //System.out.println(logoString);
+
                         newImageString = parseImage(imageString);
                        // System.out.println(newImageString);
+                        //yummlyDrawable = LoadImageFromWebOperations(logoString);
+                        //System.out.println(yummlyDrawable);
                         drawable = LoadImageFromWebOperations(newImageString);
+
                         return null;
                     }
                     @Override
@@ -194,6 +216,12 @@ public class HomepageActivity extends AppCompatActivity {
                         } else {
                             throw new RuntimeException("Drawable is null!");
                         }
+
+                        /*if (yummlyDrawable != null) {
+                            yummlyIcon.setImageDrawable(yummlyDrawable);
+                        }*/ /*else {
+                            throw new RuntimeException("yummlyDrawable is null!");
+                        }*/
                     }
                 }.execute();
 
