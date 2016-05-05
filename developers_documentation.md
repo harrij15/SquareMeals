@@ -1,8 +1,8 @@
 # SquareMeals Development Documentation
 
 ## Table of Contents
- -[Environment](#environment)
- -[Classes](#classes)
+-[Environment](#environment)
+  -	[Classes](#classes)
 
 ## Environment
 We utilized Android Studio to both create, and test our app thus far. Their website is provided below.

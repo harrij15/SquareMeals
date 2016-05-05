@@ -1,7 +1,6 @@
 # SquareMeals
-//(this is the user/end use documentation, figure out where to put the other types of documentation
 **This is the end user documentation.** The guide to acquire the development environment is provided below though.
-If you wish to observe the Technical User documentation check [here](https://github.com/harrij15/SquareMeals/blob/master/developers_documentation.md)
+If you wish to observe the Technical User documentation check [here](https://github.com/harrij15/SquareMeals/blob/master/developers_documentation.md).
 
 
 SquareMeals is an mobile application that allows users (mainly college students) to compile different easy-to-make and affordable recipes that suit their dietary needs into a cookbook. This app also seeks to create a community where college students on the same campus can share/suggest recipes to others.
@@ -9,12 +8,11 @@ SquareMeals is an mobile application that allows users (mainly college students)
 ##Table of Contents
 - [Introduction](#squaremeals)
 - [Installation](#installation)
-  -[Android Studio]
 - [Using the Interface](#using-the-interface)
   - [Account Creation] (#account-creation)
   - [Preference Customization] (#preference-customization)
   - [Searching]
-- [Uninstalling](#) //???
+- [Uninstalling](#unstalling)
 - [Known Issues](#known-issues)
 - [Blog](#blog)
 - [License](#license)
@@ -59,6 +57,7 @@ N/A as of now
 
 ## Known Issues
 One of the main problems with our app so far is Lacto-Vegetarian will come up with cheese products.
+We have suspicions that similar effects might be applied to Ovo-vegetarian as well.
 
 ## Blog
 
