@@ -5,6 +5,16 @@ If you wish to observe the Technical User documentation check [here](https://git
 
 SquareMeals is an mobile application that allows users (mainly college students) to compile different easy-to-make and affordable recipes that suit their dietary needs into a cookbook. This app also seeks to create a community where college students on the same campus can share/suggest recipes to others.
 
+Currently the app is able to filter recipe searches based on dietary preferences through an external API, the Yummly API. We ultimately want to move away from the Yummly API and be able to have our own recipe database. Some other features we want to implement in the future:
+- Create a website
+- Expand to iOS
+- More dietary preferences available for users
+- Ability for to input ingredients and get recipes
+- "Cookbook" for the users' personal favorites
+- Also search restaurants in the area
+- Have a "college community" for users
+- Provide grocery prices from nearby stores
+
 ##Table of Contents
 - [Introduction](#squaremeals)
 - [Installation](#installation)
