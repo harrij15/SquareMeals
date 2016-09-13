@@ -34,7 +34,7 @@ If you wish to utilize our app, you must access it through the Android Studio em
 Please refer to our [Technical User](https://github.com/harrij15/SquareMeals/blob/master/developers_documentation.md) documentation for instructions on how to use these.
 
 ## Using the Interface
-The Android Studio Emulator appears as such. Soemtimes the app opens automatically but sometimes you must look for it in your apps.
+The Android Studio Emulator appears as such. Sometimes the app opens automatically but sometimes you must look for it in your apps.
 To do so, refer to the image below. Select the boxed, red icon and scroll until you find "SquareMeals"
 
 ![Android Home Page](http://orig09.deviantart.net/25d1/f/2016/125/4/6/1_by_miinji-da1gpqs.png)
@@ -61,10 +61,10 @@ After your preference is selected, your homepage will show recipes applicable to
 NOTE: You are only able to select a single type of diet as of now. We hope to expand the dietary selection in the future
 as well as let people select many types of restrictions, primarily allergies foods and similar types.
 
-**Editting Preferences**
+**Editing Preferences**
 If you want to change your diet select the dropdown menu shown below:
 
-![Editting Preferences](http://orig14.deviantart.net/e450/f/2016/126/7/8/4_by_miinji-da1gwl2.png)
+![Editing Preferences](http://orig14.deviantart.net/e450/f/2016/126/7/8/4_by_miinji-da1gwl2.png)
 
 And select the [Edit Preferences] option. There you will be prompted to change your preferences once again.
 
