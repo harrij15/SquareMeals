@@ -44,22 +44,22 @@ public class SignUpActivity extends AppCompatActivity {
 
             if (password_.length() < 8 || password_.length() > 16) {
                 // if the length of the password is less than the min or greater than the max
-                Toast pass = Toast.makeText(SignUpActivity.this,"Enter a password in 8-16 characters!", Toast.LENGTH_SHORT);
+                Toast pass = Toast.makeText(SignUpActivity.this,"Enter a password in 8-16 characters!", Toast.LENGTH_LONG);
                 pass.show();
 
             } else if (user_name.length() > 15) {
                 // if the length of the username exceeds the max number of characters
-                Toast pass = Toast.makeText(SignUpActivity.this,"Username is too long!", Toast.LENGTH_SHORT);
+                Toast pass = Toast.makeText(SignUpActivity.this,"Username is too long!", Toast.LENGTH_LONG);
                 pass.show();
 
             } else if (!password_.equals(confirm_)){
                 // if password and confirm don't match!
-                Toast pass = Toast.makeText(SignUpActivity.this,"Passwords don't match!", Toast.LENGTH_SHORT);
+                Toast pass = Toast.makeText(SignUpActivity.this,"Passwords don't match!", Toast.LENGTH_LONG);
                 pass.show();
 
             } else if (helper.isUsernameTaken(user_name)) {
                 // If the desired username already exists in the database
-                Toast pass = Toast.makeText(SignUpActivity.this,"Username already taken!", Toast.LENGTH_SHORT);
+                Toast pass = Toast.makeText(SignUpActivity.this,"Username already taken!", Toast.LENGTH_LONG);
                 pass.show();
 
             } else {
