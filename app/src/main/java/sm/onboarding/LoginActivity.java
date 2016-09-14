@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,10 +17,24 @@ public class LoginActivity extends AppCompatActivity {
 
     UserDatabaseHelper helper = new UserDatabaseHelper(this);
 
+    EditText password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        password = (EditText)findViewById(R.id.password);
+        password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_SEND || event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                    logIn(null);
+                    handled = true;
+                }
+                return handled;
+            }
+        });
     }
 
     //Pushes on sign up view on click of sign up button
@@ -32,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
     public void logIn(View view) {
 
         EditText username = (EditText)findViewById(R.id.user_name);
-        EditText password = (EditText)findViewById(R.id.password);
         TextView incorrect = (TextView)findViewById(R.id.incorrect);
 
         // Logs in user only if the username/password fields are filled
@@ -65,20 +79,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    // Allows the user to sign in as a guest
     public void guestEnter(View view) {
         Intent loadingIntent = new Intent(this, LoadingActivity.class);
         startActivity(loadingIntent);
-    }
-
-    // Allows the user use the enter key on the keyboard to go
-    // straight from the last EditText to the next activity
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent keyEvent) {
-        if (keyCode == KeyEvent.KEYCODE_ENTER) {
-            logIn(null);
-            return true;
-        }
-        return false;
     }
 
     // Allows the user to click on the screen to hide the keyboard

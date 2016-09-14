@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,20 +18,69 @@ public class SignUpActivity extends AppCompatActivity {
 
     UserDatabaseHelper helper = new UserDatabaseHelper(this);
 
+    EditText username;
+    EditText confirm;
+    EditText password;
+    EditText name;
+    EditText email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        name = (EditText)findViewById(R.id.real_name);
+        username = (EditText)findViewById(R.id.user_name);
+        email = (EditText)findViewById(R.id.email);
+        password = (EditText)findViewById(R.id.password);
+        confirm = (EditText)findViewById(R.id.retype);
+
+        String username_string, name_string, email_string, password_string, confirm_string;
+
+        confirm.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+
+                // For some reason, the action ID on the keyboard is "Done",
+                // instead of "Send"
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    signUp(null);
+                    handled = true;
+                }
+
+                else if (event != null) {
+                    if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                        signUp(null);
+                        handled = true;
+                    }
+                }
+                System.out.println(actionId);
+                System.out.println(EditorInfo.IME_ACTION_SEND);
+                return handled;
+            }
+        });
+
+        // In order to have the values already filled in
+        // if we return back to this page from the SelectPreferencesActivity
+        if (getIntent().getExtras() != null) {
+            name_string = getIntent().getExtras().getString("NAME");
+            username_string = getIntent().getExtras().getString("USERNAME");
+            email_string = getIntent().getExtras().getString("EMAIL");
+            password_string = getIntent().getExtras().getString("PASSWORD");
+            confirm_string = password_string;
+
+            name.setText(name_string);
+            username.setText(username_string);
+            email.setText(email_string);
+            password.setText(password_string);
+            confirm.setText(confirm_string);
+        }
     }
 
     // Signs up new user
     public void signUp(View view) {
 
-        EditText username = (EditText)findViewById(R.id.user_name);
-        EditText password = (EditText)findViewById(R.id.password);
-        EditText name = (EditText)findViewById(R.id.real_name);
-        EditText email = (EditText)findViewById(R.id.email);
-        EditText confirm = (EditText)findViewById(R.id.retype);
         TextView fillAll = (TextView)findViewById(R.id.fill_all);
 
         // Logs in user only if all of the fields are filled
@@ -121,9 +171,6 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent keyEvent) {
         switch (keyCode) {
-            case KeyEvent.KEYCODE_ENTER: // Allow the user to sign in from keyboard
-                signUp(null);
-                return true;
             case KeyEvent.KEYCODE_BACK:  // Allow the user to go back to the login screen
                 Intent logInIntent = new Intent(this,LoginActivity.class);
                 startActivity(logInIntent);

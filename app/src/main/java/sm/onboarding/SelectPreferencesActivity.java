@@ -3,6 +3,7 @@ package sm.onboarding;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckedTextView;
@@ -279,7 +280,6 @@ public class SelectPreferencesActivity extends AppCompatActivity {
             setResult(RESULT_OK, newdata);
             // End execution.
             startActivity(newdata);
-            finish();
         }
         else{
             Intent loadingIntent = new Intent(this, LoadingActivity.class);
@@ -296,6 +296,23 @@ public class SelectPreferencesActivity extends AppCompatActivity {
             startActivity(loadingIntent);
             finish();
         }
+    }
+
+    // On a keyboard press
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent keyEvent) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:  // Allow the user to go back to the login screen
+                Intent signUpIntent = new Intent(this,SignUpActivity.class);
+                signUpIntent.putExtra("NAME",name);
+                signUpIntent.putExtra("USERNAME",username);
+                signUpIntent.putExtra("EMAIL",email);
+                signUpIntent.putExtra("PASSWORD",password);
+                startActivity(signUpIntent);
+                return true;
+        }
+
+        return false;
     }
 
 }
