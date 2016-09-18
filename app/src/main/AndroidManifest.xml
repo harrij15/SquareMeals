@@ -12,7 +12,7 @@ xmlns:android="http://schemas.android.com/apk/res/android" package="sm">
     <activity android:name=".homepage.HomepageActivity" android:parentActivityName=".onboarding.LoginActivity">
         <meta-data android:name="android.app.default_searchable" android:value=".SearchActivity" />
     </activity>
-    <activity android:name=".recipe.SearchActivity" android:label="@string/search_results"
+    <activity android:name=".search.SearchActivity" android:label="@string/search_results"
         android:launchMode="singleTop">
         <intent-filter>
             <action android:name="android.intent.action.SEARCH" />

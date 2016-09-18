@@ -1,4 +1,4 @@
-package sm.recipe;
+package sm.search;
 
 
 import android.content.Intent;
@@ -28,10 +28,12 @@ import sm.homepage.HomepageActivity;
 import sm.homepage.HomepageGuestActivity;
 import sm.search.RecipeInfoActivity;
 
+
+// This activity displays all of the search results in a ListView
 public class SearchActivity extends AppCompatActivity {
     ImageView[] imageViewArray;
     int index;
-    String json, username, name, diet, flag, oldJson;
+    String json, username, name, diet, flag, oldJson, link;
     Intent intent;
     int time;
     String yummlyLogo;
@@ -49,12 +51,16 @@ public class SearchActivity extends AppCompatActivity {
             name = getIntent().getExtras().getString("NAME");
             flag = getIntent().getExtras().getString("FLAG");
             json = getIntent().getExtras().getString("JSON");
+            //link = getIntent().getExtras().getString("LINK");
+
         } else {
             oldJson = "";
             diet = "";
             username = "";
             name = "";
             flag = "";
+            json = "";
+            //link = "";
         }
 
 
@@ -96,8 +102,12 @@ public class SearchActivity extends AppCompatActivity {
                 final String ingredientString = matchesArray.getJSONObject(i).getString("ingredients");
                 final String imageString = matchesArray.getJSONObject(i).getString("smallImageUrls");
                 final String cook_time = matchesArray.getJSONObject(i).getString("totalTimeInSeconds");
+                final String recipeID = matchesArray.getJSONObject(i).getString("id");
                 final ArrayList<String> ingredients = parseIngredientsList(ingredientString);
                 final ImageView imageView = new ImageView(this);
+
+                link = "http://api.yummly.com/v1/api/recipe/" + recipeID + "?_app_id=c9c36e2c&_app_key=02f8047150cb8a270d7b5bef56f8d3e3";
+
 
                 new AsyncTask<Void,Void,Void>() {
                     String newImageString, logoString;
@@ -129,7 +139,7 @@ public class SearchActivity extends AppCompatActivity {
                             }
 
                             if (imageViewArray[index-1] != null) {
-                                SearchResult newResult = new SearchResult(name, ingredients, imageViewArray[index - 1], name, time, newImageString);
+                                SearchResult newResult = new SearchResult(name, ingredients, imageViewArray[index - 1], name, time, newImageString, link);
                                 recipeList.add(newResult);
                                 SearchResultsAdapter adapter = new SearchResultsAdapter(getApplicationContext(), R.layout.homepage_list, recipeList);
                                 listView.setAdapter(adapter);
@@ -139,10 +149,11 @@ public class SearchActivity extends AppCompatActivity {
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                         Intent newIntent = new Intent(intent);
                                         SearchResult searchResult = (SearchResult) listView.getItemAtPosition(position);
-                                        newIntent.putExtra("IMAGE",searchResult.getLink());
+                                        newIntent.putExtra("IMAGE",searchResult.getImageString());
                                         newIntent.putExtra("INGREDIENTS",searchResult.getIngredients());
                                         newIntent.putExtra("TIME",searchResult.getTime());
                                         newIntent.putExtra("NAME",searchResult.getName());
+                                        newIntent.putExtra("LINK",searchResult.getLink());
                                         //System.out.println(name);
                                         startActivity(newIntent);
                                     }

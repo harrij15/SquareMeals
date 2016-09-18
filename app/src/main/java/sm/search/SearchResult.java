@@ -17,9 +17,10 @@ public class SearchResult {
     private String description;
     private int cook_time;
     private String link;
+    private String imageString;
 
     // constructor
-    public SearchResult(String name, ArrayList<String> ingredients, ImageView image, String description, int cook_time, String lnk){
+    public SearchResult(String name, ArrayList<String> ingredients, ImageView image, String description, int cook_time, String imgString, String lnk){
         super();
         this.name = name;
         this.ingredients = ingredients;
@@ -27,6 +28,7 @@ public class SearchResult {
         this.cook_time = cook_time;
         this.description = description;
         this.link = lnk;
+        this.imageString = imgString;
     }
 
 
@@ -42,7 +44,9 @@ public class SearchResult {
         return image;
     }
 
-    // returns the link associated with the picture
+    // returns the string associated with the picture
+    public String getImageString() {return imageString;}
+
     public String getLink() {return link;}
 
     public String[] getIngredients() {

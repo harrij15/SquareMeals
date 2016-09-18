@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,8 +15,9 @@ import java.net.URL;
 
 import sm.R;
 
+// This activity displays the recipe information
 public class RecipeInfoActivity extends AppCompatActivity {
-    String name, link;
+    String name, imageString, link;
     int time;
     String[] ingredients;
     @Override
@@ -23,13 +25,12 @@ public class RecipeInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_info);
 
-
-
         if (getIntent().getExtras() != null) {
             name = getIntent().getExtras().getString("NAME");
-            link = getIntent().getExtras().getString("IMAGE");
+            imageString = getIntent().getExtras().getString("IMAGE");
             ingredients = getIntent().getExtras().getStringArray("INGREDIENTS");
             time = getIntent().getExtras().getInt("TIME");
+            link = getIntent().getExtras().getString("LINK");
         }
 
         final TextView recipeName = (TextView)findViewById(R.id.recipeName);
@@ -38,13 +39,17 @@ public class RecipeInfoActivity extends AppCompatActivity {
         final TextView recipeLink = (TextView)findViewById(R.id.link);
         final ImageView imageView = (ImageView)findViewById(R.id.recipeImage);
 
+        //Make recipeLink a hyperlink
+        //recipeLink.setClickable(true);
+        //recipeLink.setMovementMethod(LinkMovementMethod.getInstance());
+
         new AsyncTask<Void,Void,Void>() {
             String newImageString;
             Drawable drawable;
             @Override
             protected Void doInBackground(Void... params) {
 
-                drawable = LoadImageFromWebOperations(link);
+                drawable = LoadImageFromWebOperations(imageString);
                 return null;
             }
             @Override
