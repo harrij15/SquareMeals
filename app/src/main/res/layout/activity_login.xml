@@ -65,7 +65,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_below="@+id/incorrect"
         android:layout_centerHorizontal="true"
-        android:imeOptions="actionSend"/>
+        android:imeOptions="actionNext"/>
 
     <!--
         Password
@@ -81,7 +81,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_below="@+id/user_name"
         android:layout_alignStart="@+id/user_name"
-        android:imeOptions="actionSend"/>
+        android:imeOptions="actionSend"
+        />
 
     <!--
         Sign up button

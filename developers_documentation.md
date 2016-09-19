@@ -21,7 +21,7 @@ a user’s saved recipes. This class also has a search feature.
 Displays only recipe recommendations to a guest and provides a search feature
 	-dumbed down homepage activity)
 	-also needs better images
-	- guests should be able to filter as well
+	-guests should be able to filter as well
 
 *HomepageButtonAdapter.java*
 Sets up the image buttons that are displayed in HomepageActivity and HomepageGuestActivity
@@ -48,19 +48,23 @@ A class to store a user’s information such as username, real name,  password, 
 (incomplete/unused class) a class to store recipe information
 
 * -> what shreya wants to improve (UI/appearance)
+
 **LoadingActivity.java*
 	-greets user
 	-loads data for homepage for top picks
+
 **LoadResultsActivity.java*
 	Loading search results. LoginActivity
 	Checks database, if pw matches.
 	-Needs a UI
+
 **RecipeInfoActivity.java*
 	Displays name, pic, ingredients, time it takes
 	Ugly hyperlink
 	-improve UI
 	-include procedure
 	-get bigger image
+
 *SearchActivity.java*
 	Uses SearchResult (class) to display recipes.
 	-only displays a few recipes (want it display more than just 6 (6 bc of yummly))

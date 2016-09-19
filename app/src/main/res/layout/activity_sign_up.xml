@@ -64,7 +64,8 @@
         android:id="@+id/real_name"
         android:hint="@string/name"
         android:layout_above="@+id/user_name"
-        android:layout_alignStart="@+id/user_name" />
+        android:layout_alignStart="@+id/user_name"
+        android:imeOptions="actionNext"/>
 
     <!--
         Username
@@ -79,7 +80,8 @@
         android:hint="@string/username_hint"
         android:layout_gravity="center_horizontal"
         android:layout_above="@+id/email"
-        android:layout_alignStart="@+id/email" />
+        android:layout_alignStart="@+id/email"
+        android:imeOptions="actionNext"/>
 
     <!--
         Email
@@ -94,7 +96,8 @@
         android:hint="@string/email"
         android:layout_gravity="center_horizontal"
         android:layout_above="@+id/password"
-        android:layout_alignStart="@+id/password"    />
+        android:layout_alignStart="@+id/password"
+        android:imeOptions="actionNext"/>
 
     <!--
         Password
@@ -109,7 +112,8 @@
         android:hint="@string/password_hint"
         android:layout_gravity="center_horizontal"
         android:layout_above="@+id/retype"
-        android:layout_alignStart="@+id/retype" />
+        android:layout_alignStart="@+id/retype"
+        android:imeOptions="actionNext"/>
 
     <!--
         Confirm password
@@ -125,7 +129,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="28dp"
         android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:imeOptions="actionSend"/>
 
     <!--
         Sign up button
