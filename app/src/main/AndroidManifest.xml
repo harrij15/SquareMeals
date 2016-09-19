@@ -7,12 +7,12 @@ xmlns:android="http://schemas.android.com/apk/res/android" package="sm">
 
 <application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name"
     android:supportsRtl="true" android:theme="@style/AppTheme">
-    <activity android:name=".LoginActivity" android:windowSoftInputMode="adjustPan"></activity>
-    <activity android:name=".SignUpActivity" android:windowSoftInputMode="adjustPan"></activity>
-    <activity android:name=".HomepageActivity" android:parentActivityName=".LoginActivity">
+    <activity android:name=".onboarding.LoginActivity" android:windowSoftInputMode="adjustPan"></activity>
+    <activity android:name=".onboarding.SignUpActivity" android:windowSoftInputMode="adjustPan"></activity>
+    <activity android:name=".homepage.HomepageActivity" android:parentActivityName=".onboarding.LoginActivity">
         <meta-data android:name="android.app.default_searchable" android:value=".SearchActivity" />
     </activity>
-    <activity android:name=".SearchActivity" android:label="@string/search_results"
+    <activity android:name=".recipe.SearchActivity" android:label="@string/search_results"
         android:launchMode="singleTop">
         <intent-filter>
             <action android:name="android.intent.action.SEARCH" />
@@ -20,23 +20,23 @@ xmlns:android="http://schemas.android.com/apk/res/android" package="sm">
 
         <meta-data android:name="android.app.searchable" android:resource="@xml/searchable" />
     </activity>
-    <activity android:name=".LoadingActivity"></activity>
-    <activity android:name=".WelcomeActivity">
+    <activity android:name=".onboarding.LoadingActivity"></activity>
+    <activity android:name=".onboarding.WelcomeActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
-    <activity android:name=".ProfilePage"></activity>
-    <activity android:name=".LoadResultsActivity"></activity>
-    <activity android:name=".SelectPreferencesActivity"></activity>
+    <activity android:name=".profile.ProfilePage"></activity>
+    <activity android:name=".search.LoadResultsActivity"></activity>
+    <activity android:name=".onboarding.SelectPreferencesActivity"></activity>
     <!--<activity android:name=".ProfilePage"></activity>-->
-    <activity android:name=".EditPref"></activity>
-    <activity android:name=".MyDietActivity"></activity>
-    <activity android:name=".HomepageGuestActivity"></activity>
-    <activity android:name=".RecipeInfoActivity"></activity>
-    <activity android:name=".UpdateProfileActivity">
+    <activity android:name=".profile.EditPref"></activity>
+    <activity android:name=".profile.MyDietActivity"></activity>
+    <activity android:name=".homepage.HomepageGuestActivity"></activity>
+    <activity android:name=".search.RecipeInfoActivity"></activity>
+    <activity android:name=".profile.UpdateProfileActivity">
         >>>>>>> refs/remotes/origin/master
     </activity>
 
