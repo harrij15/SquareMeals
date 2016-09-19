@@ -62,11 +62,4 @@ public class HomepageButtonAdapter extends BaseAdapter {
         return button;
     }
 
-    /*// references to our images
-    private Integer[] pictures = {
-            R.drawable.dairy2, R.drawable.shellfish2,
-            R.drawable.fish2, R.drawable.peanuts2,
-            R.drawable.gluten2, R.drawable.eggs2
-    };*/
-
 }

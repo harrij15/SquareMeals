@@ -66,14 +66,15 @@ public class HomepageActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
 
 
-
+        // Reading values thrown in from previous activity (either the LoginActivity
+        // or the SignUpActivity) if given
         if (getIntent().getExtras() != null) {
             username = getIntent().getExtras().getString("USERNAME");
             name = getIntent().getExtras().getString("NAME");
             diet = getIntent().getExtras().getString("DIET");
             json = getIntent().getExtras().getString("JSON");
 
-        } else {
+        } else { // Handling the case where no values are thrown in
             username = "";
             name = "";
             diet = "";
@@ -82,6 +83,9 @@ public class HomepageActivity extends AppCompatActivity {
 
         String emptyString = "";
 
+        // Greets the user either with their name or their username
+        // For now, every user is required to give their name, but it
+        // can be possible to give them a choice in the Settings
         if ((name != null && !name.equals("not found")) && !name.equals(emptyString)) {
             toolbar.setTitle("Hello " + name + "!");
         }
@@ -126,6 +130,8 @@ public class HomepageActivity extends AppCompatActivity {
             obj = new JSONObject(json);
             JSONArray matchesArray = obj.getJSONArray("matches");
 
+            // Code for giving the attribution
+            // TODO - Get this code to work
             /*JSONObject attribution = obj.getJSONObject("attribution");
             String url = attribution.getString("url");
             String text = attribution.getString("text");
@@ -139,9 +145,10 @@ public class HomepageActivity extends AppCompatActivity {
 
             //yummlyIcon = (ImageView)findViewById(R.id.yummly_logo);
 
-
+            // Getting the images from the json
             imageViewArray = new ImageView[matchesArray.length()];
 
+            // Check for test case where no recipes could be found
             if (matchesArray.length()==0) {
                 TextView searchResultsText = (TextView) findViewById(R.id.search_results_text);
                 searchResultsText.setText("Oops! We couldn't find anything :(");
@@ -152,7 +159,7 @@ public class HomepageActivity extends AppCompatActivity {
             screenWidth = displaymetrics.widthPixels;
             intent = new Intent(this, RecipeInfoActivity.class);
 
-
+            // The actual parse for information
             for (int i = 0; i < matchesArray.length(); ++i) {
 
                 final String recipe = matchesArray.getJSONObject(i).getString("recipeName");
@@ -162,12 +169,15 @@ public class HomepageActivity extends AppCompatActivity {
                 final ArrayList<String> ingredients = parseIngredientsList(ingredientString);
                 final ImageView imageView = new ImageView(this);
 
-
-
+                // AsyncTasks are used to run programs in the background, while displaying something else
+                // In our app, we show the user a splash screen
                 new AsyncTask<Void,Void,Void>() {
                     String newImageString, logoString;
                     Drawable drawable, yummlyDrawable;
                     @Override
+
+                    // Loading the image from the internet
+                    // Loading images cannot be done on the main thread
                     protected Void doInBackground(Void... params) {
                         //System.out.println(imageString);
                         //logoString = parseImage(yummlyLogo);
@@ -194,17 +204,22 @@ public class HomepageActivity extends AppCompatActivity {
 
                             int time = -1;
 
+                            // We want the time to be in a certain format
                             try {
                                 time = Integer.parseInt(cook_time);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
 
+                            // If the image was found, add the recipe
                             if (imageViewArray[index-1] != null) {
                                 recipeList.add(new Recipe(recipe, ingredients, imageViewArray[index - 1], recipe, time, newImageString));
                                 HomepageListArrayAdapter adapter = new HomepageListArrayAdapter(getApplicationContext(), R.layout.homepage_item, recipeList,screenWidth);
                                 gridView.setAdapter(adapter);
 
+                                // This sets up the GridView displayed to the users
+                                // For each recipe, its information is gathered as the user clicks on it
+                                // This operation only happens once the user clicks on an item
                                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -251,34 +266,45 @@ public class HomepageActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_homepage, menu);
 
+        // Setting up the search icon on the menu
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView = (SearchView) (menu.findItem(R.id.search)).getActionView();
 
-        // Get diet preference
-        //final String diet;
+        /*// Get diet preference thrown in
         if (getIntent().getExtras() != null) {
             diet = getIntent().getExtras().getString("DIET");
         } else {
             diet = "";
-        }
+        }*/
 
         // Handle query
         if (searchView != null) {
 
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
             searchView.setIconifiedByDefault(false);
+
+            // This sets the text hint the user will see when clicking on the icon
             String queryHint = "Search recipes...";
             searchView.setQueryHint(queryHint);
 
+            // Hides the keyboard once the user clicks out of the search field after selecting it
             searchView.setOnQueryTextFocusChangeListener(new SearchView.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     hideKeyboard(v);
                 }
             });
+
+            // Once the user enters their search query, the query is then transformed to
+            // work with the Yummly API Search Recipe call
+            // This will change once the app starts relying on the database
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+                // Creates a LoadResultsActivity to display a splash screen while loading the
+                // data from the Yummly API
                 @Override
                 public boolean onQueryTextSubmit(String query) {
+
                     Intent loadSearchIntent = new Intent(HomepageActivity.this, LoadResultsActivity.class);
 
                     query = searchView.getQuery().toString();
@@ -321,9 +347,14 @@ public class HomepageActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
 
+        // Once we implement the settings, this if statement
+        // will handle that
         if (id == R.id.action_settings) {
-            Intent profileIntent = new Intent(HomepageActivity.this, ProfilePage.class);
+
         }
+
+        // Handles the user press of the profile
+        // Launches the ProfilePage activity
         if (id == R.id.action_profile) {
             Intent profileIntent = new Intent(HomepageActivity.this,ProfilePage.class);
             profileIntent.putExtra("DIET",diet);
@@ -335,6 +366,8 @@ public class HomepageActivity extends AppCompatActivity {
             return true;
         }
 
+        // Handles a user press of the Preferences
+        // Launches the MyDietActivity
         if (id == R.id.action_preferences) {
 
             Intent prefIntent = new Intent(this, MyDietActivity.class);
@@ -346,14 +379,9 @@ public class HomepageActivity extends AppCompatActivity {
             return true;
         }
 
-
-        //return super.onOptionsItemSelected(item);
-
-
-
+        // Handles search
         if (id == R.id.search) {
             SearchView searchView = (SearchView) item.getActionView();
-            //searchView.dispatchSetActivated();
             // TODO - Remove unnecessary function calls
             searchView.dispatchSetActivated(true);
             searchView.setPressed(true);
@@ -365,11 +393,12 @@ public class HomepageActivity extends AppCompatActivity {
             return true;
         }
 
-
         return true;
 
     }
 
+    // Allows the user to go back to the LoginActivity
+    // when the back button is pressed
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent keyEvent) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -394,6 +423,7 @@ public class HomepageActivity extends AppCompatActivity {
         newString[1] = 'q';
         newString[2] = '=';*/
 
+        // Replaces all spaces with '+' characters
         for (int i = 0; i < query.length(); ++i) {
             if (query.charAt(i) == ' ') {
                 //newString[i+3] = '+';
@@ -413,6 +443,8 @@ public class HomepageActivity extends AppCompatActivity {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+    // Resets search icon to iconified state when the user
+    // goes back to the HomePageActivity
     @Override
     public void onBackPressed() {
         SearchView searchView = (SearchView) findViewById(R.id.search);
@@ -424,6 +456,8 @@ public class HomepageActivity extends AppCompatActivity {
     }
 
     // Parse ingredient string
+    // The ingredient string is given in a list format ([a,b,c,d])
+    // so we need to parse it in order to get its items
     private ArrayList<String> parseIngredientsList(String ingredientString) {
         ArrayList<String> ingredientList = new ArrayList<>();
         String stringFragment = "";
@@ -496,6 +530,7 @@ public class HomepageActivity extends AppCompatActivity {
         return finalFragment;
     }
 
+    // Loads the image from the Internet
     public static Drawable LoadImageFromWebOperations(String url) {
         try {
             InputStream is = (InputStream) new URL(url).getContent();
