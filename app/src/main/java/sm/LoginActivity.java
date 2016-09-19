@@ -12,8 +12,13 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+/**
+ * This is the login page, where a user will choose to log in (type in username and password),
+ * to sign up, or to sign in as guest.
+ */
 public class LoginActivity extends AppCompatActivity {
 
+    // SQLite database to store data LOCALLY
     UserDatabaseHelper helper = new UserDatabaseHelper(this);
 
     @Override
@@ -22,13 +27,21 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
 
-    //Pushes on sign up view on click of sign up button
+    /**
+     * A new activity appears when a user clicks sign-up
+     * @param view
+     */
     public void signUp(View view) {
         Intent newIntent = new Intent(this,SignUpActivity.class);
         startActivity(newIntent);
     }
 
-    //Logs in user, saving the username to greet them on the next activity
+    /**
+     * A user logs in with a username and password. This method checks that
+     * all the required fields are filled in and that the password matches the one
+     * stored in the database.
+     * @param view
+     */
     public void logIn(View view) {
 
         EditText username = (EditText)findViewById(R.id.user_name);
@@ -60,20 +73,25 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(loadingIntent);
             }
 
-        } else {    //Tell user to fill in correct information
+        } else {
+            //Tell user to fill in correct information
             incorrect.setVisibility(View.VISIBLE);
         }
     }
 
+    /**
+     * A new activity appears when the user logs in as Guest.
+     * @param view
+     */
     public void guestEnter(View view) {
         Intent loadingIntent = new Intent(this, LoadingActivity.class);
         startActivity(loadingIntent);
     }
 
-    // Allows the user use the enter key on the keyboard to go
-    // straight from the last EditText to the next activity
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent keyEvent) {
+        // Allows the user use the enter key on the keyboard to go
+        // straight from the last EditText to the next activity
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
             logIn(null);
             return true;

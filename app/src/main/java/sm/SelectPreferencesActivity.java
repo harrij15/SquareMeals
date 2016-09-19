@@ -12,13 +12,32 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * This page can be accessed by the user immediately after the user signs up or
+ * if the user chooses to edit his/her preferences from the menu bar.
+ * Preferences available to choose from:
+ * Vegetarian, Vegan, Pescetarian, Lacto+Vegetarian, Ovo+Vegetarian, Paleo, Not Sure/None
+ */
 public class SelectPreferencesActivity extends AppCompatActivity {
+
+    enum Preference {
+        VEGETARIAN,
+        VEGAN,
+        PESCATARIAN,
+        LACTO_VEGETARIAN,
+        OVO_VEGETARIAN,
+        PALEOLITHIC,
+        NOT_SURE,
+        NONE
+    }
+
     CheckedTextView checked;
     int id;
 
     UserDatabaseHelper helper = new UserDatabaseHelper(this);
     String username, name , email, password, flag;
     String diet, json, inputDiet;
+    Preference inputDiet2 = Preference.NONE;
     int position;
 
     @Override
@@ -68,7 +87,7 @@ public class SelectPreferencesActivity extends AppCompatActivity {
         final Button submitButton = (Button)findViewById(R.id.submitPref);
 
         // Each of these handles when user selects a preference
-        // TO-DO: find a way to let user choose multiple
+        // TODO: find a way to let user choose multiple
         vegetarianBox.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -76,7 +95,8 @@ public class SelectPreferencesActivity extends AppCompatActivity {
                     checked.setChecked(false);
                 }
                 checked = vegetarianBox;
-                id = 1;
+                //id = 1;
+                inputDiet2 = Preference.VEGETARIAN;
 
                 if (((CheckedTextView) v).isChecked()) {
                     ((CheckedTextView) v).setChecked(false);
@@ -93,7 +113,8 @@ public class SelectPreferencesActivity extends AppCompatActivity {
                     checked.setChecked(false);
                 }
                 checked = veganBox;
-                id = 2;
+                //id = 2;
+                inputDiet2 = Preference.VEGAN;
 
                 if (((CheckedTextView) v).isChecked()) {
                     ((CheckedTextView) v).setChecked(false);
@@ -110,7 +131,8 @@ public class SelectPreferencesActivity extends AppCompatActivity {
                     checked.setChecked(false);
                 }
                 checked = pescBox;
-                id = 3;
+                //id = 3;
+                inputDiet2 = Preference.PESCATARIAN;
 
                 if (((CheckedTextView) v).isChecked()) {
                     ((CheckedTextView) v).setChecked(false);
@@ -127,7 +149,8 @@ public class SelectPreferencesActivity extends AppCompatActivity {
                     checked.setChecked(false);
                 }
                 checked = lactoBox;
-                id = 4;
+                //id = 4;
+                inputDiet2 = Preference.LACTO_VEGETARIAN;
 
                 if (((CheckedTextView) v).isChecked()) {
                     ((CheckedTextView) v).setChecked(false);
@@ -144,7 +167,8 @@ public class SelectPreferencesActivity extends AppCompatActivity {
                     checked.setChecked(false);
                 }
                 checked = ovoBox;
-                id = 5;
+                //id = 5;
+                inputDiet2 = Preference.OVO_VEGETARIAN;
 
                 if (((CheckedTextView) v).isChecked()) {
                     ((CheckedTextView) v).setChecked(false);
@@ -161,7 +185,8 @@ public class SelectPreferencesActivity extends AppCompatActivity {
                     checked.setChecked(false);
                 }
                 checked = paleoBox;
-                id = 6;
+                //id = 6;
+                inputDiet2 = Preference.PALEOLITHIC;
 
                 if (((CheckedTextView) v).isChecked()) {
                     ((CheckedTextView) v).setChecked(false);
@@ -178,7 +203,8 @@ public class SelectPreferencesActivity extends AppCompatActivity {
                     checked.setChecked(false);
                 }
                 checked = notSureBox;
-                id = 7;
+                //id = 7;
+                inputDiet2 = Preference.NOT_SURE;
 
                 if (((CheckedTextView) v).isChecked()) {
                     ((CheckedTextView) v).setChecked(false);
@@ -195,7 +221,8 @@ public class SelectPreferencesActivity extends AppCompatActivity {
                     checked.setChecked(false);
                 }
                 checked = noneBox;
-                id = 8;
+                //id = 8;
+                inputDiet2 = Preference.NONE;
 
                 if (((CheckedTextView) v).isChecked()) {
                     ((CheckedTextView) v).setChecked(false);
@@ -208,23 +235,23 @@ public class SelectPreferencesActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
-                switch(id) {
-                    case 1:
+                switch(inputDiet2) {
+                    case VEGETARIAN:
                         diet = "Vegetarian";
                         break;
-                    case 2:
+                    case VEGAN:
                         diet = "Vegan";
                         break;
-                    case 3:
+                    case PESCATARIAN:
                         diet = "Pescetarian";
                         break;
-                    case 4:
+                    case LACTO_VEGETARIAN:
                         diet = "Lacto+vegetarian";
                         break;
-                    case 5:
+                    case OVO_VEGETARIAN:
                         diet = "Ovo+vegetarian";
                         break;
-                    case 6:
+                    case PALEOLITHIC:
                         diet = "Paleo";
                         break;
                     /*case 7:

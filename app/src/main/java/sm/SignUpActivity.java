@@ -11,6 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * This is the page that shows up when a user clicks to sign up,
+ * meaning that the user will provide information such as name, usernmae, email,
+ * and password in order to be registered into the database.
+ */
 public class SignUpActivity extends AppCompatActivity {
 
     UserDatabaseHelper helper = new UserDatabaseHelper(this);
@@ -21,7 +26,18 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
     }
 
-    // Signs up new user
+    /**
+     * Provides the interface for users to fill in required information to sign up
+     * such as username, password, name, and email.
+     *
+     * If there is at least one required field that has not been filled, error message will be shown.
+     * If the length of the password inputted is less than 8 or grater than 16, error display will be
+     * shown.
+     *
+     * Else if everything is good, the preferences activity will start.
+     *
+     * @param view
+     */
     public void signUp(View view) {
 
         EditText username = (EditText)findViewById(R.id.user_name);
