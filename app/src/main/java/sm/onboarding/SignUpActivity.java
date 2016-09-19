@@ -77,6 +77,15 @@ public class SignUpActivity extends AppCompatActivity {
             confirm.setText(confirm_string);
         }
     }
+        //check if email is valid
+        public boolean isValidEmailAddress(EditText email) {
+        String emails=email.getText().toString();
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(emails);
+        return m.matches();
+    }
+
 
     // Signs up new user
     public void signUp(View view) {
@@ -114,7 +123,12 @@ public class SignUpActivity extends AppCompatActivity {
                 Toast pass = Toast.makeText(SignUpActivity.this,"Username already taken!", Toast.LENGTH_LONG);
                 pass.show();
 
-            } else {
+            } else if (!isValidEmailAddress(email)) {
+            // If the email is invalid
+            Toast pass = Toast.makeText(SignUpActivity.this,"Email is invalid!", Toast.LENGTH_LONG);
+            pass.show();
+
+            }else {
                 // everything is good for sign up
 
                 // insert information into the user database
